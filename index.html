@@ -358,6 +358,7 @@ function renderQuiz(app) {
     <div class="actions">
       <button class="btn btn-primary" id="submitBtn" onclick="submitQuiz()">提交答卷</button>
       <button class="btn btn-secondary" id="revealBtn" onclick="revealAnswers()" disabled>查看答案和解析</button>
+      <button class="btn btn-outline" id="resetBtn" onclick="resetQuiz()">重新开始</button>
     </div>
     <div class="result-card" id="resultCard" style="display:none">
       <div class="score-label">你的得分</div>
@@ -525,6 +526,35 @@ function disableAllInputs() {
     o.style.pointerEvents = 'none';
   });
   document.querySelectorAll('.quiz-input').forEach(inp => inp.disabled = true);
+}
+
+function resetQuiz() {
+  window._quizSubmitted = false;
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('revealBtn').disabled = true;
+
+  // Clear selections and inputs
+  document.querySelectorAll('.option').forEach(o => {
+    o.classList.remove('selected', 'correct-show', 'wrong-show');
+    o.style.cursor = '';
+    o.style.pointerEvents = '';
+  });
+  document.querySelectorAll('.quiz-input').forEach(inp => {
+    inp.value = '';
+    inp.disabled = false;
+    inp.classList.remove('correct-input', 'wrong-input');
+  });
+
+  // Reset card states
+  document.querySelectorAll('.question-card').forEach(c => {
+    c.classList.remove('answered', 'wrong');
+  });
+
+  // Hide explanations and result
+  document.querySelectorAll('.explanation').forEach(e => e.style.display = 'none');
+  document.getElementById('resultCard').style.display = 'none';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goHome() {
