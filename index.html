@@ -267,6 +267,35 @@ body {
 .add-box input:focus { outline: none; border-color: #3498db; }
 .add-box .add-error { color: #e74c3c; font-size: 13px; margin-top: 4px; min-height: 20px; }
 .add-box .add-btns { margin-top: 12px; display: flex; gap: 10px; justify-content: center; }
+
+/* ---- exam / image / table support ---- */
+.q-text img, .explanation img, .option img {
+  max-width: 100%; height: auto; vertical-align: middle;
+}
+.q-text table {
+  border-collapse: collapse; margin: 10px 0; width: 100%; font-size: 13px;
+}
+.q-text th, .q-text td {
+  border: 1px solid #ddd; padding: 4px 8px; text-align: center;
+}
+
+/* open-ended question */
+.open-textarea {
+  width: 100%; padding: 10px 14px; border: 2px solid #e8ecf1;
+  border-radius: 8px; font-size: 15px; font-family: inherit;
+  line-height: 1.6; resize: vertical; transition: border-color 0.2s;
+}
+.open-textarea:focus { outline: none; border-color: #f39c12; }
+.open-textarea.neutral-input { border-color: #f39c12; background: #fef9e7; }
+
+/* exam card on home page */
+.exam-card { border-left: 4px solid #e67e22; }
+.exam-card .week-title { color: #e67e22; }
+
+.exam-section-title { font-size: 16px; color: #e67e22; margin-top: 28px; margin-bottom: 10px; }
+
+/* open question card */
+.question-card.open-q { border-left-color: #f39c12; }
 </style>
 </head>
 <body>
@@ -560,6 +589,29 @@ function renderHome(app) {
       </div>`;
   });
 
+  // Exams section
+  let examsHtml = '';
+  const exams = problemsData.exams || [];
+  if (exams.length > 0) {
+    examsHtml = '<div class="exam-section-title">📝 模拟考试</div>';
+    exams.forEach(exam => {
+      const done = state.history.some(h => h.weekId === exam.id);
+      const statusClass = done ? 'status-done' : 'status-new';
+      const statusText = done ? '已完成' : '新试卷';
+      let bestScore = null;
+      state.history.filter(h => h.weekId === exam.id).forEach(h => {
+        if (bestScore === null || h.score > bestScore) bestScore = h.score;
+      });
+      const bestStr = bestScore !== null ? ` 最好成绩：${bestScore}分` : '';
+      examsHtml += `
+        <div class="card week-card exam-card" onclick="startExam('${exam.id}')">
+          <div class="week-title">${exam.title}</div>
+          <div class="week-sub">${exam.subtitle}${bestStr}</div>
+          <span class="week-status ${statusClass}">${statusText}</span>
+        </div>`;
+    });
+  }
+
   let wrongHtml = '';
   if (wrongCount > 0) {
     wrongHtml = `
@@ -577,7 +629,8 @@ function renderHome(app) {
     const recent = [...state.history].reverse().slice(0, 10);
     historyHtml = '<div class="history-section"><h3>最近记录</h3>';
     recent.forEach(h => {
-      const week = problemsData.weeks.find(w => w.id === h.weekId);
+      const week = problemsData.weeks.find(w => w.id === h.weekId)
+                || (problemsData.exams || []).find(e => e.id === h.weekId);
       const title = week ? week.title : h.weekId;
       const durStr = h.duration ? ' · ' + formatTime(h.duration) : '';
       historyHtml += `
@@ -596,6 +649,7 @@ function renderHome(app) {
       <span class="user-tag" onclick="switchUser()" title="切换用户">👤 ${escHtml(currentUser)}</span>
     </div>
     ${weeksHtml}
+    ${examsHtml}
     ${wrongHtml}
     ${historyHtml || '<div class="empty-state">还没有答题记录，点击上方题目开始练习吧</div>'}
     <div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
@@ -614,7 +668,8 @@ function buildExportData() {
   const wrongBookDetailed = [];
   for (const [key, info] of Object.entries(state.wrongBook)) {
     const [weekId, probId] = key.split('-');
-    const week = problemsData.weeks.find(w => w.id === weekId);
+    const week = problemsData.weeks.find(w => w.id === weekId)
+              || (problemsData.exams || []).find(e => e.id === weekId);
     const prob = week ? week.problems.find(p => p.id === probId) : null;
     wrongBookDetailed.push({
       key: key,
@@ -718,7 +773,8 @@ function startWrongBook() {
   if (wrongIds.length === 0) return;
 
   const wrongProbs = [];
-  problemsData.weeks.forEach(w => {
+  const sources = [...problemsData.weeks, ...(problemsData.exams || [])];
+  sources.forEach(w => {
     w.problems.forEach(p => {
       const key = w.id + '-' + p.id;
       if (state.wrongBook[key]) {
@@ -733,28 +789,46 @@ function startWrongBook() {
   render();
 }
 
+function startExam(examId) {
+  const exam = (problemsData.exams || []).find(e => e.id === examId);
+  if (!exam) return;
+  currentView = 'quiz';
+  currentWeekId = examId;
+  currentProblems = exam.problems;
+  render();
+}
+
 function renderQuiz(app) {
   let isWrongBook = currentWeekId === '__wrongbook__';
-  let title = isWrongBook ? '错题重练' : problemsData.weeks.find(w => w.id === currentWeekId)?.title || '';
+  let title = isWrongBook ? '错题重练' : (
+    problemsData.weeks.find(w => w.id === currentWeekId)?.title ||
+    (problemsData.exams || []).find(e => e.id === currentWeekId)?.title || ''
+  );
 
   startTimers(currentProblems.length);
 
   let cardsHtml = '';
   currentProblems.forEach((p, idx) => {
     const num = idx + 1;
-    cardsHtml += '<div class="question-card" id="card-' + num + '" onclick="switchFocus(' + num + ')">';
-    cardsHtml += '<div class="q-header"><span class="q-num">' + num + '. (' + p.score + '分)</span></div>';
+    const isOpen = p.type === 'open';
+    cardsHtml += '<div class="question-card' + (isOpen ? ' open-q' : '') + '" id="card-' + num + '" onclick="switchFocus(' + num + ')">';
+    cardsHtml += '<div class="q-header"><span class="q-num">' + num + '. (' + p.score + '分' + (isOpen ? '，自行对照' : '') + ')</span></div>';
     cardsHtml += '<div class="q-text">' + renderQuestionText(p) + '</div>';
 
     if (p.type === 'choice') {
       cardsHtml += '<div class="options">';
       p.options.forEach(opt => {
+        const optText = p.html ? opt.text : escHtml(opt.text);
         cardsHtml += `<label class="option" data-q="${num}" data-val="${escHtml(opt.label)}">
           <span style="font-weight:600;color:#7f8c8d;min-width:20px">${escHtml(opt.label)}</span>
-          <span>${escHtml(opt.text)}</span>
+          <span>${optText}</span>
         </label>`;
       });
       cardsHtml += '</div>';
+    } else if (p.type === 'open') {
+      cardsHtml += `<textarea class="open-textarea" data-q="${num}"
+        rows="6" placeholder="请在此作答（此题不自动评分，提交后可对照答案自我评价）"
+        onfocus="switchFocus(${num})"></textarea>`;
     } else {
       cardsHtml += '<div class="fill-row">';
       p.blanks.forEach((b, bi) => {
@@ -769,11 +843,13 @@ function renderQuiz(app) {
       cardsHtml += '</div>';
     }
 
+    const expHtml = p.html ? (p.explanation || '') : escHtml(p.explanation || '');
     cardsHtml += `<div class="explanation" id="exp-${num}" style="display:none">
-      <strong>答案：</strong>${escHtml(formatAnswer(p))}<br>${p.explanation || ''}</div>`;
+      <strong>答案：</strong>${escHtml(formatAnswer(p))}<br>${expHtml}</div>`;
     cardsHtml += '</div>';
   });
 
+  let autoTotal = currentProblems.filter(p => p.type !== 'open').reduce((s, p) => s + p.score, 0);
   let totalScore = currentProblems.reduce((s, p) => s + p.score, 0);
 
   app.innerHTML = `
@@ -781,7 +857,7 @@ function renderQuiz(app) {
       <button class="back-btn" onclick="goHome()">← 返回</button>
       <h1>${escHtml(title)}</h1>
       <span class="live-timer" id="liveTimer">⏱ 0秒</span>
-      <span style="color:#95a5a6;font-size:13px">共${currentProblems.length}题 · ${totalScore}分</span>
+      <span style="color:#95a5a6;font-size:13px">共${currentProblems.length}题 · ${autoTotal}分</span>
     </div>
     <form id="quizForm" onsubmit="return false">${cardsHtml}</form>
     <div class="actions">
@@ -833,8 +909,10 @@ function submitQuiz() {
   const qTimes = { ...window._questionTimes };
 
   const totalScore = currentProblems.reduce((s, p) => s + p.score, 0);
+  const autoTotal = currentProblems.filter(p => p.type !== 'open').reduce((s, p) => s + p.score, 0);
   let score = 0;
   let correctCount = 0;
+  let openCount = 0;
   const state = loadState();
   const wrongSet = {};
 
@@ -842,6 +920,12 @@ function submitQuiz() {
     const num = idx + 1;
     const card = document.getElementById('card-' + num);
     let isCorrect = false;
+
+    if (p.type === 'open') {
+      openCount++;
+      card.classList.add('answered');
+      return;
+    }
 
     if (p.type === 'choice') {
       const selected = document.querySelector(`.option.selected[data-q="${num}"]`);
@@ -902,7 +986,7 @@ function submitQuiz() {
 
   // --- score display ---
   const starDisplay = document.getElementById('starDisplay');
-  const ratio = totalScore > 0 ? score / totalScore : 0;
+  const ratio = autoTotal > 0 ? score / autoTotal : 0;
   if (ratio >= 0.9) starDisplay.textContent = '⭐⭐⭐⭐⭐ 太棒了！';
   else if (ratio >= 0.8) starDisplay.textContent = '⭐⭐⭐⭐ 很好！';
   else if (ratio >= 0.7) starDisplay.textContent = '⭐⭐⭐ 不错！';
@@ -911,7 +995,11 @@ function submitQuiz() {
 
   document.getElementById('scoreDisplay').textContent = score;
 
-  let detailHtml = `满分：${totalScore}分 | 答对：${correctCount}题/共${currentProblems.length}题<br>总用时：${formatTime(totalSeconds)}`;
+  const totalCount = currentProblems.length;
+  const gradedCount = totalCount - openCount;
+  let detailHtml = `自动评分：${autoTotal}分 | 答对：${correctCount}题/共${gradedCount}题`;
+  if (openCount > 0) detailHtml += `<br>另有 ${openCount} 道开放题需自行对照答案`;
+  detailHtml += `<br>总用时：${formatTime(totalSeconds)}`;
 
   // --- per-question time ---
   let timeDetailHtml = '<h4>每题用时</h4>';
@@ -940,7 +1028,10 @@ function revealAnswers() {
     const exp = document.getElementById('exp-' + num);
     if (exp) exp.style.display = 'block';
 
-    if (p.type === 'choice') {
+    if (p.type === 'open') {
+      const textarea = document.querySelector(`textarea[data-q="${num}"]`);
+      if (textarea) textarea.classList.add('neutral-input');
+    } else if (p.type === 'choice') {
       document.querySelectorAll(`.option[data-q="${num}"]`).forEach(opt => {
         if (opt.dataset.val === p.answer) opt.classList.add('correct-show');
         else if (opt.classList.contains('selected')) opt.classList.add('wrong-show');
@@ -969,6 +1060,7 @@ function disableAllInputs() {
     o.style.pointerEvents = 'none';
   });
   document.querySelectorAll('.quiz-input').forEach(inp => inp.disabled = true);
+  document.querySelectorAll('.open-textarea').forEach(ta => ta.disabled = true);
 }
 
 function resetQuiz() {
@@ -988,6 +1080,11 @@ function resetQuiz() {
     inp.value = '';
     inp.disabled = false;
     inp.classList.remove('correct-input', 'wrong-input');
+  });
+  document.querySelectorAll('.open-textarea').forEach(ta => {
+    ta.value = '';
+    ta.disabled = false;
+    ta.classList.remove('neutral-input');
   });
 
   document.querySelectorAll('.question-card').forEach(c => {

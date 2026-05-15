@@ -11,10 +11,22 @@
           "score": 4,
           "question": "某水库正常水位记为0米，高于正常水位记为正。一天水位记录为：早晨+0.3米，中午-0.1米，晚上+0.5米。当天水位最高时比正常水位高（ ）米。",
           "options": [
-            {"label": "A", "text": "0.3"},
-            {"label": "B", "text": "0.5"},
-            {"label": "C", "text": "-0.1"},
-            {"label": "D", "text": "0.8"}
+            {
+              "label": "A",
+              "text": "0.3"
+            },
+            {
+              "label": "B",
+              "text": "0.5"
+            },
+            {
+              "label": "C",
+              "text": "-0.1"
+            },
+            {
+              "label": "D",
+              "text": "0.8"
+            }
           ],
           "answer": "B",
           "explanation": "正数表示高于正常水位，+0.5最大，所以是0.5米。"
@@ -25,10 +37,22 @@
           "score": 4,
           "question": "某地气温中午为5℃，夜晚下降8℃，夜晚气温是（ ）℃。如果以0℃为基准，夜晚气温记作（ ）℃。",
           "options": [
-            {"label": "A", "text": "-3, -3"},
-            {"label": "B", "text": "3, -3"},
-            {"label": "C", "text": "-3, 3"},
-            {"label": "D", "text": "13, -8"}
+            {
+              "label": "A",
+              "text": "-3, -3"
+            },
+            {
+              "label": "B",
+              "text": "3, -3"
+            },
+            {
+              "label": "C",
+              "text": "-3, 3"
+            },
+            {
+              "label": "D",
+              "text": "13, -8"
+            }
           ],
           "answer": "A",
           "explanation": "5-8=-3℃，低于0℃所以记作-3℃。"
@@ -39,10 +63,22 @@
           "score": 4,
           "question": "一支钢笔a元，一本笔记本b元。买3支钢笔和2本笔记本共需要（ ）元。如果付了50元，应找回（ ）元。",
           "options": [
-            {"label": "A", "text": "3a+2b, 50-(3a+2b)"},
-            {"label": "B", "text": "5ab, 50-5ab"},
-            {"label": "C", "text": "a+b, 50-a-b"},
-            {"label": "D", "text": "3a×2b, 50-3a×2b"}
+            {
+              "label": "A",
+              "text": "3a+2b, 50-(3a+2b)"
+            },
+            {
+              "label": "B",
+              "text": "5ab, 50-5ab"
+            },
+            {
+              "label": "C",
+              "text": "a+b, 50-a-b"
+            },
+            {
+              "label": "D",
+              "text": "3a×2b, 50-3a×2b"
+            }
           ],
           "answer": "A",
           "explanation": "3支钢笔3a元，2本笔记本2b元，总价3a+2b；找回50-(3a+2b)。"
@@ -53,10 +89,22 @@
           "score": 4,
           "question": "长方形的长是x米，宽比长少3米。这个长方形的周长是（ ）米。",
           "options": [
-            {"label": "A", "text": "4x-6"},
-            {"label": "B", "text": "4x-3"},
-            {"label": "C", "text": "2x-3"},
-            {"label": "D", "text": "x(x-3)"}
+            {
+              "label": "A",
+              "text": "4x-6"
+            },
+            {
+              "label": "B",
+              "text": "4x-3"
+            },
+            {
+              "label": "C",
+              "text": "2x-3"
+            },
+            {
+              "label": "D",
+              "text": "x(x-3)"
+            }
           ],
           "answer": "A",
           "explanation": "宽=x-3，周长=2×(长+宽)=2×(x+x-3)=2×(2x-3)=4x-6。"
@@ -67,10 +115,22 @@
           "score": 4,
           "question": "下面哪个长度最接近教室的长度？",
           "options": [
-            {"label": "A", "text": "8分米"},
-            {"label": "B", "text": "8米"},
-            {"label": "C", "text": "80米"},
-            {"label": "D", "text": "8000厘米"}
+            {
+              "label": "A",
+              "text": "8分米"
+            },
+            {
+              "label": "B",
+              "text": "8米"
+            },
+            {
+              "label": "C",
+              "text": "80米"
+            },
+            {
+              "label": "D",
+              "text": "8000厘米"
+            }
           ],
           "answer": "B",
           "explanation": "教室长度一般在8-10米左右，8米最合适。"
@@ -81,10 +141,22 @@
           "score": 4,
           "question": "三角形三边长分别为5cm、8cm、x cm，x可能是（ ）cm。",
           "options": [
-            {"label": "A", "text": "3"},
-            {"label": "B", "text": "13"},
-            {"label": "C", "text": "4"},
-            {"label": "D", "text": "15"}
+            {
+              "label": "A",
+              "text": "3"
+            },
+            {
+              "label": "B",
+              "text": "13"
+            },
+            {
+              "label": "C",
+              "text": "4"
+            },
+            {
+              "label": "D",
+              "text": "15"
+            }
           ],
           "answer": "C",
           "explanation": "三角形三边关系：8-5 < x < 8+5，即3 < x < 13，只有4符合。"
@@ -95,10 +167,22 @@
           "score": 4,
           "question": "下面等式成立的是（ ）。",
           "options": [
-            {"label": "A", "text": "24÷(4+2)=24÷4+24÷2"},
-            {"label": "B", "text": "125×32=125×8×4"},
-            {"label": "C", "text": "15-3.6+6.4=15-(3.6+6.4)"},
-            {"label": "D", "text": "45×99=45×100-1"}
+            {
+              "label": "A",
+              "text": "24÷(4+2)=24÷4+24÷2"
+            },
+            {
+              "label": "B",
+              "text": "125×32=125×8×4"
+            },
+            {
+              "label": "C",
+              "text": "15-3.6+6.4=15-(3.6+6.4)"
+            },
+            {
+              "label": "D",
+              "text": "45×99=45×100-1"
+            }
           ],
           "answer": "B",
           "explanation": "A错：除法没有分配律；B对：32=8×4；C错：去括号要变号；D错：45×99=45×100-45。"
@@ -109,9 +193,18 @@
           "score": 4,
           "question": "0.75 = {blank} /4 = {blank} :16 = {blank} %",
           "blanks": [
-            {"answer": "3", "size": 4},
-            {"answer": "12", "size": 4},
-            {"answer": "75", "size": 4}
+            {
+              "answer": "3",
+              "size": 4
+            },
+            {
+              "answer": "12",
+              "size": 4
+            },
+            {
+              "answer": "75",
+              "size": 4
+            }
           ],
           "explanation": "0.75=3/4=12:16=75%"
         },
@@ -121,8 +214,14 @@
           "score": 4,
           "question": "把一根3米长的绳子平均分成5段，每段长 {blank} 米，每段占全长的 {blank} %。",
           "blanks": [
-            {"answer": "0.6", "size": 5},
-            {"answer": "20|0.2", "size": 4}
+            {
+              "answer": "0.6",
+              "size": 5
+            },
+            {
+              "answer": "20|0.2",
+              "size": 4
+            }
           ],
           "explanation": "3÷5=0.6米；1÷5=0.2=20%"
         },
@@ -132,8 +231,14 @@
           "score": 4,
           "question": "五亿零八百万三千写作 {blank} ，省略亿位后面的尾数约是 {blank} 亿。",
           "blanks": [
-            {"answer": "508003000", "size": 10},
-            {"answer": "5", "size": 2}
+            {
+              "answer": "508003000",
+              "size": 10
+            },
+            {
+              "answer": "5",
+              "size": 2
+            }
           ],
           "explanation": "写作508003000，省略亿位看千万位是0，舍去得5亿。"
         },
@@ -143,7 +248,11 @@
           "score": 6,
           "question": "一批零件，如果每天加工60个，需要20天完成。如果每天加工80个，需要多少天完成？",
           "blanks": [
-            {"answer": "15", "size": 4, "suffix": " 天"}
+            {
+              "answer": "15",
+              "size": 4,
+              "suffix": " 天"
+            }
           ],
           "explanation": "总零件数60×20=1200个，1200÷80=15天。"
         },
@@ -153,7 +262,11 @@
           "score": 6,
           "question": "用边长4分米的方砖铺地，需要225块。如果改用边长5分米的方砖，需要多少块？",
           "blanks": [
-            {"answer": "144", "size": 4, "suffix": " 块"}
+            {
+              "answer": "144",
+              "size": 4,
+              "suffix": " 块"
+            }
           ],
           "explanation": "总面积不变：4²×225=3600平方分米，3600÷5²=3600÷25=144块。"
         },
@@ -163,7 +276,11 @@
           "score": 6,
           "question": "学校把植树180棵的任务按2:3:4分配给四、五、六年级。六年级要植树多少棵？",
           "blanks": [
-            {"answer": "80", "size": 4, "suffix": " 棵"}
+            {
+              "answer": "80",
+              "size": 4,
+              "suffix": " 棵"
+            }
           ],
           "explanation": "总份数2+3+4=9，六年级占4/9，180×4/9=80棵。"
         },
@@ -173,7 +290,11 @@
           "score": 6,
           "question": "甲、乙、丙三人合买一箱苹果，按出资比5:3:2分配。丙分到8千克，这箱苹果共多少千克？",
           "blanks": [
-            {"answer": "40", "size": 4, "suffix": " 千克"}
+            {
+              "answer": "40",
+              "size": 4,
+              "suffix": " 千克"
+            }
           ],
           "explanation": "丙占2份为8千克，每份4千克，总份数5+3+2=10份，总重4×10=40千克。"
         },
@@ -183,7 +304,11 @@
           "score": 6,
           "question": "用一张长25.12cm、宽18.84cm的长方形纸卷成圆柱（以长为高）。这个圆柱的底面半径是多少厘米？（π取3.14）",
           "blanks": [
-            {"answer": "3", "size": 4, "suffix": " cm"}
+            {
+              "answer": "3",
+              "size": 4,
+              "suffix": " cm"
+            }
           ],
           "explanation": "底面周长=宽18.84cm，半径=18.84÷3.14÷2=3cm。"
         },
@@ -193,7 +318,11 @@
           "score": 6,
           "question": "一个圆柱侧面展开是正方形，边长12.56cm。这个圆柱的底面积是多少平方厘米？",
           "blanks": [
-            {"answer": "12.56", "size": 6, "suffix": " cm²"}
+            {
+              "answer": "12.56",
+              "size": 6,
+              "suffix": " cm²"
+            }
           ],
           "explanation": "底面周长=高=12.56cm，半径=12.56÷3.14÷2=2cm，面积=3.14×2²=12.56cm²。"
         },
@@ -203,8 +332,16 @@
           "score": 6,
           "question": "书店举行促销：满100元减20元。小明买了一套书原价150元，实际应付多少元？相当于打几折？",
           "blanks": [
-            {"answer": "130", "size": 4, "suffix": " 元，"},
-            {"answer": "8.7|8.67", "size": 4, "suffix": " 折"}
+            {
+              "answer": "130",
+              "size": 4,
+              "suffix": " 元，"
+            },
+            {
+              "answer": "8.7|8.67",
+              "size": 4,
+              "suffix": " 折"
+            }
           ],
           "explanation": "150-20=130元；130÷150≈0.867≈8.7折。"
         },
@@ -214,9 +351,576 @@
           "score": 6,
           "question": "从甲地到乙地，客车需4小时，货车需5小时。客车速度比货车快百分之几？",
           "blanks": [
-            {"answer": "25", "size": 4, "suffix": " %"}
+            {
+              "answer": "25",
+              "size": 4,
+              "suffix": " %"
+            }
           ],
           "explanation": "设路程为1，客车速度1/4，货车速度1/5，(1/4-1/5)÷(1/5)=0.05÷0.2=0.25=25%。"
+        }
+      ]
+    }
+  ],
+  "exams": [
+    {
+      "id": "2025-haidian-g6-final",
+      "title": "2025海淀六年级（下）期末数学",
+      "subtitle": "共24题 · 自动评分95分",
+      "problems": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "1. 一款\"几何形状配对玩具\"的面板从正面看有四个窟窿，如图所示。有一块积木既能塞满正方形窟窿，又能塞满圆形窟窿，这块积木的形状可能是（ ）。<br><img src=\"exams/2025海淀六下期末/media/image1.png\" style=\"max-width:120px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "长方体"
+            },
+            {
+              "label": "B",
+              "text": "正方体"
+            },
+            {
+              "label": "C",
+              "text": "圆柱"
+            },
+            {
+              "label": "D",
+              "text": "圆锥"
+            }
+          ],
+          "answer": "C",
+          "explanation": "圆柱的底面是圆形，侧面展开是长方形（正方形是特殊长方形），所以圆柱既能塞满圆形窟窿又能塞满正方形窟窿。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "2. 联欢会上，同学们用摸球的方式决定每人表演一个什么节目。轮到笑笑摸球了，笑笑表演（ ）节目的可能性最大。<br><span style=\"font-size:13px;color:#888\">规则：摸到红球→讲故事 | 摸到绿球→说绕口令 | 摸到黄球→唱歌 | 摸到白球→跳舞</span><br><img src=\"exams/2025海淀六下期末/media/image2.png\" style=\"max-width:280px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "讲故事"
+            },
+            {
+              "label": "B",
+              "text": "说绕口令"
+            },
+            {
+              "label": "C",
+              "text": "唱歌"
+            },
+            {
+              "label": "D",
+              "text": "跳舞"
+            }
+          ],
+          "answer": "A",
+          "explanation": "从图中可以看出红球数量最多，所以摸到红球的可能性最大，即表演讲故事的可能性最大。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "3. 奇思想利用图形的运动把阴影部分补成一个长方形，可以把三角形①（ ）。<br><img src=\"exams/2025海淀六下期末/media/image3.png\" style=\"max-width:160px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "绕点O逆时针旋转90°，再向下平移2格"
+            },
+            {
+              "label": "B",
+              "text": "绕点O顺时针旋转90°，再向下平移2格"
+            },
+            {
+              "label": "C",
+              "text": "绕点O逆时针旋转90°，再向下平移5格"
+            },
+            {
+              "label": "D",
+              "text": "绕点O顺时针旋转90°，再向下平移5格"
+            }
+          ],
+          "answer": "B",
+          "explanation": "将三角形①绕点O顺时针旋转90°后，三角形朝向与缺口一致；再向下平移2格即可填入缺口，补成长方形。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "4. 如图大正方形表示\"1\"，淘气想涂色表示0.6。他已经涂了4个小方格，还要再涂（ ）个小方格。<br><img src=\"exams/2025海淀六下期末/media/image4.png\" style=\"max-width:260px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "96"
+            },
+            {
+              "label": "B",
+              "text": "56"
+            },
+            {
+              "label": "C",
+              "text": "20"
+            },
+            {
+              "label": "D",
+              "text": "2"
+            }
+          ],
+          "answer": "B",
+          "explanation": "大正方形被分成10×10=100个小方格，0.6=60/100，需要涂60个小方格。已涂4个，还需涂60-4=56个。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "5. 淘气在探究圆柱体积计算方法时，将一个圆柱沿底面直径等分后，拼成一个近似的长方体，如图所示。拼成后的近似长方体的长是（ ）。<br><img src=\"exams/2025海淀六下期末/media/image5.png\" style=\"max-width:300px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "<img src=\"exams/2025海淀六下期末/media/image6.svg\" style=\"height:0.3in\">πr"
+            },
+            {
+              "label": "B",
+              "text": "πr"
+            },
+            {
+              "label": "C",
+              "text": "2πr"
+            },
+            {
+              "label": "D",
+              "text": "<img src=\"exams/2025海淀六下期末/media/image6.svg\" style=\"height:0.3in\">πr²"
+            }
+          ],
+          "answer": "B",
+          "explanation": "圆柱底面周长的一半=πr，拼成的近似长方体，长等于底面周长的一半=πr。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "6. \"巧手工作坊\"的同学们准备折叠一个仓库模型，如图所示。下面四幅图分别按虚线进行折叠，能折叠成这个仓库模型的是（ ）。<br><img src=\"exams/2025海淀六下期末/media/image7.png\" style=\"max-width:260px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "<img src=\"exams/2025海淀六下期末/media/image8.png\" style=\"max-width:120px\">"
+            },
+            {
+              "label": "B",
+              "text": "<img src=\"exams/2025海淀六下期末/media/image9.png\" style=\"max-width:120px\">"
+            },
+            {
+              "label": "C",
+              "text": "<img src=\"exams/2025海淀六下期末/media/image10.png\" style=\"max-width:120px\">"
+            },
+            {
+              "label": "D",
+              "text": "<img src=\"exams/2025海淀六下期末/media/image11.png\" style=\"max-width:120px\">"
+            }
+          ],
+          "answer": "D",
+          "explanation": "仓库模型是长方体+三角形屋顶。展开图中D选项折叠后，三角形部分正好构成屋顶斜面，其余部分构成长方体。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "7. 王东、赵楠、孙奇三位同学在大课间活动时进行了1分钟踢毽子比赛，成绩如图。张老师计算了他们5次比赛的平均成绩，王东是41.8个、赵楠是40.6个、孙奇是44.6个。结合数据分析，以下说法中不合理的是（ ）。<br><img src=\"exams/2025海淀六下期末/media/image12.png\" style=\"max-width:450px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "从平均成绩看，王东的表现在三人中处于中等。"
+            },
+            {
+              "label": "B",
+              "text": "赵楠的最高成绩与最低成绩相差11个，是三人中波动最大的。"
+            },
+            {
+              "label": "C",
+              "text": "孙奇不仅平均成绩高，而且总体稳定，还出现过三人中的最好成绩，他的表现是最好的。"
+            },
+            {
+              "label": "D",
+              "text": "五次比赛中，每次王东的成绩都不是三人中最高的，第六次比赛他也一定不是三人中最高的。"
+            }
+          ],
+          "answer": "D",
+          "explanation": "过去五次每次都不是最高，不能推出第六次也一定不是最高，这是对统计规律的误用。A、B、C都可以从图中数据合理推出。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "8. 把长方形甲按比缩小后得到长方形乙，如下图所示。根据图中信息，同学们列出了下面的四个等式，其中正确的（ ）。<br>① 16－12＝24－x &nbsp; ② 16∶24＝12∶x<br>③ 12∶16＝x∶24 &nbsp; ④ x∶12＝16∶24<br><img src=\"exams/2025海淀六下期末/media/image13.png\" style=\"max-width:280px\">",
+          "options": [
+            {
+              "label": "A",
+              "text": "只有①"
+            },
+            {
+              "label": "B",
+              "text": "只有②"
+            },
+            {
+              "label": "C",
+              "text": "只有②③"
+            },
+            {
+              "label": "D",
+              "text": "只有③④"
+            }
+          ],
+          "answer": "C",
+          "explanation": "按比例缩小，对应边成比例。甲长16宽24，乙长12宽x。②16:24=12:x（长:宽=长:宽），③12:16=x:24（缩放比相同），这两个正确。①是减法不成立，④比例对应不对。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "9. 教学楼的底面是长60米，宽20米的长方形。在绘制它的平面图时，乐乐选择的比例尺是1∶2000，淘气选择的比例尺是1∶1000。以下说法正确的（ ）。<br>① 在乐乐的平面图中，教学楼底面的图上长是实际长的 <img src=\"exams/2025海淀六下期末/media/image14.svg\" style=\"height:0.22in\"><br>② 在淘气的平面图中，教学楼底面的实际面积是图上面积的1000倍<br>③ 在两幅平面图中，教学楼底面的长都是宽的3倍<br>④ 在两幅平面图中，乐乐画的教学楼底面的面积比淘气的小",
+          "options": [
+            {
+              "label": "A",
+              "text": "只有①"
+            },
+            {
+              "label": "B",
+              "text": "只有③"
+            },
+            {
+              "label": "C",
+              "text": "只有①③④"
+            },
+            {
+              "label": "D",
+              "text": "有①②③④"
+            }
+          ],
+          "answer": "C",
+          "explanation": "①正确：比例尺1:2000表示图上长度=实际长度×1/2000。②错误：面积比=边长比的平方，实际面积应是图上面积的1000²=1000000倍。③正确：长宽比不变。④正确：比例尺越小图上面积越小。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "score": 3,
+          "html": true,
+          "question": "10. 一个圆锥形水杯，如下图所示。如果用它向如图三个容器中各倒入一满杯水，容器中水的高度会有怎样的关系？（单位：cm）同学们有以下想法，其中正确的（ ）。<br><img src=\"exams/2025海淀六下期末/media/image15.png\" style=\"max-width:600px\"><br>淘气：①号容器水的高度等于 <img src=\"exams/2025海淀六下期末/media/image16.svg\" style=\"height:0.22in\"><br>笑笑：②号容器水的高度小于 <img src=\"exams/2025海淀六下期末/media/image16.svg\" style=\"height:0.22in\"><br>奇思：③号容器水的高度比②号的高",
+          "options": [
+            {
+              "label": "A",
+              "text": "只有淘气"
+            },
+            {
+              "label": "B",
+              "text": "只有奇思"
+            },
+            {
+              "label": "C",
+              "text": "只有淘气和笑笑"
+            },
+            {
+              "label": "D",
+              "text": "有淘气、笑笑和奇思"
+            }
+          ],
+          "answer": "D",
+          "explanation": "圆锥体积V=⅓Sh。倒入①号圆柱（同底同高），体积相等时水面高=h/3（淘气对）。倒入②号圆柱（底面是圆锥的一半），水面高<h/3（笑笑对）。③号底面比②号更小，水面更高（奇思对）。三人都对。"
+        },
+        {
+          "id": "q11",
+          "type": "fill",
+          "score": 3,
+          "question": "11. 280mL＝{blank} L &nbsp;&nbsp; 1.85m²＝{blank} dm²",
+          "blanks": [
+            {
+              "answer": "0.28",
+              "size": 5,
+              "suffix": " L"
+            },
+            {
+              "answer": "185",
+              "size": 4,
+              "suffix": " dm²"
+            }
+          ],
+          "explanation": "280÷1000=0.28L；1.85×100=185dm²（1m²=100dm²）。"
+        },
+        {
+          "id": "q12",
+          "type": "fill",
+          "score": 3,
+          "question": "12. 根据下面信息判断，这两个数分别是{blank}和{blank}。<br><em>\"我和另一个数都是质数，我们的和是15。\"</em>",
+          "blanks": [
+            {
+              "answer": "2",
+              "size": 3
+            },
+            {
+              "answer": "13"
+            }
+          ],
+          "explanation": "15以下质数：2、3、5、7、11、13。和为15的只有2+13=15（15为奇数，必有一偶质数=2）。"
+        },
+        {
+          "id": "q13",
+          "type": "fill",
+          "score": 3,
+          "html": true,
+          "question": "13. 装修师傅在粉刷墙壁时使用折叠梯，梯子两腿与地面的夹角均为70°，如图所示。这时梯子 ______ 安全使用条件。（填\"符合\"或\"不符合\"）<br><img src=\"exams/2025海淀六下期末/media/image17.png\" style=\"max-width:600px\">",
+          "blanks": [
+            {
+              "answer": "符合",
+              "size": 3
+            }
+          ],
+          "explanation": "三角形内角和180°，顶角=180°-70°-70°=40°，在35°~45°安全范围内，因此符合安全使用条件。"
+        },
+        {
+          "id": "q14",
+          "type": "open",
+          "score": 4,
+          "html": true,
+          "question": "14. 在如图平行四边形中以CD为底，分别画一个面积最大的三角形并涂上阴影。（画出三种）<br><img src=\"exams/2025海淀六下期末/media/image18.png\" style=\"max-width:600px\">",
+          "explanation": "以CD为底，顶点在AB边上，三角形的高等于平行四边形的高时面积最大。三种画法：<br><img src=\"exams/2025海淀六下期末/media/image32.png\" style=\"max-width:600px\">"
+        },
+        {
+          "id": "q15",
+          "type": "open",
+          "score": 8,
+          "html": true,
+          "question": "15. 复习课上，同学们在研究整数、小数和分数加法计算方法的共同点。<br>（1）笑笑通过举例进行研究，如图所示。同学们发现算式2是错误的，请你在右框中改正。<br><img src=\"exams/2025海淀六下期末/media/image19.png\" style=\"max-width:600px\"><br>（2）请你结合数位顺序表，解答笑笑的疑问。<br><img src=\"exams/2025海淀六下期末/media/image20.png\" style=\"max-width:600px\"><br>（3）算式3是分数加法，计算时先通分再相加。整数、小数和分数加法计算方法有什么共同点呢？",
+          "explanation": "（1）小数点对齐（相同数位对齐）后相加。<br><img src=\"exams/2025海淀六下期末/media/image33.png\" style=\"max-width:600px\"><br>（2）整数末尾对齐即相同数位对齐；小数位数不同时计数单位不同，只有小数点对齐，相同数位才能对齐。<br>（3）共同点：<strong>把相同计数单位的数相加</strong>。"
+        },
+        {
+          "id": "q16",
+          "type": "fill",
+          "score": 8,
+          "html": true,
+          "question": "16. 计算下面各题。<br>（1）（14.6－4.2）＋2.6 = {blank}<br>（2）3.45×7.6＋6.55×7.6 = {blank}<br>（3）<img src=\"exams/2025海淀六下期末/media/image21.svg\" style=\"height:0.25in\"> = {blank}<br>（4）<img src=\"exams/2025海淀六下期末/media/image22.svg\" style=\"height:0.28in\"> = {blank}",
+          "blanks": [
+            {
+              "answer": "13",
+              "size": 6
+            },
+            {
+              "answer": "76",
+              "size": 6
+            },
+            {
+              "answer": "4.25|17/4|4又1/4",
+              "size": 8
+            },
+            {
+              "answer": "1.2|6/5|1又1/5",
+              "size": 8
+            }
+          ],
+          "explanation": "（1）=10.4+2.6=<strong>13</strong><br>（2）=7.6×(3.45+6.55)=7.6×10=<strong>76</strong><br>（3）=5-3/4=<strong>4又1/4（或4.25）</strong><br>（4）先算小括号加法，再算中括号乘法，最后除法=<strong>1又1/5（或1.2）</strong>"
+        },
+        {
+          "id": "q17",
+          "type": "fill",
+          "score": 6,
+          "html": true,
+          "question": "17. 解方程。<br>（1）<img src=\"exams/2025海淀六下期末/media/image23.svg\" style=\"height:0.25in\"> x = {blank}<br>（2）9x－4.5＝36 &nbsp; x = {blank}",
+          "blanks": [
+            {
+              "answer": "8",
+              "size": 4
+            },
+            {
+              "answer": "4.5",
+              "size": 4
+            }
+          ],
+          "explanation": "（1）0.5x=4，x=8<br>（2）9x=40.5，x=4.5"
+        },
+        {
+          "id": "q18",
+          "type": "fill",
+          "score": 5,
+          "html": true,
+          "question": "18. 同学们开展探秘\"北京中轴线\"的实践活动，查到以下信息。如果以1∶30000的比例尺画出\"北京中轴线\"的平面图，图中\"北京中轴线\"全长多少厘米？<br><img src=\"exams/2025海淀六下期末/media/image24.png\" style=\"max-width:480px\">",
+          "blanks": [
+            {
+              "answer": "26",
+              "size": 5,
+              "suffix": " 厘米"
+            }
+          ],
+          "explanation": "7.8千米=780000厘米，780000×1/30000=26厘米。"
+        },
+        {
+          "id": "q19",
+          "type": "fill",
+          "score": 5,
+          "question": "19. 小东家有一堆稻谷，堆成了圆锥形。稻谷堆高为1.2米，底面直径为2米。如果每立方米稻谷的质量为700千克，这堆稻谷的质量为多少千克？",
+          "blanks": [
+            {
+              "answer": "879.2",
+              "size": 6,
+              "suffix": " 千克"
+            }
+          ],
+          "explanation": "半径=2÷2=1米，V=⅓×3.14×1²×1.2=1.256m³，质量=1.256×700=879.2千克。"
+        },
+        {
+          "id": "q20",
+          "type": "fill",
+          "score": 6,
+          "html": true,
+          "question": "20. 某种铁丝的质量和长度的关系如图所示，根据如图回答问题。<br><img src=\"exams/2025海淀六下期末/media/image25.png\" style=\"max-width:320px\"><br>（1）3米的铁丝质量是{blank}克。<br>（2）这种铁丝的长度与质量成{blank}比例。（填\"正\"或\"反\"）<br>（3）淘气通过称质量确定铁丝的长度，测得同种铁丝的质量是1830克，这捆铁丝的长度是多少米？<br><img src=\"exams/2025海淀六下期末/media/image26.png\" style=\"max-width:240px\"><br>答：{blank}",
+          "blanks": [
+            {
+              "answer": "150",
+              "size": 4,
+              "suffix": " 克"
+            },
+            {
+              "answer": "正",
+              "size": 2
+            },
+            {
+              "answer": "36.6",
+              "size": 5,
+              "suffix": " 米"
+            }
+          ],
+          "explanation": "（1）从图上直接读出3m→150g。<br>（2）质量/长度=50（一定），成正比例。<br>（3）1830÷50=36.6米。"
+        },
+        {
+          "id": "q21",
+          "type": "fill",
+          "score": 5,
+          "html": true,
+          "question": "21. 为提高树木抗寒性和防虫害能力，工人师傅给横截面直径约为0.5米的大树树干底部涂满石灰浆，如图所示。涂石灰浆部分的面积大约是多少平方米？<br><img src=\"exams/2025海淀六下期末/media/image27.png\" style=\"max-width:120px\">",
+          "blanks": [
+            {
+              "answer": "1.884",
+              "size": 6,
+              "suffix": " 平方米"
+            }
+          ],
+          "explanation": "圆柱侧面积=πdh=3.14×0.5×1.2=1.884平方米。"
+        },
+        {
+          "id": "q22",
+          "type": "fill",
+          "score": 5,
+          "html": true,
+          "question": "22. 一瓶果汁，淘气第一次倒出了这瓶果汁的25%，如图所示，第二次又倒出200毫升。他发现两次倒出的果汁与瓶中剩下的体积比是3∶1，这瓶果汁原来一共是多少毫升？<br><img src=\"exams/2025海淀六下期末/media/image28.png\" style=\"max-width:310px\">",
+          "blanks": [
+            {
+              "answer": "400",
+              "size": 5,
+              "suffix": " 毫升"
+            }
+          ],
+          "explanation": "两次倒出占总体的3/(3+1)=3/4，200÷(3/4-25%)=200÷1/2=400毫升。"
+        },
+        {
+          "id": "q23",
+          "type": "fill",
+          "score": 8,
+          "html": true,
+          "question": "23. 人口规模、人口结构、人口变化趋势能够反映一个国家的综合人口情况，也是影响国家相关政策制定的重要因素。下面统计表、统计图呈现了中国近几年人口情况，请你根据数据回答问题。<br><strong>中国近5年人口总数统计表</strong><br><table><tr><th>年份</th><th>2020年</th><th>2021年</th><th>2022年</th><th>2023年</th><th>2024年</th></tr><tr><td>人口（万人）</td><td>141212</td><td>141260</td><td>141175</td><td>140967</td><td>140828</td></tr></table><br><img src=\"exams/2025海淀六下期末/media/image29.png\" style=\"max-width:600px\"><br>（1）结合信息判断，中国是否已经进入老龄化社会？{blank}<br><span style=\"font-size:13px;color:#888\">当一个国家或地区60岁及以上人口占总人口的百分比达到10%，即被视为进入老龄化社会。</span><br>（2）从图2中可以看出，2020～2024年中国新生儿数量是如何变化的？{blank}<br>（3）结合以上图表信息，针对2026年中国综合人口情况的某一方面进行预测，并写出你预测的依据。（开放性问题，在下方文本框中作答，提交后对照答案自我评价）",
+          "blanks": [
+            {
+              "answer": "是",
+              "size": 2
+            },
+            {
+              "answer": "整体下降|下降|逐年下降|总体下降|持续下降|下降趋势",
+              "size": 8
+            }
+          ],
+          "explanation": "（1）<strong>是</strong>。2024年60岁及以上人口约占22%＞10%。<br>（2）<strong>整体呈下降趋势</strong>，2024年较2023年稍有反弹。<br>（3）预测示例：未来老年人口比例将继续增加。依据：2024年60岁以上人口占比已达22%，随着时间推移，更多人口步入老年阶段，新生儿数量又逐年减少，老龄化趋势将进一步加剧。"
+        },
+        {
+          "id": "q24",
+          "type": "fill",
+          "score": 8,
+          "html": true,
+          "question": "24. 观察与探索。<br>（1）图1中有一个长方形ABCD，点A用数对（3，2）表示，点B用数对（6，2）表示，其它两个点用数对表示是：<br>&nbsp;&nbsp;&nbsp;&nbsp;C（{blank}，{blank}），D（{blank}，{blank}）。<br><img src=\"exams/2025海淀六下期末/media/image30.png\" style=\"max-width:600px\"><br>（2）奇思将长方形ABCD向上平移5格，得到长方形A₁B₁C₁D₁。<br>&nbsp;&nbsp;&nbsp;&nbsp;A₁（{blank}，{blank}），B₁（{blank}，{blank}），C₁（{blank}，{blank}），D₁（{blank}，{blank}）。<br>&nbsp;&nbsp;&nbsp;&nbsp;与长方形ABCD比，新长方形顶点的数对中，第1个数{blank}，第2个数{blank}。<br>（3）笑笑将长方形ABCD先向上平移4格，再向右平移5格，得到长方形A₂B₂C₂D₂。<br>&nbsp;&nbsp;&nbsp;&nbsp;与长方形ABCD比，新长方形顶点的数对中，第1个数{blank}，第2个数{blank}。<br>（4）试提出一个猜想或挑战性问题。（自行作答，对照答案）",
+          "blanks": [
+            {
+              "answer": "6",
+              "size": 3
+            },
+            {
+              "answer": "4",
+              "size": 3
+            },
+            {
+              "answer": "3",
+              "size": 3
+            },
+            {
+              "answer": "4",
+              "size": 3
+            },
+            {
+              "answer": "3",
+              "size": 3
+            },
+            {
+              "answer": "7",
+              "size": 3
+            },
+            {
+              "answer": "6",
+              "size": 3
+            },
+            {
+              "answer": "7",
+              "size": 3
+            },
+            {
+              "answer": "6",
+              "size": 3
+            },
+            {
+              "answer": "9",
+              "size": 3
+            },
+            {
+              "answer": "3",
+              "size": 3
+            },
+            {
+              "answer": "9",
+              "size": 3
+            },
+            {
+              "answer": "不变",
+              "size": 4
+            },
+            {
+              "answer": "增加5|加5",
+              "size": 4
+            },
+            {
+              "answer": "增加5|加5",
+              "size": 4
+            },
+            {
+              "answer": "增加4|加4",
+              "size": 4
+            }
+          ],
+          "explanation": "（1）C<strong>（6，4）</strong>，D<strong>（3，4）</strong><br>（2）A₁（3，7），B₁（6，7），C₁（6，9），D₁（3，9）<br>第1个数<strong>不变</strong>，第2个数<strong>增加5</strong><br>（3）第1个数<strong>增加5</strong>，第2个数<strong>增加4</strong><br>（4）示例：图形平移时，数对的两个数分别加上对应方向的平移距离。"
         }
       ]
     }
