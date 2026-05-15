@@ -16,20 +16,91 @@ body {
 
 .container { max-width: 800px; margin: 0 auto; }
 
+/* ---- login view ---- */
+.login-title { text-align: center; font-size: 28px; color: #2c3e50; margin: 48px 0 32px; }
+.login-sub { text-align: center; font-size: 15px; color: #95a5a6; margin: -20px 0 28px; }
+
+.user-list { display: flex; flex-direction: column; gap: 14px; max-width: 360px; margin: 0 auto; }
+
+.user-card {
+  background: #fff; border-radius: 14px; padding: 20px 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.user-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+
+.user-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: #fff; font-weight: 700;
+  flex-shrink: 0;
+}
+.user-name { font-size: 20px; font-weight: 600; color: #2c3e50; margin-left: 14px; flex: 1; }
+.user-arrow { font-size: 18px; color: #bdc3c7; }
+
+.pw-dialog {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4); z-index: 100;
+  align-items: center; justify-content: center;
+}
+.pw-dialog.show { display: flex; }
+.pw-box {
+  background: #fff; border-radius: 16px; padding: 28px 24px;
+  width: 300px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.pw-box h3 { font-size: 18px; color: #2c3e50; margin-bottom: 6px; }
+.pw-box .pw-hint { font-size: 13px; color: #95a5a6; margin-bottom: 16px; }
+.pw-box input {
+  width: 100%; padding: 12px 14px; border: 2px solid #e8ecf1;
+  border-radius: 10px; font-size: 18px; text-align: center; letter-spacing: 4px;
+  transition: border-color 0.2s;
+}
+.pw-box input:focus { outline: none; border-color: #3498db; }
+.pw-box .pw-error { color: #e74c3c; font-size: 13px; margin-top: 8px; min-height: 20px; }
+.pw-box .pw-btns { margin-top: 14px; display: flex; gap: 10px; justify-content: center; }
+.pw-box .pw-btn {
+  padding: 10px 28px; border-radius: 8px; border: none;
+  font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.pw-btn.confirm { background: #3498db; color: #fff; }
+.pw-btn.confirm:hover { background: #2980b9; }
+.pw-btn.cancel { background: #ecf0f1; color: #555; }
+.pw-btn.cancel:hover { background: #d5dbdb; }
+
+.add-user-btn {
+  display: block; margin: 20px auto; padding: 12px 28px;
+  background: #fff; border: 2px dashed #bdc3c7; border-radius: 10px;
+  font-size: 15px; color: #95a5a6; cursor: pointer; transition: all 0.2s;
+}
+.add-user-btn:hover { border-color: #3498db; color: #3498db; }
+
 /* ---- header ---- */
 .header {
   background: #fff; border-radius: 16px;
-  padding: 20px 28px; margin-bottom: 20px;
+  padding: 16px 22px; margin-bottom: 20px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   display: flex; align-items: center; justify-content: space-between;
 }
-.header h1 { font-size: 22px; color: #2c3e50; }
+.header h1 { font-size: 20px; color: #2c3e50; }
 .header .back-btn {
   background: #ecf0f1; border: none; border-radius: 8px;
   padding: 8px 16px; font-size: 14px; cursor: pointer;
   color: #555; transition: background 0.2s;
 }
 .header .back-btn:hover { background: #d5dbdb; }
+.header .user-tag {
+  background: #eaf2f8; border-radius: 8px;
+  padding: 6px 12px; font-size: 13px; color: #2980b9;
+  cursor: pointer; transition: background 0.2s;
+}
+.header .user-tag:hover { background: #d6eaf8; }
+
+/* ---- live timer ---- */
+.live-timer {
+  font-size: 14px; color: #95a5a6; margin-left: auto; margin-right: 12px;
+  font-variant-numeric: tabular-nums;
+}
 
 /* ---- cards ---- */
 .card {
@@ -122,6 +193,12 @@ body {
   font-size: 14px; color: #8a6d3b; display: none;
 }
 
+/* per-question time in result */
+.q-time {
+  font-size: 12px; color: #95a5a6; margin-left: 8px;
+}
+.q-time.slow { color: #e67e22; font-weight: 600; }
+
 /* actions */
 .actions { text-align: center; margin: 28px 0; }
 .btn {
@@ -136,6 +213,8 @@ body {
 .btn-secondary:hover { background: #27ae60; transform: translateY(-1px); }
 .btn-outline { background: #fff; color: #3498db; border: 2px solid #3498db; }
 .btn-outline:hover { background: #eef6fd; }
+.btn-danger { background: #fff; color: #e74c3c; border: 2px solid #e74c3c; }
+.btn-danger:hover { background: #fdedec; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
 
 /* result */
@@ -149,38 +228,130 @@ body {
 .star { font-size: 40px; margin: 8px 0; }
 .detail { text-align: left; margin-top: 14px; font-size: 14px; color: #555; line-height: 1.8; }
 
+.time-detail { margin-top: 16px; text-align: left; }
+.time-detail h4 { font-size: 14px; color: #7f8c8d; margin-bottom: 8px; }
+.time-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; font-size: 13px; color: #666;
+}
+.time-row .time-val { font-variant-numeric: tabular-nums; }
+
 /* responsive */
 @media (max-width: 500px) {
   body { padding: 10px; }
-  .header { padding: 14px 18px; }
-  .header h1 { font-size: 18px; }
+  .header { padding: 12px 16px; }
+  .header h1 { font-size: 17px; }
   .card { padding: 16px 18px; }
   .question-card { padding: 16px 18px; }
   .btn { padding: 12px 28px; font-size: 15px; margin: 4px; }
   .score-big { font-size: 48px; }
 }
+
+/* ---- add user dialog ---- */
+.add-dialog {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4); z-index: 100;
+  align-items: center; justify-content: center;
+}
+.add-dialog.show { display: flex; }
+.add-box {
+  background: #fff; border-radius: 16px; padding: 28px 24px;
+  width: 300px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.add-box h3 { font-size: 18px; color: #2c3e50; margin-bottom: 16px; }
+.add-box input {
+  width: 100%; padding: 10px 14px; border: 2px solid #e8ecf1;
+  border-radius: 10px; font-size: 16px; text-align: center;
+  margin-bottom: 10px; transition: border-color 0.2s;
+}
+.add-box input:focus { outline: none; border-color: #3498db; }
+.add-box .add-error { color: #e74c3c; font-size: 13px; margin-top: 4px; min-height: 20px; }
+.add-box .add-btns { margin-top: 12px; display: flex; gap: 10px; justify-content: center; }
 </style>
 </head>
 <body>
 
 <div class="container" id="app"></div>
+<div class="pw-dialog" id="pwDialog">
+  <div class="pw-box">
+    <h3 id="pwTitle"></h3>
+    <div class="pw-hint">输入密码进入</div>
+    <input type="password" id="pwInput" maxlength="20" autocomplete="off">
+    <div class="pw-error" id="pwError"></div>
+    <div class="pw-btns">
+      <button class="pw-btn cancel" onclick="closePw()">取消</button>
+      <button class="pw-btn confirm" onclick="confirmPw()">确定</button>
+    </div>
+  </div>
+</div>
+<div class="add-dialog" id="addDialog">
+  <div class="add-box">
+    <h3>添加新用户</h3>
+    <input type="text" id="addName" placeholder="输入名字" maxlength="10" autocomplete="off">
+    <input type="password" id="addPw" placeholder="设置密码" maxlength="20" autocomplete="off">
+    <div class="add-error" id="addError"></div>
+    <div class="add-btns">
+      <button class="pw-btn cancel" onclick="closeAdd()">取消</button>
+      <button class="pw-btn confirm" onclick="confirmAdd()">确定</button>
+    </div>
+  </div>
+</div>
 
 <script>
-// ========== State ==========
-const STORAGE_KEY = 'math_practice';
-let problemsData = null;
-let currentView = 'home';  // home | quiz | wrongbook
-let currentWeekId = null;
-let currentProblems = null; // problems being answered (could be from wrong book)
+// ========== Users ==========
+const USERS_KEY = 'math_practice_users';
+const USER_DATA_PREFIX = 'math_practice_';
+
+const DEFAULT_USERS = [
+  { name: '纳豆', password: '104301' },
+  { name: '笑笑', password: '123456' }
+];
+
+function initUsers() {
+  let users = getUsers();
+  if (users.length === 0) {
+    saveUsers(DEFAULT_USERS);
+    users = DEFAULT_USERS;
+  }
+  let changed = false;
+  DEFAULT_USERS.forEach(du => {
+    if (!users.find(u => u.name === du.name)) {
+      users.push({ ...du });
+      changed = true;
+    }
+  });
+  if (changed) saveUsers(users);
+  return users;
+}
+
+function getUsers() {
+  try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; }
+  catch { return []; }
+}
+
+function saveUsers(users) {
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+
+function validateUser(name, password) {
+  const users = getUsers();
+  const u = users.find(u => u.name === name);
+  return u && u.password === password;
+}
+
+// ========== Per-user state ==========
+let currentUser = null;
+
+function storageKey() { return USER_DATA_PREFIX + currentUser; }
 
 function loadState() {
   try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { history: [], wrongBook: {} };
+    return JSON.parse(localStorage.getItem(storageKey())) || { history: [], wrongBook: {} };
   } catch { return { history: [], wrongBook: {} }; }
 }
 
 function saveState(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(storageKey(), JSON.stringify(state));
 }
 
 function getWrongCount(state) {
@@ -188,6 +359,11 @@ function getWrongCount(state) {
 }
 
 // ========== Load problems JSON ==========
+let problemsData = null;
+let currentView = 'login';
+let currentWeekId = null;
+let currentProblems = null;
+
 async function loadProblems() {
   try {
     const res = await fetch('problems.json');
@@ -197,21 +373,169 @@ async function loadProblems() {
   }
 }
 
+// ========== Timing ==========
+function startTimers(numQuestions) {
+  window._quizStartTime = Date.now();
+  window._questionTimes = {};
+  for (let i = 1; i <= numQuestions; i++) window._questionTimes[i] = 0;
+  window._focusQIdx = null;
+  window._focusStart = null;
+  // live timer
+  window._timerInterval = setInterval(updateLiveTimer, 1000);
+}
+
+function switchFocus(newIdx) {
+  if (window._quizSubmitted) return;
+  const now = Date.now();
+  if (window._focusQIdx !== null && window._focusStart !== null) {
+    window._questionTimes[window._focusQIdx] += now - window._focusStart;
+  }
+  window._focusQIdx = newIdx;
+  window._focusStart = now;
+}
+
+function stopTimers() {
+  if (window._focusQIdx !== null && window._focusStart !== null) {
+    window._questionTimes[window._focusQIdx] += Date.now() - window._focusStart;
+  }
+  window._focusQIdx = null;
+  window._focusStart = null;
+  if (window._timerInterval) { clearInterval(window._timerInterval); window._timerInterval = null; }
+}
+
+function formatTime(seconds) {
+  if (seconds < 60) return Math.round(seconds) + '秒';
+  const m = Math.floor(seconds / 60);
+  const s = Math.round(seconds % 60);
+  return m + '分' + s + '秒';
+}
+
+function getTotalSeconds() {
+  if (!window._quizStartTime) return 0;
+  return Math.round((Date.now() - window._quizStartTime) / 1000);
+}
+
+function updateLiveTimer() {
+  const el = document.getElementById('liveTimer');
+  if (el) el.textContent = '⏱ ' + formatTime(getTotalSeconds());
+}
+
 // ========== Render ==========
 async function render() {
   const app = document.getElementById('app');
   await loadProblems();
 
-  if (!problemsData) {
+  if (!problemsData && currentView !== 'login') {
     app.innerHTML = '<div class="empty-state">加载题库失败，请检查网络后刷新页面</div>';
     return;
   }
 
+  if (!currentUser) {
+    currentView = 'login';
+    renderLogin(app);
+    return;
+  }
+
+  if (currentView === 'login') currentView = 'home';
   if (currentView === 'home') renderHome(app);
   else if (currentView === 'quiz') renderQuiz(app);
-  else if (currentView === 'wrongbook') renderWrongBook(app);
 }
 
+function renderLogin(app) {
+  const users = initUsers();
+
+  let listHtml = users.map((u, i) => {
+    const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c'];
+    const color = colors[i % colors.length];
+    return `
+      <div class="user-card" onclick="showPwDialog('${escHtml(u.name)}')">
+        <div class="user-avatar" style="background:${color}">${escHtml(u.name[0])}</div>
+        <span class="user-name">${escHtml(u.name)}</span>
+        <span class="user-arrow">›</span>
+      </div>`;
+  }).join('');
+
+  app.innerHTML = `
+    <h1 class="login-title">数学练习</h1>
+    <p class="login-sub">选择你的账号</p>
+    <div class="user-list">${listHtml}</div>
+    <button class="add-user-btn" onclick="showAddDialog()">+ 添加新用户</button>
+  `;
+}
+
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+// ========== Password dialog ==========
+let pendingUser = null;
+
+function showPwDialog(name) {
+  pendingUser = name;
+  document.getElementById('pwTitle').textContent = name;
+  document.getElementById('pwInput').value = '';
+  document.getElementById('pwError').textContent = '';
+  document.getElementById('pwDialog').classList.add('show');
+  setTimeout(() => document.getElementById('pwInput').focus(), 100);
+}
+
+function closePw() {
+  pendingUser = null;
+  document.getElementById('pwDialog').classList.remove('show');
+}
+
+function confirmPw() {
+  const pw = document.getElementById('pwInput').value.trim();
+  if (!pw) { document.getElementById('pwError').textContent = '请输入密码'; return; }
+  if (!validateUser(pendingUser, pw)) {
+    document.getElementById('pwError').textContent = '密码错误，请重试';
+    return;
+  }
+  document.getElementById('pwDialog').classList.remove('show');
+  currentUser = pendingUser;
+  pendingUser = null;
+  currentView = 'home';
+  render();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    if (document.getElementById('pwDialog').classList.contains('show')) confirmPw();
+    if (document.getElementById('addDialog').classList.contains('show')) confirmAdd();
+  }
+});
+
+// ========== Add user dialog ==========
+function showAddDialog() {
+  document.getElementById('addName').value = '';
+  document.getElementById('addPw').value = '';
+  document.getElementById('addError').textContent = '';
+  document.getElementById('addDialog').classList.add('show');
+  setTimeout(() => document.getElementById('addName').focus(), 100);
+}
+
+function closeAdd() {
+  document.getElementById('addDialog').classList.remove('show');
+}
+
+function confirmAdd() {
+  const name = document.getElementById('addName').value.trim();
+  const pw = document.getElementById('addPw').value.trim();
+  if (!name) { document.getElementById('addError').textContent = '请输入名字'; return; }
+  if (!pw) { document.getElementById('addError').textContent = '请设置密码'; return; }
+  const users = getUsers();
+  if (users.find(u => u.name === name)) {
+    document.getElementById('addError').textContent = '该名字已存在'; return;
+  }
+  users.push({ name, password: pw });
+  saveUsers(users);
+  document.getElementById('addDialog').classList.remove('show');
+  render();
+}
+
+// ========== Home ==========
 function renderHome(app) {
   const state = loadState();
   const wrongCount = getWrongCount(state);
@@ -222,7 +546,6 @@ function renderHome(app) {
     const done = state.history.some(h => h.weekId === w.id);
     const statusClass = done ? 'status-done' : 'status-new';
     const statusText = done ? '已完成' : '新题目';
-    // Find best score for this week
     let bestScore = null;
     state.history.filter(h => h.weekId === w.id).forEach(h => {
       if (bestScore === null || h.score > bestScore) bestScore = h.score;
@@ -256,9 +579,10 @@ function renderHome(app) {
     recent.forEach(h => {
       const week = problemsData.weeks.find(w => w.id === h.weekId);
       const title = week ? week.title : h.weekId;
+      const durStr = h.duration ? ' · ' + formatTime(h.duration) : '';
       historyHtml += `
         <div class="history-item">
-          <span>${title}</span>
+          <span>${title}${durStr}</span>
           <span class="history-score">${h.score}/${h.total} 分</span>
           <span style="color:#95a5a6;font-size:12px">${h.date}</span>
         </div>`;
@@ -267,12 +591,115 @@ function renderHome(app) {
   }
 
   app.innerHTML = `
-    <div class="header"><h1>数学练习</h1></div>
+    <div class="header">
+      <h1>数学练习</h1>
+      <span class="user-tag" onclick="switchUser()" title="切换用户">👤 ${escHtml(currentUser)}</span>
+    </div>
     ${weeksHtml}
     ${wrongHtml}
     ${historyHtml || '<div class="empty-state">还没有答题记录，点击上方题目开始练习吧</div>'}
-    <div style="text-align:center;margin-top:20px;font-size:12px;color:#bdc3c7">答题数据保存在本设备浏览器中</div>
+    <div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-outline" style="padding:8px 20px;font-size:13px" onclick="exportData()">📥 导出数据</button>
+      <button class="btn btn-outline" style="padding:8px 20px;font-size:13px" onclick="document.getElementById('importFile').click()">📤 导入数据</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+    </div>
+    <div style="text-align:center;margin-top:8px;font-size:12px;color:#bdc3c7">导出后可将文件发给家长分析薄弱点</div>
   `;
+}
+
+// ========== Export / Import ==========
+function buildExportData() {
+  const state = loadState();
+  // Enrich wrong book with full problem details
+  const wrongBookDetailed = [];
+  for (const [key, info] of Object.entries(state.wrongBook)) {
+    const [weekId, probId] = key.split('-');
+    const week = problemsData.weeks.find(w => w.id === weekId);
+    const prob = week ? week.problems.find(p => p.id === probId) : null;
+    wrongBookDetailed.push({
+      key: key,
+      weekTitle: week ? week.title : weekId,
+      wrongCount: info.wrongCount,
+      lastAttempt: info.lastAttempt,
+      type: prob ? prob.type : '?',
+      question: prob ? prob.question : '(题目已删除)',
+      options: prob ? prob.options || null : null,
+      blanks: prob ? prob.blanks || null : null,
+      answer: prob ? formatAnswer(prob) : '?',
+      explanation: prob ? prob.explanation || '' : ''
+    });
+  }
+
+  // Calculate stats
+  const totalAttempts = state.history.length;
+  let avgScore = 0;
+  if (totalAttempts > 0) {
+    const total = state.history.reduce((s, h) => s + (h.score / h.total * 100), 0);
+    avgScore = Math.round(total / totalAttempts);
+  }
+
+  return {
+    user: currentUser,
+    exportedAt: new Date().toISOString(),
+    stats: {
+      totalAttempts: totalAttempts,
+      avgScore: avgScore,
+      totalWrong: wrongBookDetailed.length
+    },
+    wrongBook: wrongBookDetailed,
+    history: state.history
+  };
+}
+
+function exportData() {
+  const data = buildExportData();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${currentUser}-错题数据-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!data.user || !data.history || !data.wrongBook) {
+        alert('文件格式不正确，请选择导出的数据文件');
+        return;
+      }
+      if (data.user !== currentUser) {
+        if (!confirm(`这个文件是「${data.user}」的数据，当前用户是「${currentUser}」，确定导入吗？`)) return;
+      }
+      // Convert wrong book back to storage format
+      const wrongBook = {};
+      data.wrongBook.forEach(w => {
+        wrongBook[w.key] = { wrongCount: w.wrongCount, lastAttempt: w.lastAttempt };
+      });
+      saveState({ history: data.history, wrongBook: wrongBook });
+      alert('数据导入成功！');
+      render();
+    } catch (err) {
+      alert('文件解析失败：' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function switchUser() {
+  stopTimers();
+  currentUser = null;
+  currentView = 'login';
+  currentWeekId = null;
+  currentProblems = null;
+  window._quizSubmitted = false;
+  render();
 }
 
 // ========== Quiz ==========
@@ -290,7 +717,6 @@ function startWrongBook() {
   const wrongIds = Object.keys(state.wrongBook);
   if (wrongIds.length === 0) return;
 
-  // Collect wrong problems from all weeks
   const wrongProbs = [];
   problemsData.weeks.forEach(w => {
     w.problems.forEach(p => {
@@ -311,38 +737,40 @@ function renderQuiz(app) {
   let isWrongBook = currentWeekId === '__wrongbook__';
   let title = isWrongBook ? '错题重练' : problemsData.weeks.find(w => w.id === currentWeekId)?.title || '';
 
+  startTimers(currentProblems.length);
+
   let cardsHtml = '';
   currentProblems.forEach((p, idx) => {
     const num = idx + 1;
-    cardsHtml += '<div class="question-card" id="card-' + num + '">';
+    cardsHtml += '<div class="question-card" id="card-' + num + '" onclick="switchFocus(' + num + ')">';
     cardsHtml += '<div class="q-header"><span class="q-num">' + num + '. (' + p.score + '分)</span></div>';
-    cardsHtml += '<div class="q-text">' + renderQuestionText(p, num) + '</div>';
+    cardsHtml += '<div class="q-text">' + renderQuestionText(p) + '</div>';
 
     if (p.type === 'choice') {
       cardsHtml += '<div class="options">';
       p.options.forEach(opt => {
-        cardsHtml += `<label class="option" data-q="${num}" data-val="${opt.label}">
-          <span style="font-weight:600;color:#7f8c8d;min-width:20px">${opt.label}</span>
-          <span>${opt.text}</span>
+        cardsHtml += `<label class="option" data-q="${num}" data-val="${escHtml(opt.label)}">
+          <span style="font-weight:600;color:#7f8c8d;min-width:20px">${escHtml(opt.label)}</span>
+          <span>${escHtml(opt.text)}</span>
         </label>`;
       });
       cardsHtml += '</div>';
     } else {
-      // fill or solve
       cardsHtml += '<div class="fill-row">';
       p.blanks.forEach((b, bi) => {
         const size = b.size || 4;
         const w = Math.max(60, size * 12);
         const suffix = b.suffix || '';
         cardsHtml += `<input type="text" class="quiz-input" data-q="${num}" data-bi="${bi}"
-          style="width:${w}px" maxlength="${size + 2}" autocomplete="off">`;
-        if (suffix) cardsHtml += `<span class="fill-hint">${suffix}</span>`;
+          style="width:${w}px" maxlength="${size + 2}" autocomplete="off"
+          onfocus="switchFocus(${num})">`;
+        if (suffix) cardsHtml += `<span class="fill-hint">${escHtml(suffix)}</span>`;
       });
       cardsHtml += '</div>';
     }
 
     cardsHtml += `<div class="explanation" id="exp-${num}" style="display:none">
-      <strong>答案：</strong>${formatAnswer(p)}<br>${p.explanation || ''}</div>`;
+      <strong>答案：</strong>${escHtml(formatAnswer(p))}<br>${p.explanation || ''}</div>`;
     cardsHtml += '</div>';
   });
 
@@ -351,7 +779,8 @@ function renderQuiz(app) {
   app.innerHTML = `
     <div class="header">
       <button class="back-btn" onclick="goHome()">← 返回</button>
-      <h1>${title}</h1>
+      <h1>${escHtml(title)}</h1>
+      <span class="live-timer" id="liveTimer">⏱ 0秒</span>
       <span style="color:#95a5a6;font-size:13px">共${currentProblems.length}题 · ${totalScore}分</span>
     </div>
     <form id="quizForm" onsubmit="return false">${cardsHtml}</form>
@@ -365,28 +794,28 @@ function renderQuiz(app) {
       <div class="score-big" id="scoreDisplay">0</div>
       <div class="star" id="starDisplay"></div>
       <div class="detail" id="detailDisplay"></div>
+      <div class="time-detail" id="timeDetail"></div>
     </div>
   `;
 
-  // Bind option clicks
   document.querySelectorAll('.option').forEach(opt => {
     opt.addEventListener('click', function() {
       if (window._quizSubmitted) return;
-      const q = this.dataset.q;
+      const q = parseInt(this.dataset.q);
+      switchFocus(q);
       this.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
       this.classList.add('selected');
     });
   });
+
+  // Auto-focus first question
+  switchFocus(1);
 }
 
-function renderQuestionText(p, num) {
+function renderQuestionText(p) {
   if (p.type === 'choice') return p.question;
-  // Fill and solve: replace {blank} with styled placeholder
   let text = p.question;
-  // Count blanks
-  let bi = 0;
   text = text.replace(/\{blank\}/g, () => {
-    bi++;
     return '<span style="display:inline-block;border-bottom:3px solid #3498db;min-width:50px;margin:0 4px"></span>';
   });
   return text;
@@ -399,11 +828,15 @@ function formatAnswer(p) {
 
 // ========== Quiz logic ==========
 function submitQuiz() {
+  stopTimers();
+  const totalSeconds = getTotalSeconds();
+  const qTimes = { ...window._questionTimes };
+
   const totalScore = currentProblems.reduce((s, p) => s + p.score, 0);
   let score = 0;
   let correctCount = 0;
   const state = loadState();
-  const wrongSet = {}; // key -> true for wrong this round
+  const wrongSet = {};
 
   currentProblems.forEach((p, idx) => {
     const num = idx + 1;
@@ -414,7 +847,6 @@ function submitQuiz() {
       const selected = document.querySelector(`.option.selected[data-q="${num}"]`);
       isCorrect = selected && selected.dataset.val === p.answer;
     } else {
-      // fill / solve - all blanks must match
       isCorrect = true;
       p.blanks.forEach((b, bi) => {
         const input = document.querySelector(`input[data-q="${num}"][data-bi="${bi}"]`);
@@ -432,7 +864,6 @@ function submitQuiz() {
       card.classList.add('wrong');
     }
 
-    // Update wrong book
     const key = (p._weekId || currentWeekId) + '-' + p.id;
     if (!isCorrect) {
       wrongSet[key] = true;
@@ -444,7 +875,6 @@ function submitQuiz() {
     }
   });
 
-  // Remove from wrong book if answered correctly in wrong-book mode
   if (currentWeekId === '__wrongbook__') {
     currentProblems.forEach(p => {
       const key = (p._weekId) + '-' + p.id;
@@ -454,24 +884,23 @@ function submitQuiz() {
     });
   }
 
-  // Add history
   state.history.push({
     weekId: currentWeekId,
     score: score,
     total: totalScore,
+    duration: totalSeconds,
     date: new Date().toISOString().slice(0, 10)
   });
-  // Keep last 50 records
   if (state.history.length > 50) state.history = state.history.slice(-50);
 
   saveState(state);
 
-  // Show result
   window._quizSubmitted = true;
   document.getElementById('submitBtn').disabled = true;
   document.getElementById('revealBtn').disabled = false;
   disableAllInputs();
 
+  // --- score display ---
   const starDisplay = document.getElementById('starDisplay');
   const ratio = totalScore > 0 ? score / totalScore : 0;
   if (ratio >= 0.9) starDisplay.textContent = '⭐⭐⭐⭐⭐ 太棒了！';
@@ -481,8 +910,22 @@ function submitQuiz() {
   else starDisplay.textContent = '⭐ 继续努力！';
 
   document.getElementById('scoreDisplay').textContent = score;
-  document.getElementById('detailDisplay').innerHTML =
-    `满分：${totalScore}分 | 答对：${correctCount}题/共${currentProblems.length}题`;
+
+  let detailHtml = `满分：${totalScore}分 | 答对：${correctCount}题/共${currentProblems.length}题<br>总用时：${formatTime(totalSeconds)}`;
+
+  // --- per-question time ---
+  let timeDetailHtml = '<h4>每题用时</h4>';
+  const avgTime = currentProblems.length > 0 ? totalSeconds / currentProblems.length : 0;
+  currentProblems.forEach((p, idx) => {
+    const num = idx + 1;
+    const t = qTimes[num] ? Math.round(qTimes[num] / 1000) : 0;
+    const slowClass = (t > avgTime * 2) ? ' slow' : '';
+    timeDetailHtml +=
+      `<div class="time-row"><span>第${num}题${slowClass ? ' 🐢' : ''}</span><span class="time-val${slowClass}">${formatTime(t)}</span></div>`;
+  });
+
+  document.getElementById('detailDisplay').innerHTML = detailHtml;
+  document.getElementById('timeDetail').innerHTML = timeDetailHtml;
 
   const rc = document.getElementById('resultCard');
   rc.style.display = 'block';
@@ -529,11 +972,13 @@ function disableAllInputs() {
 }
 
 function resetQuiz() {
+  stopTimers();
   window._quizSubmitted = false;
+  startTimers(currentProblems.length);
+
   document.getElementById('submitBtn').disabled = false;
   document.getElementById('revealBtn').disabled = true;
 
-  // Clear selections and inputs
   document.querySelectorAll('.option').forEach(o => {
     o.classList.remove('selected', 'correct-show', 'wrong-show');
     o.style.cursor = '';
@@ -545,19 +990,19 @@ function resetQuiz() {
     inp.classList.remove('correct-input', 'wrong-input');
   });
 
-  // Reset card states
   document.querySelectorAll('.question-card').forEach(c => {
     c.classList.remove('answered', 'wrong');
   });
 
-  // Hide explanations and result
   document.querySelectorAll('.explanation').forEach(e => e.style.display = 'none');
   document.getElementById('resultCard').style.display = 'none';
 
+  switchFocus(1);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goHome() {
+  stopTimers();
   currentView = 'home';
   currentWeekId = null;
   currentProblems = null;
