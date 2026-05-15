@@ -466,8 +466,21 @@ async function render() {
   }
 
   if (currentView === 'login') currentView = 'home';
-  if (currentView === 'home') renderHome(app);
-  else if (currentView === 'quiz') renderQuiz(app);
+  if (currentView === 'home') {
+    try {
+      renderHome(app);
+    } catch(e) {
+      app.innerHTML = '<div class="empty-state">渲染首页时出错: ' + e.message + '</div>';
+      console.error(e);
+    }
+  } else if (currentView === 'quiz') {
+    try {
+      renderQuiz(app);
+    } catch(e) {
+      app.innerHTML = '<div class="empty-state">渲染试卷时出错: ' + e.message + '<br><button class="btn btn-outline" onclick="goHome()" style="margin-top:16px">← 返回首页</button></div>';
+      console.error(e);
+    }
+  }
 }
 
 function renderLogin(app) {
@@ -790,12 +803,17 @@ function startWrongBook() {
 }
 
 function startExam(examId) {
-  const exam = (problemsData.exams || []).find(e => e.id === examId);
-  if (!exam) return;
-  currentView = 'quiz';
-  currentWeekId = examId;
-  currentProblems = exam.problems;
-  render();
+  try {
+    const exam = (problemsData.exams || []).find(e => e.id === examId);
+    if (!exam) { alert('试卷数据未找到，请刷新页面重试'); return; }
+    currentView = 'quiz';
+    currentWeekId = examId;
+    currentProblems = exam.problems;
+    render();
+  } catch(e) {
+    alert('加载试卷失败: ' + e.message);
+    console.error(e);
+  }
 }
 
 function renderQuiz(app) {
