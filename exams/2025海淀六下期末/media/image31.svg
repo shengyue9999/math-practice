@@ -1,9 +1,6 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN"
-"http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
-<svg width="160" height="192"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
-<desc>wmf2svg</desc>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:192.000000; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 0.000000 147.839996)"
+
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="192">
+<text x="0.000000" y="147.839996" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:192.000000; fill:black"
 	>.</text>
 </svg>

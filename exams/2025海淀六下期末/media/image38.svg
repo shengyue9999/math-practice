@@ -1,9 +1,6 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN"
-"http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
-<svg width="768" height="271"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
-<desc>wmf2svg</desc>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="271">
 <line x1="1.640149" y1="119.820717" x2="49.204483" y2="119.820717" 
 	style="stroke-width:3.790943; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:none; stroke:black" />
 <line x1="195.177795" y1="119.820717" x2="273.494934" y2="119.820717" 
@@ -12,56 +9,56 @@
 	style="stroke-width:3.790943; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:none; stroke:black" />
 <line x1="531.818481" y1="119.820717" x2="603.985046" y2="119.820717" 
 	style="stroke-width:3.790943; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:none; stroke:black" />
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 548.835022 80.568733)"
+<text x="548.835022" y="80.568733" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>5</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 215.269623 80.568733)"
+<text x="215.269623" y="80.568733" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>5</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 368.623596 80.568733)"
+<text x="368.623596" y="80.568733" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>6</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 5.740523 80.568733)"
+<text x="5.740523" y="80.568733" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>7</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 191.897491 226.285019)"
+<text x="191.897491" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>1</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 231.261078 226.285019)"
+<text x="231.261078" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>0</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 345.251465 226.285019)"
+<text x="345.251465" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>1</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 384.615051 226.285019)"
+<text x="384.615051" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>0</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 5.740523 226.285019)"
+<text x="5.740523" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>8</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 528.538147 226.285019)"
+<text x="528.538147" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>1</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 567.901733 226.285019)"
+<text x="567.901733" y="226.285019" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black"
 	>1</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 121.781097 79.493340)"
-	>้</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 610.545654 79.493340)"
-	>๙</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 152.943939 88.096512)"
-	>ๆ</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 438.329956 88.096512)"
-	>๖</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 65.195946 145.630249)"
-	>ธ</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 289.486389 145.630249)"
+<text  x="121.781097" y="79.493340" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โก</text>
+<text  x="610.545654" y="79.493340" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โค</text>
+<text  x="152.943939" y="88.096512" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โ</text>
+<text  x="438.329956" y="88.096512" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โ</text>
+<text  x="65.195946" y="145.630249" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>รท</text>
+<text  x="289.486389" y="145.630249" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
 	>+</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 476.463440 145.630249)"
-	>ด</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 152.943939 173.859421)"
-	>็</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 438.329956 173.859421)"
-	>๗</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 121.781097 178.429855)"
-	>๊</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 610.545654 178.429855)"
-	>๚</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 152.943939 238.652069)"
-	>่</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 438.329956 238.652069)"
-	>๘</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 121.781097 247.255249)"
-	>๋</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 610.545654 247.255249)"
-	>๛</text>
+<text  x="476.463440" y="145.630249" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>ร—</text>
+<text  x="152.943939" y="173.859421" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โ</text>
+<text  x="438.329956" y="173.859421" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โ</text>
+<text  x="121.781097" y="178.429855" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โข</text>
+<text  x="610.545654" y="178.429855" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โฅ</text>
+<text  x="152.943939" y="238.652069" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โ</text>
+<text  x="438.329956" y="238.652069" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โ </text>
+<text  x="121.781097" y="247.255249" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โฃ</text>
+<text  x="610.545654" y="247.255249" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:103.238098; fill:black" 
+	>โฆ</text>
 </svg>

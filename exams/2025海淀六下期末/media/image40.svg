@@ -1,21 +1,18 @@
 <?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20001102//EN"
-"http://www.w3.org/TR/2000/CR-SVG-20001102/DTD/svg-20001102.dtd">
-<svg width="495" height="512"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
-<desc>wmf2svg</desc>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="512">
 <line x1="2.853026" y1="244.211838" x2="85.590775" y2="244.211838" 
 	style="stroke-width:7.276352; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:none; stroke:black" />
 <line x1="211.837173" y1="244.211838" x2="294.574921" y2="244.211838" 
 	style="stroke-width:7.276352; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:none; stroke:black" />
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:212.319656; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 9.985590 163.486130)"
+<text x="9.985590" y="163.486130" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:212.319656; fill:black"
 	>7</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:212.319656; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 218.969742 163.486130)"
+<text x="218.969742" y="163.486130" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:212.319656; fill:black"
 	>1</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:212.319656; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 9.985590 463.166473)"
+<text x="9.985590" y="463.166473" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:212.319656; fill:black"
 	>8</text>
-<text x="0" y="0" style="font-family:Times; font-style:normal; font-weight:normal; font-size:212.319656; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 221.109512 463.166473)"
+<text x="221.109512" y="463.166473" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:212.319656; fill:black"
 	>2</text>
-<text x="0" y="0" style="font-family:Symbol; font-style:normal; font-weight:normal; font-size:212.319656; fill:black" transform="matrix(1.000000 -0.000000 0.000000 1.000000 113.407776 297.291748)"
-	>ธ</text>
+<text  x="113.407776" y="297.291748" style="font-family:"Times New Roman",Times,serif; font-style:normal; font-weight:normal; font-size:212.319656; fill:black" 
+	>รท</text>
 </svg>
