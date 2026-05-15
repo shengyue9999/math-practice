@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数学练习</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container { max-width: 800px; margin: 0 auto; }
+
+/* ---- header ---- */
+.header {
+  background: #fff; border-radius: 16px;
+  padding: 20px 28px; margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header h1 { font-size: 22px; color: #2c3e50; }
+.header .back-btn {
+  background: #ecf0f1; border: none; border-radius: 8px;
+  padding: 8px 16px; font-size: 14px; cursor: pointer;
+  color: #555; transition: background 0.2s;
+}
+.header .back-btn:hover { background: #d5dbdb; }
+
+/* ---- cards ---- */
+.card {
+  background: #fff; border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 14px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 3px 14px rgba(0,0,0,0.1); }
+
+.week-card .week-title { font-size: 18px; font-weight: 600; color: #2c3e50; }
+.week-card .week-sub { font-size: 13px; color: #95a5a6; margin-top: 4px; }
+.week-card .week-status {
+  display: inline-block; margin-top: 6px; font-size: 12px;
+  padding: 2px 10px; border-radius: 10px;
+}
+.status-done { background: #d5f5e3; color: #27ae60; }
+.status-new { background: #eaf2f8; color: #2980b9; }
+
+.wrong-entry {
+  border-left: 4px solid #e74c3c;
+  display: flex; align-items: center; gap: 12px;
+}
+.wrong-entry .badge {
+  background: #e74c3c; color: #fff; border-radius: 50%;
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+}
+.wrong-entry .wrong-info { flex: 1; }
+.wrong-entry .wrong-title { font-size: 16px; font-weight: 600; color: #2c3e50; }
+.wrong-entry .wrong-sub { font-size: 13px; color: #95a5a6; }
+
+.history-section { margin-top: 24px; }
+.history-section h3 { font-size: 16px; color: #7f8c8d; margin-bottom: 10px; }
+.history-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px; background: #fff; border-radius: 8px;
+  margin-bottom: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  font-size: 14px; color: #555;
+}
+.history-score { font-weight: 600; color: #2c3e50; }
+
+.empty-state { text-align: center; padding: 48px 20px; color: #95a5a6; font-size: 15px; }
+
+/* ---- quiz view ---- */
+.question-card {
+  background: #fff; border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 14px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  border-left: 4px solid #3498db;
+  transition: border-color 0.3s;
+}
+.question-card.answered { border-left-color: #2ecc71; }
+.question-card.wrong { border-left-color: #e74c3c; }
+
+.q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.q-num { font-size: 15px; font-weight: 600; color: #2c3e50; }
+.q-score { font-size: 12px; color: #95a5a6; }
+
+.q-text { font-size: 15px; color: #333; line-height: 1.7; margin-bottom: 10px; }
+
+/* choice */
+.options { display: flex; flex-direction: column; gap: 8px; }
+.option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border: 2px solid #e8ecf1; border-radius: 8px;
+  cursor: pointer; transition: all 0.2s; font-size: 15px;
+}
+.option:hover { border-color: #3498db; background: #eef6fd; }
+.option.selected { border-color: #3498db; background: #d6eaf8; font-weight: 600; }
+.option.correct-show { border-color: #27ae60; background: #d5f5e3; }
+.option.wrong-show { border-color: #e74c3c; background: #fadbd8; }
+
+/* fill/solve */
+.fill-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.fill-row input {
+  width: 70px; padding: 8px 10px; border: 2px solid #ddd;
+  border-radius: 6px; font-size: 15px; text-align: center;
+  transition: border-color 0.2s;
+}
+.fill-row input:focus { outline: none; border-color: #3498db; }
+.fill-row input.correct-input { border-color: #27ae60; background: #d5f5e3; }
+.fill-row input.wrong-input { border-color: #e74c3c; background: #fadbd8; }
+.fill-row .fill-hint { font-size: 14px; color: #555; }
+
+/* explanation */
+.explanation {
+  background: #fffbe6; border: 1px solid #ffe58f;
+  border-radius: 8px; padding: 10px 14px; margin-top: 10px;
+  font-size: 14px; color: #8a6d3b; display: none;
+}
+
+/* actions */
+.actions { text-align: center; margin: 28px 0; }
+.btn {
+  padding: 14px 44px; font-size: 17px; font-weight: 600;
+  border: none; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s; margin: 0 8px;
+}
+.btn-primary { background: #3498db; color: #fff; }
+.btn-primary:hover { background: #2980b9; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+.btn-secondary { background: #2ecc71; color: #fff; }
+.btn-secondary:hover { background: #27ae60; transform: translateY(-1px); }
+.btn-outline { background: #fff; color: #3498db; border: 2px solid #3498db; }
+.btn-outline:hover { background: #eef6fd; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+/* result */
+.result-card {
+  background: #fff; border-radius: 16px;
+  padding: 28px; margin: 20px 0; text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+.score-big { font-size: 64px; font-weight: 800; color: #2c3e50; }
+.score-label { font-size: 16px; color: #7f8c8d; margin-bottom: 8px; }
+.star { font-size: 40px; margin: 8px 0; }
+.detail { text-align: left; margin-top: 14px; font-size: 14px; color: #555; line-height: 1.8; }
+
+/* responsive */
+@media (max-width: 500px) {
+  body { padding: 10px; }
+  .header { padding: 14px 18px; }
+  .header h1 { font-size: 18px; }
+  .card { padding: 16px 18px; }
+  .question-card { padding: 16px 18px; }
+  .btn { padding: 12px 28px; font-size: 15px; margin: 4px; }
+  .score-big { font-size: 48px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="app"></div>
+
+<script>
+// ========== State ==========
+const STORAGE_KEY = 'math_practice';
+let problemsData = null;
+let currentView = 'home';  // home | quiz | wrongbook
+let currentWeekId = null;
+let currentProblems = null; // problems being answered (could be from wrong book)
+
+function loadState() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { history: [], wrongBook: {} };
+  } catch { return { history: [], wrongBook: {} }; }
+}
+
+function saveState(state) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function getWrongCount(state) {
+  return Object.keys(state.wrongBook).length;
+}
+
+// ========== Load problems JSON ==========
+async function loadProblems() {
+  try {
+    const res = await fetch('problems.json');
+    problemsData = await res.json();
+  } catch(e) {
+    problemsData = null;
+  }
+}
+
+// ========== Render ==========
+async function render() {
+  const app = document.getElementById('app');
+  await loadProblems();
+
+  if (!problemsData) {
+    app.innerHTML = '<div class="empty-state">加载题库失败，请检查网络后刷新页面</div>';
+    return;
+  }
+
+  if (currentView === 'home') renderHome(app);
+  else if (currentView === 'quiz') renderQuiz(app);
+  else if (currentView === 'wrongbook') renderWrongBook(app);
+}
+
+function renderHome(app) {
+  const state = loadState();
+  const wrongCount = getWrongCount(state);
+  const weeks = problemsData.weeks;
+
+  let weeksHtml = '';
+  weeks.forEach(w => {
+    const done = state.history.some(h => h.weekId === w.id);
+    const statusClass = done ? 'status-done' : 'status-new';
+    const statusText = done ? '已完成' : '新题目';
+    // Find best score for this week
+    let bestScore = null;
+    state.history.filter(h => h.weekId === w.id).forEach(h => {
+      if (bestScore === null || h.score > bestScore) bestScore = h.score;
+    });
+    const bestStr = bestScore !== null ? ` 最好成绩：${bestScore}分` : '';
+
+    weeksHtml += `
+      <div class="card week-card" onclick="startWeek('${w.id}')">
+        <div class="week-title">${w.title}</div>
+        <div class="week-sub">${w.subtitle}${bestStr}</div>
+        <span class="week-status ${statusClass}">${statusText}</span>
+      </div>`;
+  });
+
+  let wrongHtml = '';
+  if (wrongCount > 0) {
+    wrongHtml = `
+      <div class="card wrong-entry" onclick="startWrongBook()">
+        <div class="badge">${wrongCount}</div>
+        <div class="wrong-info">
+          <div class="wrong-title">错题本</div>
+          <div class="wrong-sub">${wrongCount} 道错题待重练</div>
+        </div>
+      </div>`;
+  }
+
+  let historyHtml = '';
+  if (state.history.length > 0) {
+    const recent = [...state.history].reverse().slice(0, 10);
+    historyHtml = '<div class="history-section"><h3>最近记录</h3>';
+    recent.forEach(h => {
+      const week = problemsData.weeks.find(w => w.id === h.weekId);
+      const title = week ? week.title : h.weekId;
+      historyHtml += `
+        <div class="history-item">
+          <span>${title}</span>
+          <span class="history-score">${h.score}/${h.total} 分</span>
+          <span style="color:#95a5a6;font-size:12px">${h.date}</span>
+        </div>`;
+    });
+    historyHtml += '</div>';
+  }
+
+  app.innerHTML = `
+    <div class="header"><h1>数学练习</h1></div>
+    ${weeksHtml}
+    ${wrongHtml}
+    ${historyHtml || '<div class="empty-state">还没有答题记录，点击上方题目开始练习吧</div>'}
+    <div style="text-align:center;margin-top:20px;font-size:12px;color:#bdc3c7">答题数据保存在本设备浏览器中</div>
+  `;
+}
+
+// ========== Quiz ==========
+function startWeek(weekId) {
+  const week = problemsData.weeks.find(w => w.id === weekId);
+  if (!week) return;
+  currentView = 'quiz';
+  currentWeekId = weekId;
+  currentProblems = week.problems;
+  render();
+}
+
+function startWrongBook() {
+  const state = loadState();
+  const wrongIds = Object.keys(state.wrongBook);
+  if (wrongIds.length === 0) return;
+
+  // Collect wrong problems from all weeks
+  const wrongProbs = [];
+  problemsData.weeks.forEach(w => {
+    w.problems.forEach(p => {
+      const key = w.id + '-' + p.id;
+      if (state.wrongBook[key]) {
+        wrongProbs.push({ ...p, _weekId: w.id, _wrongCount: state.wrongBook[key].wrongCount });
+      }
+    });
+  });
+
+  currentView = 'quiz';
+  currentWeekId = '__wrongbook__';
+  currentProblems = wrongProbs;
+  render();
+}
+
+function renderQuiz(app) {
+  let isWrongBook = currentWeekId === '__wrongbook__';
+  let title = isWrongBook ? '错题重练' : problemsData.weeks.find(w => w.id === currentWeekId)?.title || '';
+
+  let cardsHtml = '';
+  currentProblems.forEach((p, idx) => {
+    const num = idx + 1;
+    cardsHtml += '<div class="question-card" id="card-' + num + '">';
+    cardsHtml += '<div class="q-header"><span class="q-num">' + num + '. (' + p.score + '分)</span></div>';
+    cardsHtml += '<div class="q-text">' + renderQuestionText(p, num) + '</div>';
+
+    if (p.type === 'choice') {
+      cardsHtml += '<div class="options">';
+      p.options.forEach(opt => {
+        cardsHtml += `<label class="option" data-q="${num}" data-val="${opt.label}">
+          <span style="font-weight:600;color:#7f8c8d;min-width:20px">${opt.label}</span>
+          <span>${opt.text}</span>
+        </label>`;
+      });
+      cardsHtml += '</div>';
+    } else {
+      // fill or solve
+      cardsHtml += '<div class="fill-row">';
+      p.blanks.forEach((b, bi) => {
+        const size = b.size || 4;
+        const w = Math.max(60, size * 12);
+        const suffix = b.suffix || '';
+        cardsHtml += `<input type="text" class="quiz-input" data-q="${num}" data-bi="${bi}"
+          style="width:${w}px" maxlength="${size + 2}" autocomplete="off">`;
+        if (suffix) cardsHtml += `<span class="fill-hint">${suffix}</span>`;
+      });
+      cardsHtml += '</div>';
+    }
+
+    cardsHtml += `<div class="explanation" id="exp-${num}" style="display:none">
+      <strong>答案：</strong>${formatAnswer(p)}<br>${p.explanation || ''}</div>`;
+    cardsHtml += '</div>';
+  });
+
+  let totalScore = currentProblems.reduce((s, p) => s + p.score, 0);
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="back-btn" onclick="goHome()">← 返回</button>
+      <h1>${title}</h1>
+      <span style="color:#95a5a6;font-size:13px">共${currentProblems.length}题 · ${totalScore}分</span>
+    </div>
+    <form id="quizForm" onsubmit="return false">${cardsHtml}</form>
+    <div class="actions">
+      <button class="btn btn-primary" id="submitBtn" onclick="submitQuiz()">提交答卷</button>
+      <button class="btn btn-secondary" id="revealBtn" onclick="revealAnswers()" disabled>查看答案和解析</button>
+    </div>
+    <div class="result-card" id="resultCard" style="display:none">
+      <div class="score-label">你的得分</div>
+      <div class="score-big" id="scoreDisplay">0</div>
+      <div class="star" id="starDisplay"></div>
+      <div class="detail" id="detailDisplay"></div>
+    </div>
+  `;
+
+  // Bind option clicks
+  document.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', function() {
+      if (window._quizSubmitted) return;
+      const q = this.dataset.q;
+      this.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+  });
+}
+
+function renderQuestionText(p, num) {
+  if (p.type === 'choice') return p.question;
+  // Fill and solve: replace {blank} with styled placeholder
+  let text = p.question;
+  // Count blanks
+  let bi = 0;
+  text = text.replace(/\{blank\}/g, () => {
+    bi++;
+    return '<span style="display:inline-block;border-bottom:3px solid #3498db;min-width:50px;margin:0 4px"></span>';
+  });
+  return text;
+}
+
+function formatAnswer(p) {
+  if (p.type === 'choice') return p.answer;
+  return p.blanks.map(b => b.answer.replace(/\|/g, ' 或 ')).join('，');
+}
+
+// ========== Quiz logic ==========
+function submitQuiz() {
+  const totalScore = currentProblems.reduce((s, p) => s + p.score, 0);
+  let score = 0;
+  let correctCount = 0;
+  const state = loadState();
+  const wrongSet = {}; // key -> true for wrong this round
+
+  currentProblems.forEach((p, idx) => {
+    const num = idx + 1;
+    const card = document.getElementById('card-' + num);
+    let isCorrect = false;
+
+    if (p.type === 'choice') {
+      const selected = document.querySelector(`.option.selected[data-q="${num}"]`);
+      isCorrect = selected && selected.dataset.val === p.answer;
+    } else {
+      // fill / solve - all blanks must match
+      isCorrect = true;
+      p.blanks.forEach((b, bi) => {
+        const input = document.querySelector(`input[data-q="${num}"][data-bi="${bi}"]`);
+        const userVal = (input?.value || '').trim();
+        const answers = b.answer.split('|');
+        if (!answers.some(a => userVal === a)) isCorrect = false;
+      });
+    }
+
+    if (isCorrect) {
+      score += p.score;
+      correctCount++;
+      card.classList.add('answered');
+    } else {
+      card.classList.add('wrong');
+    }
+
+    // Update wrong book
+    const key = (p._weekId || currentWeekId) + '-' + p.id;
+    if (!isCorrect) {
+      wrongSet[key] = true;
+      const existing = state.wrongBook[key];
+      state.wrongBook[key] = {
+        wrongCount: (existing ? existing.wrongCount : 0) + 1,
+        lastAttempt: new Date().toISOString().slice(0, 10)
+      };
+    }
+  });
+
+  // Remove from wrong book if answered correctly in wrong-book mode
+  if (currentWeekId === '__wrongbook__') {
+    currentProblems.forEach(p => {
+      const key = (p._weekId) + '-' + p.id;
+      if (!wrongSet[key] && state.wrongBook[key]) {
+        delete state.wrongBook[key];
+      }
+    });
+  }
+
+  // Add history
+  state.history.push({
+    weekId: currentWeekId,
+    score: score,
+    total: totalScore,
+    date: new Date().toISOString().slice(0, 10)
+  });
+  // Keep last 50 records
+  if (state.history.length > 50) state.history = state.history.slice(-50);
+
+  saveState(state);
+
+  // Show result
+  window._quizSubmitted = true;
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('revealBtn').disabled = false;
+  disableAllInputs();
+
+  const starDisplay = document.getElementById('starDisplay');
+  const ratio = totalScore > 0 ? score / totalScore : 0;
+  if (ratio >= 0.9) starDisplay.textContent = '⭐⭐⭐⭐⭐ 太棒了！';
+  else if (ratio >= 0.8) starDisplay.textContent = '⭐⭐⭐⭐ 很好！';
+  else if (ratio >= 0.7) starDisplay.textContent = '⭐⭐⭐ 不错！';
+  else if (ratio >= 0.6) starDisplay.textContent = '⭐⭐ 加油！';
+  else starDisplay.textContent = '⭐ 继续努力！';
+
+  document.getElementById('scoreDisplay').textContent = score;
+  document.getElementById('detailDisplay').innerHTML =
+    `满分：${totalScore}分 | 答对：${correctCount}题/共${currentProblems.length}题`;
+
+  const rc = document.getElementById('resultCard');
+  rc.style.display = 'block';
+  rc.scrollIntoView({ behavior: 'smooth' });
+}
+
+function revealAnswers() {
+  document.getElementById('revealBtn').disabled = true;
+
+  currentProblems.forEach((p, idx) => {
+    const num = idx + 1;
+    const exp = document.getElementById('exp-' + num);
+    if (exp) exp.style.display = 'block';
+
+    if (p.type === 'choice') {
+      document.querySelectorAll(`.option[data-q="${num}"]`).forEach(opt => {
+        if (opt.dataset.val === p.answer) opt.classList.add('correct-show');
+        else if (opt.classList.contains('selected')) opt.classList.add('wrong-show');
+      });
+    } else {
+      p.blanks.forEach((b, bi) => {
+        const input = document.querySelector(`input[data-q="${num}"][data-bi="${bi}"]`);
+        if (!input) return;
+        const userVal = input.value.trim();
+        const answers = b.answer.split('|');
+        if (answers.some(a => userVal === a)) {
+          input.classList.add('correct-input');
+        } else {
+          input.classList.add('wrong-input');
+        }
+      });
+    }
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function disableAllInputs() {
+  document.querySelectorAll('.option').forEach(o => {
+    o.style.cursor = 'default';
+    o.style.pointerEvents = 'none';
+  });
+  document.querySelectorAll('.quiz-input').forEach(inp => inp.disabled = true);
+}
+
+function goHome() {
+  currentView = 'home';
+  currentWeekId = null;
+  currentProblems = null;
+  window._quizSubmitted = false;
+  render();
+}
+
+// ========== Init ==========
+window._quizSubmitted = false;
+render();
+</script>
+
+</body>
+</html>

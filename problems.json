@@ -1,0 +1,224 @@
+{
+  "weeks": [
+    {
+      "id": "week5",
+      "title": "第五周（5.11-5.15）",
+      "subtitle": "共18题 · 满分100分",
+      "problems": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "score": 4,
+          "question": "某水库正常水位记为0米，高于正常水位记为正。一天水位记录为：早晨+0.3米，中午-0.1米，晚上+0.5米。当天水位最高时比正常水位高（ ）米。",
+          "options": [
+            {"label": "A", "text": "0.3"},
+            {"label": "B", "text": "0.5"},
+            {"label": "C", "text": "-0.1"},
+            {"label": "D", "text": "0.8"}
+          ],
+          "answer": "B",
+          "explanation": "正数表示高于正常水位，+0.5最大，所以是0.5米。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "score": 4,
+          "question": "某地气温中午为5℃，夜晚下降8℃，夜晚气温是（ ）℃。如果以0℃为基准，夜晚气温记作（ ）℃。",
+          "options": [
+            {"label": "A", "text": "-3, -3"},
+            {"label": "B", "text": "3, -3"},
+            {"label": "C", "text": "-3, 3"},
+            {"label": "D", "text": "13, -8"}
+          ],
+          "answer": "A",
+          "explanation": "5-8=-3℃，低于0℃所以记作-3℃。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "score": 4,
+          "question": "一支钢笔a元，一本笔记本b元。买3支钢笔和2本笔记本共需要（ ）元。如果付了50元，应找回（ ）元。",
+          "options": [
+            {"label": "A", "text": "3a+2b, 50-(3a+2b)"},
+            {"label": "B", "text": "5ab, 50-5ab"},
+            {"label": "C", "text": "a+b, 50-a-b"},
+            {"label": "D", "text": "3a×2b, 50-3a×2b"}
+          ],
+          "answer": "A",
+          "explanation": "3支钢笔3a元，2本笔记本2b元，总价3a+2b；找回50-(3a+2b)。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "score": 4,
+          "question": "长方形的长是x米，宽比长少3米。这个长方形的周长是（ ）米。",
+          "options": [
+            {"label": "A", "text": "4x-6"},
+            {"label": "B", "text": "4x-3"},
+            {"label": "C", "text": "2x-3"},
+            {"label": "D", "text": "x(x-3)"}
+          ],
+          "answer": "A",
+          "explanation": "宽=x-3，周长=2×(长+宽)=2×(x+x-3)=2×(2x-3)=4x-6。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "score": 4,
+          "question": "下面哪个长度最接近教室的长度？",
+          "options": [
+            {"label": "A", "text": "8分米"},
+            {"label": "B", "text": "8米"},
+            {"label": "C", "text": "80米"},
+            {"label": "D", "text": "800厘米"}
+          ],
+          "answer": "B",
+          "explanation": "教室长度一般在8-10米左右，8米最合适。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "score": 4,
+          "question": "三角形三边长分别为5cm、8cm、x cm，x可能是（ ）cm。",
+          "options": [
+            {"label": "A", "text": "3"},
+            {"label": "B", "text": "13"},
+            {"label": "C", "text": "4"},
+            {"label": "D", "text": "15"}
+          ],
+          "answer": "C",
+          "explanation": "三角形三边关系：8-5 < x < 8+5，即3 < x < 13，只有4符合。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "score": 4,
+          "question": "下面等式成立的是（ ）。",
+          "options": [
+            {"label": "A", "text": "24÷(4+2)=24÷4+24÷2"},
+            {"label": "B", "text": "125×32=125×8×4"},
+            {"label": "C", "text": "15-3.6+6.4=15-(3.6+6.4)"},
+            {"label": "D", "text": "45×99=45×100-1"}
+          ],
+          "answer": "B",
+          "explanation": "A错：除法没有分配律；B对：32=8×4；C错：去括号要变号；D错：45×99=45×100-45。"
+        },
+        {
+          "id": "q8",
+          "type": "fill",
+          "score": 4,
+          "question": "0.75 = {blank} /4 = {blank} :16 = {blank} %",
+          "blanks": [
+            {"answer": "3", "size": 4},
+            {"answer": "12", "size": 4},
+            {"answer": "75", "size": 4}
+          ],
+          "explanation": "0.75=3/4=12:16=75%"
+        },
+        {
+          "id": "q9",
+          "type": "fill",
+          "score": 4,
+          "question": "把一根3米长的绳子平均分成5段，每段长 {blank} 米，每段占全长的 {blank} %。",
+          "blanks": [
+            {"answer": "0.6", "size": 5},
+            {"answer": "20|0.2", "size": 4}
+          ],
+          "explanation": "3÷5=0.6米；1÷5=0.2=20%"
+        },
+        {
+          "id": "q10",
+          "type": "fill",
+          "score": 4,
+          "question": "五亿零八百万三千写作 {blank} ，省略亿位后面的尾数约是 {blank} 亿。",
+          "blanks": [
+            {"answer": "508003000", "size": 10},
+            {"answer": "5", "size": 2}
+          ],
+          "explanation": "写作508003000，省略亿位看千万位是0，舍去得5亿。"
+        },
+        {
+          "id": "q11",
+          "type": "solve",
+          "score": 6,
+          "question": "一批零件，如果每天加工60个，需要20天完成。如果每天加工80个，需要多少天完成？",
+          "blanks": [
+            {"answer": "15", "size": 4, "suffix": " 天"}
+          ],
+          "explanation": "总零件数60×20=1200个，1200÷80=15天。"
+        },
+        {
+          "id": "q12",
+          "type": "solve",
+          "score": 6,
+          "question": "用边长4分米的方砖铺地，需要225块。如果改用边长5分米的方砖，需要多少块？",
+          "blanks": [
+            {"answer": "144", "size": 4, "suffix": " 块"}
+          ],
+          "explanation": "总面积不变：4²×225=3600平方分米，3600÷5²=3600÷25=144块。"
+        },
+        {
+          "id": "q13",
+          "type": "solve",
+          "score": 6,
+          "question": "学校把植树180棵的任务按2:3:4分配给四、五、六年级。六年级要植树多少棵？",
+          "blanks": [
+            {"answer": "80", "size": 4, "suffix": " 棵"}
+          ],
+          "explanation": "总份数2+3+4=9，六年级占4/9，180×4/9=80棵。"
+        },
+        {
+          "id": "q14",
+          "type": "solve",
+          "score": 6,
+          "question": "甲、乙、丙三人合买一箱苹果，按出资比5:3:2分配。丙分到8千克，这箱苹果共多少千克？",
+          "blanks": [
+            {"answer": "40", "size": 4, "suffix": " 千克"}
+          ],
+          "explanation": "丙占2份为8千克，每份4千克，总份数5+3+2=10份，总重4×10=40千克。"
+        },
+        {
+          "id": "q15",
+          "type": "solve",
+          "score": 6,
+          "question": "用一张长25.12cm、宽18.84cm的长方形纸卷成圆柱（以长为高）。这个圆柱的底面半径是多少厘米？（π取3.14）",
+          "blanks": [
+            {"answer": "3", "size": 4, "suffix": " cm"}
+          ],
+          "explanation": "底面周长=宽18.84cm，半径=18.84÷3.14÷2=3cm。"
+        },
+        {
+          "id": "q16",
+          "type": "solve",
+          "score": 6,
+          "question": "一个圆柱侧面展开是正方形，边长12.56cm。这个圆柱的底面积是多少平方厘米？",
+          "blanks": [
+            {"answer": "12.56", "size": 6, "suffix": " cm²"}
+          ],
+          "explanation": "底面周长=高=12.56cm，半径=12.56÷3.14÷2=2cm，面积=3.14×2²=12.56cm²。"
+        },
+        {
+          "id": "q17",
+          "type": "solve",
+          "score": 6,
+          "question": "书店举行促销：满100元减20元。小明买了一套书原价150元，实际应付多少元？相当于打几折？",
+          "blanks": [
+            {"answer": "130", "size": 4, "suffix": " 元，"},
+            {"answer": "8.7|8.67", "size": 4, "suffix": " 折"}
+          ],
+          "explanation": "150-20=130元；130÷150≈0.867≈8.7折。"
+        },
+        {
+          "id": "q18",
+          "type": "solve",
+          "score": 6,
+          "question": "从甲地到乙地，客车需4小时，货车需5小时。客车速度比货车快百分之几？",
+          "blanks": [
+            {"answer": "25", "size": 4, "suffix": " %"}
+          ],
+          "explanation": "设路程为1，客车速度1/4，货车速度1/5，(1/4-1/5)÷(1/5)=0.05÷0.2=0.25=25%。"
+        }
+      ]
+    }
+  ]
+}
