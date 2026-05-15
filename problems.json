@@ -70,7 +70,7 @@
             {"label": "A", "text": "8分米"},
             {"label": "B", "text": "8米"},
             {"label": "C", "text": "80米"},
-            {"label": "D", "text": "800厘米"}
+            {"label": "D", "text": "8000厘米"}
           ],
           "answer": "B",
           "explanation": "教室长度一般在8-10米左右，8米最合适。"
