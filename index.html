@@ -617,7 +617,7 @@ function renderHome(app) {
       });
       const bestStr = bestScore !== null ? ` 最好成绩：${bestScore}分` : '';
       examsHtml += `
-        <div class="card week-card exam-card" data-exam-id="${exam.id}" onclick="startExam('${exam.id}')">
+        <div class="card week-card exam-card" onclick="startExam('${exam.id}')">
           <div class="week-title">${exam.title}</div>
           <div class="week-sub">${exam.subtitle}${bestStr}</div>
           <span class="week-status ${statusClass}">${statusText}</span>
@@ -917,7 +917,8 @@ function renderQuestionText(p) {
 
 function formatAnswer(p) {
   if (p.type === 'choice') return p.answer;
-  return p.blanks.map(b => b.answer.replace(/\|/g, ' 或 ')).join('，');
+  if (p.type === 'open') return '详见解析';
+  return (p.blanks || []).map(b => (b.answer || '').replace(/\|/g, ' 或 ')).join('，');
 }
 
 // ========== Quiz logic ==========
@@ -1127,15 +1128,6 @@ function goHome() {
 
 // ========== Init ==========
 window._quizSubmitted = false;
-
-// Event delegation: catch exam card clicks more robustly
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('[data-exam-id]');
-  if (card) {
-    const examId = card.getAttribute('data-exam-id');
-    if (examId) startExam(examId);
-  }
-});
 
 render();
 </script>
