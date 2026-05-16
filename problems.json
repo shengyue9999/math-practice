@@ -734,7 +734,7 @@
           "type": "fill",
           "score": 6,
           "html": true,
-          "question": "17. 解方程。<br>（1）<img src=\"exams/2025海淀六下期末/media/image23.svg\" style=\"height:0.25in\"> x = {blank}<br>（2）9x－4.5＝36 &nbsp; x = {blank}",
+          "question": "17. 解方程。<br>（1）0.5x＝4 &nbsp; x = {blank}<br>（2）9x－4.5＝36 &nbsp; x = {blank}",
           "blanks": [
             {
               "answer": "8",
