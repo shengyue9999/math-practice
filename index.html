@@ -415,11 +415,11 @@ async function loadProblems() {
   } catch(e) {
     problemsData = null;
   }
-  // AI review: use relative URL on Cloudflare Pages, fall back to the custom domain
-  if (location.hostname.endsWith('.pages.dev') || location.hostname === 'math-practice.sheng-1980.cc') {
+  // AI review: Cloudflare Pages Function endpoint
+  if (location.hostname.endsWith('.pages.dev')) {
     AI_REVIEW_URL = '/api/review';
   } else {
-    AI_REVIEW_URL = 'https://math-practice.sheng-1980.cc/api/review';
+    AI_REVIEW_URL = 'https://math-practice-eyt.pages.dev/api/review';
   }
 }
 
