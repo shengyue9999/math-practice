@@ -31,7 +31,24 @@ docx/PDF → 逐页截图 → Claude API 解析 → 结构化 JSON → 写入 pr
 
 **关键**：让 Claude 为几何图形生成直接可嵌入的 SVG 代码（`figure.svg` 字段），避免 WMF 转换。
 
-### 方案 B：手动提取（当前的 Word→pandoc 流程）
+### 方案 B：扫描版 PDF（OCR + 人工截图）
+
+适用于纯图片扫描的 PDF（文本不可选）。核心流程：
+
+1. `pip3 install PyMuPDF pytesseract`，`brew install tesseract tesseract-lang`（中文 OCR）
+2. PyMuPDF 逐页转 PNG：`fitz.open(pdf).get_pixmap(dpi=200)`
+3. tesseract OCR 提取文本：`pytesseract.image_to_string(img, lang='chi_sim')`
+4. 用 `image_to_data()` 获取 bounding box，定位图表区域
+5. OCR 文本整理后写入 `problems.json`
+6. **图片由人工截图**：告知用户每道题需要截图的区域，人工用肉眼裁剪比 OCR 坐标盲猜准确得多
+7. 截图命名规范：`q{题号}-{描述}.png`，放入 `exams/{试卷名}/media/`
+
+**⚠️ 扫描版 PDF 的关键限制：**
+- OCR 文字可能有错漏，数学公式容易识别错误，需根据答案反推修正
+- **不要尝试自动裁剪图片**——当前模型不支持图像识别，无法验证裁剪效果，一定让用户手动截图
+- 第7页（通常为答案页）可能有可复制文本，优先使用
+
+### 方案 C：手动提取（Word→pandoc 流程，仅适用于 Word 文档）
 
 1. `pandoc input.docx -t html --extract-media=media/ -o output.html`
 2. 从 HTML 中提取题目结构，PNG 图片直接用
@@ -117,6 +134,7 @@ git add . && git commit -m "..." && git push
 # Cloudflare Pages 自动部署，约 1-2 分钟生效
 # GitHub Pages 同步自动部署
 ```
+远程仓库已配置为 SSH：`git@github.com:shengyue9999/math-practice.git`（HTTPS 在国内常被墙）
 
 **验证：**
 ```bash
@@ -140,3 +158,5 @@ curl -s -X POST https://math-practice.sheng-1980.cc/api/review \
 - Cloudflare Pages 的 Build command 必须留空，填 `npx wrangler deploy`（Worker 命令）会导致构建失败
 - Cloudflare Pages 自定义域名如果和 Pages 项目不在同一个 Cloudflare 账号下，无法通过 CLI 管理密钥和域名
 - `wrangler.jsonc` 中 `pages_build_output_dir` 和 `assets` 不能同时存在
+- GitHub HTTPS 端口（443）在国内经常被墙，改用 SSH（`git@github.com:...`），需要先配置 SSH key
+- 扫描版 PDF 的图片裁剪不要自动做——当前模型不支持图像识别，裁剪边界无法验证，一定让用户手动截图
