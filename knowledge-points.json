@@ -1,0 +1,730 @@
+{
+  "lastUpdated": "2026-05-16",
+  "sourceExamCount": 6,
+  "sourceExamIds": [
+    "2025-haidian-g6-final",
+    "2025-pinggu-g6-final",
+    "2025-yanshan-g6-final",
+    "2025-xicheng-g6-final",
+    "2025-tongzhou-g6-final",
+    "2025-shunyi-g6-final"
+  ],
+  "domains": [
+    {
+      "name": "数与代数",
+      "topics": [
+        {
+          "name": "负数与数轴",
+          "examFrequency": 9,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-yanshan-g6-final:q1",
+            "2025-yanshan-g6-final:q5",
+            "2025-yanshan-g6-final:q20",
+            "2025-xicheng-g6-final:q1",
+            "2025-pinggu-g6-final:q3",
+            "2025-tongzhou-g6-final:q7",
+            "2025-shunyi-g6-final:q2"
+          ],
+          "commonMistakes": [
+            "相反数与倒数混淆",
+            "绝对值与相反数符号处理错误",
+            "数轴上负数大小比较方向搞反",
+            "正负数实际意义理解偏差"
+          ],
+          "generationHints": "可结合生活情境（气温、海拔、水位）出题；数轴题可考察比较大小、绝对值、相反数综合判断；注意区分相反数和倒数的干扰项设计"
+        },
+        {
+          "name": "大数的认识",
+          "examFrequency": 4,
+          "problemTypes": [
+            "fill"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-xicheng-g6-final:q11",
+            "2025-pinggu-g6-final:q13",
+            "2025-tongzhou-g6-final:q1",
+            "2025-shunyi-g6-final:q11"
+          ],
+          "commonMistakes": [
+            "大数读写时数位计数错误",
+            "改写以万/亿为单位时小数点位置错误",
+            "省略尾数时四舍五入规则误用"
+          ],
+          "generationHints": "结合真实数据（人口、面积、经济）出题，考察读写、改写、近似数；可嵌入百分数或比例问题形成综合题"
+        },
+        {
+          "name": "分数与百分数",
+          "examFrequency": 7,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q4",
+            "2025-yanshan-g6-final:q11",
+            "2025-xicheng-g6-final:q5",
+            "2025-xicheng-g6-final:q21",
+            "2025-pinggu-g6-final:q9",
+            "2025-tongzhou-g6-final:q20",
+            "2025-shunyi-g6-final:q12"
+          ],
+          "commonMistakes": [
+            "分数、小数、百分数互化计算错误",
+            "分数应用题中单位1判断错误",
+            "通分或约分时分子分母未同步变化"
+          ],
+          "generationHints": "可考察三种数的互化（如0.75=3/4=75%）；比较大小题可混合多种表示形式；分数应用题注意找准单位1"
+        },
+        {
+          "name": "比例与比例尺",
+          "examFrequency": 14,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve"
+          ],
+          "difficultyRange": [
+            1,
+            3
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q8",
+            "2025-haidian-g6-final:q9",
+            "2025-haidian-g6-final:q18",
+            "2025-xicheng-g6-final:q2",
+            "2025-xicheng-g6-final:q6",
+            "2025-xicheng-g6-final:q22",
+            "2025-yanshan-g6-final:q4",
+            "2025-tongzhou-g6-final:q4",
+            "2025-tongzhou-g6-final:q15",
+            "2025-tongzhou-g6-final:q18",
+            "2025-shunyi-g6-final:q8",
+            "2025-shunyi-g6-final:q13"
+          ],
+          "commonMistakes": [
+            "比例尺数值比与分数形式的混淆",
+            "面积比与长度比混淆（面积比=长度比的平方）",
+            "放大比例尺与缩小比例尺方向写反",
+            "比例分配时总份数算错",
+            "图上距离与实际距离单位换算遗漏"
+          ],
+          "generationHints": "比例尺题必考单位换算（km→cm），可设计陷阱选项；图形缩放题考察相似比与面积比的关系；比例分配可与统计图表结合"
+        },
+        {
+          "name": "正比例与反比例",
+          "examFrequency": 11,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q20",
+            "2025-pinggu-g6-final:q1",
+            "2025-yanshan-g6-final:q7",
+            "2025-yanshan-g6-final:q8",
+            "2025-yanshan-g6-final:q22",
+            "2025-xicheng-g6-final:q14",
+            "2025-tongzhou-g6-final:q10",
+            "2025-shunyi-g6-final:q5",
+            "2025-shunyi-g6-final:q15"
+          ],
+          "commonMistakes": [
+            "正比例与反比例判断条件混淆（比值一定vs积一定）",
+            "从图像读取数据时坐标对应错误",
+            "正比例关系中不成比例的情况误判（如年龄与身高）",
+            "反比例计算时代入公式错误"
+          ],
+          "generationHints": "正比例常考图像读取（过原点直线）；反比例常结合几何（面积一定时长宽关系）；可考察生活中成比例与不成比例关系的判断"
+        },
+        {
+          "name": "简易方程",
+          "examFrequency": 6,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q17",
+            "2025-yanshan-g6-final:q15",
+            "2025-yanshan-g6-final:q18",
+            "2025-xicheng-g6-final:q12",
+            "2025-shunyi-g6-final:q23",
+            "2025-shunyi-g6-final:q24"
+          ],
+          "commonMistakes": [
+            "移项时未变号",
+            "解方程过程跳步导致计算错误",
+            "列方程时等量关系找错",
+            "解比例时内外项相乘方向写反"
+          ],
+          "generationHints": "一元一次方程为主；可结合实际问题（行程、工程、几何）列方程；解比例题本质是解方程，注意与比例知识的交叉"
+        },
+        {
+          "name": "数的整除",
+          "examFrequency": 3,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q12",
+            "2025-pinggu-g6-final:q2",
+            "2025-xicheng-g6-final:q17"
+          ],
+          "commonMistakes": [
+            "质数与合数概念混淆",
+            "2、3、5的倍数特征运用不熟练",
+            "因数与倍数关系理解片面",
+            "哈沙德数等新定义题阅读理解偏差"
+          ],
+          "generationHints": "质数常与奇偶性结合（唯一偶质数2）；倍数特征可多角度考察（如数字和、个位特征）；可引入新定义考查数论推理能力"
+        },
+        {
+          "name": "数的运算",
+          "examFrequency": 11,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve",
+            "open"
+          ],
+          "difficultyRange": [
+            1,
+            3
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q15",
+            "2025-haidian-g6-final:q16",
+            "2025-yanshan-g6-final:q17",
+            "2025-xicheng-g6-final:q9",
+            "2025-xicheng-g6-final:q18",
+            "2025-tongzhou-g6-final:q16",
+            "2025-shunyi-g6-final:q19",
+            "2025-shunyi-g6-final:q20",
+            "2025-shunyi-g6-final:q21",
+            "2025-shunyi-g6-final:q22"
+          ],
+          "commonMistakes": [
+            "运算律滥用（如除法分配律）",
+            "简便运算时拆数方法不当",
+            "小数除法小数点处理错误",
+            "分数、小数混合运算统一形式时出错",
+            "带余除法与小数除法的关系理解不清"
+          ],
+          "generationHints": "必考简便运算（乘法分配律、结合律）；脱式计算考察运算顺序和计算准确性；可设计运算律辨析题（正误判断）；开放题可考察算理理解（如整数、小数、分数加法共同点）"
+        },
+        {
+          "name": "百分数应用题",
+          "examFrequency": 8,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve"
+          ],
+          "difficultyRange": [
+            1,
+            3
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q22",
+            "2025-yanshan-g6-final:q23",
+            "2025-yanshan-g6-final:q25",
+            "2025-yanshan-g6-final:q27",
+            "2025-xicheng-g6-final:q24",
+            "2025-tongzhou-g6-final:q14",
+            "2025-tongzhou-g6-final:q21",
+            "2025-shunyi-g6-final:q27"
+          ],
+          "commonMistakes": [
+            "折扣、成数与百分数的换算错误",
+            "已知节省额求原价时对应百分率找错",
+            "分段优惠（满减+打折）计算顺序错误",
+            "税率问题中计税基础判断失误"
+          ],
+          "generationHints": "折扣题常结合满减形成分段计算；成数题（几成=几十%）注意表述转换；可结合真实消费场景设计促销方案比较题"
+        },
+        {
+          "name": "行程问题",
+          "examFrequency": 1,
+          "problemTypes": [
+            "fill"
+          ],
+          "difficultyRange": [
+            3
+          ],
+          "sampleProblems": [
+            "2025-pinggu-g6-final:q17"
+          ],
+          "commonMistakes": [
+            "速度、时间、路程关系式用错",
+            "相遇问题中同时出发与晚出发的时间差处理",
+            "等量关系建立不完整"
+          ],
+          "generationHints": "行程问题通常作为压轴题；多条件行程问题需要建立清晰的等量关系；可结合中点、变速等条件增加难度"
+        },
+        {
+          "name": "探索规律",
+          "examFrequency": 2,
+          "problemTypes": [
+            "fill"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-xicheng-g6-final:q16",
+            "2025-shunyi-g6-final:q17"
+          ],
+          "commonMistakes": [
+            "规律识别错误（等差数列与非常数列混淆）",
+            "第n项的通项公式推导错误"
+          ],
+          "generationHints": "图案规律题观察图形与序号的关系；通项公式通常为一次函数或简单倍数关系"
+        },
+        {
+          "name": "鸽巢原理",
+          "examFrequency": 1,
+          "problemTypes": [
+            "fill"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-yanshan-g6-final:q13"
+          ],
+          "commonMistakes": [
+            "至少数计算时忽略余数（未加1）",
+            "鸽巢与物品的角色分配混淆"
+          ],
+          "generationHints": "典型公式：至少数=总数÷巢数（有余数则+1）；可结合生活情境（分班、分组）出题"
+        },
+        {
+          "name": "量的计量",
+          "examFrequency": 2,
+          "problemTypes": [
+            "fill"
+          ],
+          "difficultyRange": [
+            1
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q11",
+            "2025-tongzhou-g6-final:q2"
+          ],
+          "commonMistakes": [
+            "进率记错（如1m²=100dm²而非10）",
+            "大单位化小单位方向搞反",
+            "容积单位与体积单位混淆"
+          ],
+          "generationHints": "必考长度、面积、体积（容积）单位换算；注意不常见进率（如公顷、升与毫升）的考察"
+        },
+        {
+          "name": "用字母表示数",
+          "examFrequency": 1,
+          "problemTypes": [
+            "fill"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-tongzhou-g6-final:q5"
+          ],
+          "commonMistakes": [
+            "字母表示数量关系时公式写错",
+            "数值代入字母表达式时运算顺序错误"
+          ],
+          "generationHints": "用字母表示数量关系（如总价=单价×数量→c=pn）；常结合行程、工程等实际问题考察；可考察代入求值"
+        }
+      ]
+    },
+    {
+      "name": "图形与几何",
+      "topics": [
+        {
+          "name": "圆柱与圆锥",
+          "examFrequency": 22,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "solve",
+            "open"
+          ],
+          "difficultyRange": [
+            1,
+            3
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q1",
+            "2025-haidian-g6-final:q5",
+            "2025-haidian-g6-final:q10",
+            "2025-haidian-g6-final:q19",
+            "2025-pinggu-g6-final:q6",
+            "2025-pinggu-g6-final:q8",
+            "2025-yanshan-g6-final:q3",
+            "2025-xicheng-g6-final:q10",
+            "2025-xicheng-g6-final:q25",
+            "2025-tongzhou-g6-final:q6",
+            "2025-tongzhou-g6-final:q22",
+            "2025-shunyi-g6-final:q7",
+            "2025-shunyi-g6-final:q10",
+            "2025-shunyi-g6-final:q18",
+            "2025-shunyi-g6-final:q26",
+            "2025-shunyi-g6-final:q29"
+          ],
+          "commonMistakes": [
+            "圆柱表面积忘加上下底面积",
+            "等底等高圆柱与圆锥体积3倍关系用反",
+            "圆锥体积公式漏乘1/3",
+            "圆柱侧面展开图长与底面周长的对应关系搞错",
+            "旋转体生成时轴与半径方向混淆",
+            "组合体体积计算时漏算或重复"
+          ],
+          "generationHints": "核心考点：V柱=πr²h、V锥=⅓πr²h、S侧=2πrh（或πdh）；常考等积变形（圆柱↔圆锥↔长方体）；旋转体（直角三角形旋转→圆锥）；可结合实际物体（水杯、沙漏、粮堆、树干）出题"
+        },
+        {
+          "name": "三角形",
+          "examFrequency": 8,
+          "problemTypes": [
+            "choice",
+            "fill",
+            "open"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q13",
+            "2025-haidian-g6-final:q14",
+            "2025-pinggu-g6-final:q5",
+            "2025-xicheng-g6-final:q7",
+            "2025-tongzhou-g6-final:q3",
+            "2025-tongzhou-g6-final:q8",
+            "2025-shunyi-g6-final:q4",
+            "2025-shunyi-g6-final:q14"
+          ],
+          "commonMistakes": [
+            "三角形内角和180°忘记除以份数求每份角度",
+            "三边关系判断时忘记任意两边之和大于第三边",
+            "等腰三角形判定只满足两边相等但忽略三边关系",
+            "画图时高与底的对应关系搞错"
+          ],
+          "generationHints": "内角和常与比例结合（如角度比3:4:5判断三角形类型）；三边关系是选择题高频考点（给出三边判断能否组成三角形）；画图题考察等底等高三角形面积相等"
+        },
+        {
+          "name": "图形的运动",
+          "examFrequency": 5,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q3",
+            "2025-yanshan-g6-final:q21",
+            "2025-tongzhou-g6-final:q9",
+            "2025-shunyi-g6-final:q1",
+            "2025-shunyi-g6-final:q9"
+          ],
+          "commonMistakes": [
+            "旋转中心与旋转方向判断错误",
+            "图形缩放比与面积比的关系混淆（面积比=相似比的平方）",
+            "平移格数数错"
+          ],
+          "generationHints": "旋转题常结合方格纸，考察旋转+平移组合操作；缩放题必考相似比与面积比的关系；可设计四选一或填空选择正确操作的题型"
+        },
+        {
+          "name": "图形的位置与运动",
+          "examFrequency": 3,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q24",
+            "2025-pinggu-g6-final:q7",
+            "2025-xicheng-g6-final:q19"
+          ],
+          "commonMistakes": [
+            "数对(列,行)顺序搞反（先行后列还是先列后行）",
+            "平移后坐标变化方向写反",
+            "图形放大后顶点坐标计算错误"
+          ],
+          "generationHints": "数对表示位置是基础，常结合平移、旋转、缩放考察坐标变化规律；总结平移规律：向右/左移动→列号±n，向上/下移动→行号±n"
+        },
+        {
+          "name": "立体图形展开图",
+          "examFrequency": 4,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q6",
+            "2025-xicheng-g6-final:q15",
+            "2025-tongzhou-g6-final:q13",
+            "2025-shunyi-g6-final:q7"
+          ],
+          "commonMistakes": [
+            "展开图折叠后相对面判断错误",
+            "正方体展开图11种类型记忆不全",
+            "组合体展开图的空间想象能力不足"
+          ],
+          "generationHints": "正方体展开图是经典考点（11种）；可考察折叠后点的重合、面的相对关系；提升难度可考长方体+其他几何体组合的展开图"
+        },
+        {
+          "name": "立体图形三视图",
+          "examFrequency": 4,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-pinggu-g6-final:q4",
+            "2025-xicheng-g6-final:q20",
+            "2025-tongzhou-g6-final:q19",
+            "2025-shunyi-g6-final:q3"
+          ],
+          "commonMistakes": [
+            "从不同方向看时遮挡关系判断错误",
+            "小正方体个数漏数或多数",
+            "由三视图还原立体图形时空间推理不足"
+          ],
+          "generationHints": "给三视图求小正方体数量或体积；给立体图选对应的三视图；可结合正方体棱长计算总面积或体积"
+        },
+        {
+          "name": "组合图形面积",
+          "examFrequency": 2,
+          "problemTypes": [
+            "choice"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-pinggu-g6-final:q10",
+            "2025-shunyi-g6-final:q14"
+          ],
+          "commonMistakes": [
+            "割补法选择不当导致计算复杂化",
+            "重叠区域重复计算或遗漏",
+            "辅助线画法不正确"
+          ],
+          "generationHints": "阴影面积常用整体减空白法；掌握正方形、三角形面积公式的组合运用"
+        },
+        {
+          "name": "梯形",
+          "examFrequency": 1,
+          "problemTypes": [
+            "choice"
+          ],
+          "difficultyRange": [
+            1
+          ],
+          "sampleProblems": [
+            "2025-xicheng-g6-final:q4"
+          ],
+          "commonMistakes": [
+            "梯形面积公式中高与斜边混淆",
+            "忘记除以2"
+          ],
+          "generationHints": "梯形面积=(上底+下底)×高÷2；注意斜边不是高的干扰项设计"
+        },
+        {
+          "name": "扇形",
+          "examFrequency": 1,
+          "problemTypes": [
+            "choice"
+          ],
+          "difficultyRange": [
+            2
+          ],
+          "sampleProblems": [
+            "2025-xicheng-g6-final:q8"
+          ],
+          "commonMistakes": [
+            "扇形面积与圆心角关系的理解不足",
+            "多个扇形面积比较时忽略半径相等条件"
+          ],
+          "generationHints": "扇形面积=πr²×圆心角/360°；可考察多边形内角处的扇形面积之和与内角和的关系"
+        },
+        {
+          "name": "圆",
+          "examFrequency": 2,
+          "problemTypes": [
+            "choice",
+            "solve"
+          ],
+          "difficultyRange": [
+            1,
+            2
+          ],
+          "sampleProblems": [
+            "2025-tongzhou-g6-final:q11",
+            "2025-tongzhou-g6-final:q18"
+          ],
+          "commonMistakes": [
+            "圆周长公式C=πd与面积公式S=πr²混淆",
+            "半径与直径关系搞反（忘记乘或除以2）",
+            "圆环面积计算时大圆减小圆出错",
+            "圆规两脚距离与半径的对应关系不理解"
+          ],
+          "generationHints": "圆周长C=πd=2πr、面积S=πr²；常结合比例尺考察图上圆形与实际的关系；圆环面积=π(R²-r²)；可设计半圆周长（含直径）与圆周长一半的区分题"
+        }
+      ]
+    },
+    {
+      "name": "统计与概率",
+      "topics": [
+        {
+          "name": "可能性",
+          "examFrequency": 4,
+          "problemTypes": [
+            "choice"
+          ],
+          "difficultyRange": [
+            1
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q2",
+            "2025-xicheng-g6-final:q3",
+            "2025-tongzhou-g6-final:q12",
+            "2025-shunyi-g6-final:q6"
+          ],
+          "commonMistakes": [
+            "可能性大小判断凭直觉而非数量比较",
+            "一定、可能、不可能三种情况区分不清"
+          ],
+          "generationHints": "通过数量多少判断可能性大小是最基础考法；可结合摸球、转盘、掷骰子等场景；注意区分不可能与可能性小"
+        },
+        {
+          "name": "数据分析",
+          "examFrequency": 8,
+          "problemTypes": [
+            "choice",
+            "fill"
+          ],
+          "difficultyRange": [
+            2,
+            3
+          ],
+          "sampleProblems": [
+            "2025-haidian-g6-final:q7",
+            "2025-haidian-g6-final:q23",
+            "2025-pinggu-g6-final:q18",
+            "2025-yanshan-g6-final:q12",
+            "2025-yanshan-g6-final:q26",
+            "2025-xicheng-g6-final:q27",
+            "2025-tongzhou-g6-final:q23",
+            "2025-shunyi-g6-final:q30"
+          ],
+          "commonMistakes": [
+            "平均数计算忽略权重或总数",
+            "折线图变化趋势与具体数值混淆",
+            "统计推断过度（用样本规律断言未来必然发生）",
+            "统计表与统计图的数据对应关系看错",
+            "优秀率、合格率等统计指标计算错误"
+          ],
+          "generationHints": "必考统计图表解读（条形、折线、扇形、表格）；常要求根据数据做合理判断并说明理由；北京卷特色是结合真实社会数据（人口老龄化、环保等）出题；开放性问题要求预测并给出依据"
+        },
+        {
+          "name": "数据收集与调查",
+          "examFrequency": 1,
+          "problemTypes": [
+            "choice"
+          ],
+          "difficultyRange": [
+            1
+          ],
+          "sampleProblems": [
+            "2025-yanshan-g6-final:q6"
+          ],
+          "commonMistakes": [
+            "普查与抽样调查适用场景判断错误",
+            "对破坏性测试必须用抽样的理解不足"
+          ],
+          "generationHints": "考察普查vs抽样调查的选择（破坏性/成本高→抽样；精确要求/范围小→普查）；四选一情境判断题"
+        }
+      ]
+    },
+    {
+      "name": "综合与实践",
+      "topics": [
+        {
+          "name": "综合应用",
+          "examFrequency": 8,
+          "problemTypes": [
+            "fill",
+            "solve"
+          ],
+          "difficultyRange": [
+            2,
+            3
+          ],
+          "sampleProblems": [
+            "2025-pinggu-g6-final:q14",
+            "2025-pinggu-g6-final:q16",
+            "2025-yanshan-g6-final:q28",
+            "2025-xicheng-g6-final:q26",
+            "2025-tongzhou-g6-final:q17",
+            "2025-shunyi-g6-final:q25",
+            "2025-shunyi-g6-final:q28",
+            "2025-shunyi-g6-final:q29"
+          ],
+          "commonMistakes": [
+            "多问综合题中各小题独立条件混淆",
+            "现实情境信息提取不全或理解偏差",
+            "优化问题中约束条件遗漏",
+            "多步计算中间结果出错导致连环错"
+          ],
+          "generationHints": "一道题下设多个子问题，每个子问题涉及不同知识点（如成活率+方程+体积+面积）；高速公路/施工场景考察比例尺+工程合作+归一+比的综合运用；优化问题如裁剪方案设计考察方程与不等式思想；新能源汽车等热点为真实情境载体"
+        }
+      ]
+    }
+  ]
+}

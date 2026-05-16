@@ -4,6 +4,19 @@
 
 交互式数学练习 SPA，纯 HTML + JS，数据存储在 `problems.json`，部署在 GitHub Pages (`shengyue9999.github.io/math-practice/`)。
 
+## Skills
+
+本项目包含一个自定义出题 Skill：`.claude/skills/math-problem-gen/SKILL.md`
+
+当用户提到「出题」「生成题目」「组卷」「针对性练习」时，使用此 Skill。
+Skill 会：扫描增量输入 → 参考知识体系 → 生成新题 → 独立验算 → 输出 JSON。
+
+### 输入源（出题 Skill 使用）
+- `~/Downloads/math-exams/` — 新试卷投放目录
+- `teacher-notes.md` — 教师注意事项（手动维护）
+- `data/*.json` — 错题本导出
+- `knowledge-points.json` — 知识点体系（自动生成）
+
 ## 考题上传 workflow
 
 将 Word (.docx) 或 PDF 试卷集成到项目中。
