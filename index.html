@@ -288,6 +288,20 @@ body {
 .open-textarea:focus { outline: none; border-color: #f39c12; }
 .open-textarea.neutral-input { border-color: #f39c12; background: #fef9e7; }
 
+/* AI review */
+.review-textarea {
+  width: 100%; padding: 10px 14px; border: 2px dashed #d5e0eb; border-radius: 8px;
+  font-size: 14px; font-family: inherit; line-height: 1.6; resize: vertical;
+  background: #fafbfc; margin-top: 10px;
+}
+.review-textarea:focus { outline: none; border-color: #3498db; background: #fff; }
+.review-feedback {
+  margin-top: 8px; padding: 10px 14px; background: #f0f7ff; border-left: 3px solid #3498db;
+  border-radius: 6px; font-size: 13px; line-height: 1.7; display: none;
+}
+.review-feedback .ai-label { font-size: 11px; color: #3498db; font-weight: 600; margin-bottom: 4px; }
+.review-spinner { display: none; margin-top: 8px; color: #95a5a6; font-size: 13px; }
+
 /* exam card on home page */
 .exam-card { border-left: 4px solid #e67e22; }
 .exam-card .week-title { color: #e67e22; }
@@ -392,6 +406,7 @@ let problemsData = null;
 let currentView = 'login';
 let currentWeekId = null;
 let currentProblems = null;
+let AI_REVIEW_URL = null; // set at load time based on host
 
 async function loadProblems() {
   try {
@@ -399,6 +414,12 @@ async function loadProblems() {
     problemsData = await res.json();
   } catch(e) {
     problemsData = null;
+  }
+  // AI review: use relative URL on Cloudflare Pages, fall back to the custom domain
+  if (location.hostname.endsWith('.pages.dev') || location.hostname === 'math-practice.sheng-1980.cc') {
+    AI_REVIEW_URL = '/api/review';
+  } else {
+    AI_REVIEW_URL = 'https://math-practice.sheng-1980.cc/api/review';
   }
 }
 
@@ -859,6 +880,16 @@ function renderQuiz(app) {
         if (suffix) cardsHtml += `<span class="fill-hint">${escHtml(suffix)}</span>`;
       });
       cardsHtml += '</div>';
+      if (p.reviewable) {
+        cardsHtml += `<textarea class="review-textarea" data-q="${num}" rows="4"
+          placeholder="✏️ 解题过程（选填，写完后AI老师会帮你批改）"
+          onfocus="switchFocus(${num})"></textarea>
+        <div class="review-spinner" id="spinner-${num}">🤖 AI老师正在批改你的解题过程...</div>
+        <div class="review-feedback" id="feedback-${num}">
+          <div class="ai-label">🤖 AI老师点评</div>
+          <div class="ai-content" id="fb-content-${num}"></div>
+        </div>`;
+      }
     }
 
     const expHtml = p.html ? (p.explanation || '') : escHtml(p.explanation || '');
@@ -1037,6 +1068,76 @@ function submitQuiz() {
   const rc = document.getElementById('resultCard');
   rc.style.display = 'block';
   rc.scrollIntoView({ behavior: 'smooth' });
+
+  // Trigger AI reviews for reviewable problems
+  triggerAIReviews();
+}
+
+// ========== AI Review ==========
+async function triggerAIReviews() {
+  if (!AI_REVIEW_URL) return;
+  const reviewable = currentProblems.filter(p => p.reviewable);
+  if (reviewable.length === 0) return;
+  const title = (problemsData.exams || []).find(e => e.id === currentWeekId)?.title || '';
+
+  const jobs = reviewable.map(async (p) => {
+    const idx = currentProblems.indexOf(p);
+    const num = idx + 1;
+    const textarea = document.querySelector(`textarea.review-textarea[data-q="${num}"]`);
+    if (!textarea) return null;
+    const studentProcess = textarea.value.trim();
+    if (!studentProcess) return null;
+    return { num, p, studentProcess };
+  });
+
+  const tasks = (await Promise.all(jobs)).filter(Boolean);
+  if (tasks.length === 0) return;
+
+  for (const task of tasks) {
+    const spinner = document.getElementById('spinner-' + task.num);
+    if (spinner) spinner.style.display = 'block';
+  }
+
+  // Fire all requests in parallel
+  const results = await Promise.allSettled(tasks.map(async (task) => {
+    try {
+      const payload = {
+        question: stripHtml(task.p.question || ''),
+        studentAnswer: task.studentProcess,
+        correctAnswer: formatAnswer(task.p),
+        explanation: stripHtml(task.p.explanation || ''),
+        questionNumber: task.num
+      };
+      const res = await fetch(AI_REVIEW_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      return { num: task.num, review: data.reviewText || '批改结果获取失败' };
+    } catch (e) {
+      console.error('AI review failed for Q' + task.num, e);
+      return { num: task.num, review: 'AI批改暂时不可用，请稍后再试' };
+    }
+  }));
+
+  results.forEach((r, i) => {
+    const num = tasks[i].num;
+    const spinner = document.getElementById('spinner-' + num);
+    if (spinner) spinner.style.display = 'none';
+    const fbContent = document.getElementById('fb-content-' + num);
+    if (fbContent) {
+      fbContent.textContent = r.status === 'fulfilled' ? r.value.review : 'AI批改暂时不可用';
+    }
+  });
+}
+
+function stripHtml(html) {
+  if (!html) return '';
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  return div.textContent.trim();
 }
 
 function revealAnswers() {
@@ -1068,6 +1169,11 @@ function revealAnswers() {
         }
       });
     }
+    // Show AI feedback for reviewable problems
+    if (p.reviewable) {
+      const fb = document.getElementById('feedback-' + num);
+      if (fb) fb.style.display = 'block';
+    }
   });
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1080,6 +1186,7 @@ function disableAllInputs() {
   });
   document.querySelectorAll('.quiz-input').forEach(inp => inp.disabled = true);
   document.querySelectorAll('.open-textarea').forEach(ta => ta.disabled = true);
+  document.querySelectorAll('.review-textarea').forEach(ta => ta.disabled = true);
 }
 
 function resetQuiz() {
@@ -1105,6 +1212,13 @@ function resetQuiz() {
     ta.disabled = false;
     ta.classList.remove('neutral-input');
   });
+  document.querySelectorAll('.review-textarea').forEach(ta => {
+    ta.value = '';
+    ta.disabled = false;
+  });
+  document.querySelectorAll('.review-feedback').forEach(fb => { fb.style.display = 'none'; });
+  document.querySelectorAll('.review-spinner').forEach(sp => { sp.style.display = 'none'; });
+  document.querySelectorAll('.ai-content').forEach(el => { el.textContent = ''; });
 
   document.querySelectorAll('.question-card').forEach(c => {
     c.classList.remove('answered', 'wrong');
