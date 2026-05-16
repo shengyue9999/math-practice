@@ -85,11 +85,50 @@ docx/PDF → 逐页截图 → Claude API 解析 → 结构化 JSON → 写入 pr
 
 ## 部署
 
+项目同时部署到两个平台，`git push` 后自动触发：
+
+### GitHub Pages
+
+`shengyue9999.github.io/math-practice/`，由 GitHub Actions 自动部署。
+
+### Cloudflare Pages（主用域名）
+
+自定义域名 `math-practice.sheng-1980.cc`，由 Cloudflare Pages 监听 GitHub 仓库自动部署。
+
+**关键配置文件：**
+
+- `wrangler.jsonc` — 声明 `pages_build_output_dir: "."`、`nodejs_compat`、observability
+- `functions/api/review.js` — AI 批改 API（Pages Function），通过 `env.OPENROUTER_API_KEY` 读取密钥
+
+**Cloudflare Dashboard 设置（必须检查）：**
+- Build command：**留空**（不要填 `npx wrangler deploy`，那是 Worker 命令）
+- Build output directory：`.`
+- Root directory：留空
+
+**密钥管理：**
+API 密钥不写入代码，通过 Cloudflare Dashboard → Workers & Pages → math-practice → Settings → Variables & Secrets 设置：
+- `OPENROUTER_API_KEY`：OpenRouter API 密钥（用于 AI 批改）
+
+本地开发时可用 `wrangler pages secret put OPENROUTER_API_KEY` 同步。
+
+**部署流程：**
 ```bash
 git add . && git commit -m "..." && git push
-# GitHub Pages 自动部署，等 1-2 分钟生效
-# 用户需 Cmd+Option+R (Safari) 或 Cmd+Shift+R (Chrome) 硬刷新
+# Cloudflare Pages 自动部署，约 1-2 分钟生效
+# GitHub Pages 同步自动部署
 ```
+
+**验证：**
+```bash
+# 检查 AI 批改功能
+curl -s -X POST https://math-practice.sheng-1980.cc/api/review \
+  -H "Content-Type: application/json" \
+  -d '{"question":"1+1","studentAnswer":"2","correctAnswer":"2"}'
+```
+
+**硬刷新（用户端）：**
+- Safari: Cmd+Option+R
+- Chrome: Cmd+Shift+R
 
 ## 已知坑位
 
@@ -98,3 +137,6 @@ git add . && git commit -m "..." && git push
 - Symbol 字体的非 UTF-8 字节会导致 Python 解码崩溃，需在字节层处理
 - GitHub Pages 缓存较激进（`max-age=600`），更新后可能需等 10 分钟
 - Safari 硬刷新是 Cmd+Option+R（非 Shift）
+- Cloudflare Pages 的 Build command 必须留空，填 `npx wrangler deploy`（Worker 命令）会导致构建失败
+- Cloudflare Pages 自定义域名如果和 Pages 项目不在同一个 Cloudflare 账号下，无法通过 CLI 管理密钥和域名
+- `wrangler.jsonc` 中 `pages_build_output_dir` 和 `assets` 不能同时存在
