@@ -5,316 +5,438 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>数学练习</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --ink: #1a2332;
+  --muted: #5f6b7a;
+  --line: #dde1e7;
+  --panel: #ffffff;
+  --paper: #f5f7fa;
+  --accent: #3498db;
+  --accent-dark: #2980b9;
+  --gold: #e67e22;
+  --gold-dark: #b76e1c;
+  --green: #27ae60;
+  --red: #e74c3c;
+  --blue-soft: #eaf2f8;
+  --gold-soft: #fef5e7;
+  --red-soft: #fdedec;
+  --green-soft: #eafaf1;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: var(--ink);
+  background: linear-gradient(180deg, rgba(52,152,219,0.06), transparent 280px), var(--paper);
   min-height: 100vh;
-  padding: 20px;
 }
 
-.container { max-width: 800px; margin: 0 auto; }
+button, input, textarea { font: inherit; }
 
-/* ---- login view ---- */
-.login-title { text-align: center; font-size: 28px; color: #2c3e50; margin: 48px 0 32px; }
-.login-sub { text-align: center; font-size: 15px; color: #95a5a6; margin: -20px 0 28px; }
+button {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 8px;
+  min-height: 40px;
+  padding: 0 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:active:not(:disabled) { transform: translateY(0); }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
 
-.user-list { display: flex; flex-direction: column; gap: 14px; max-width: 360px; margin: 0 auto; }
+input[type="text"], input[type="password"], textarea {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  padding: 10px 12px;
+  outline: none;
+  width: 100%;
+}
+input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(52,152,219,0.12); }
+
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+/* ---- login ---- */
+.login-title { text-align: center; font-size: 28px; color: var(--ink); margin: 48px 0 32px; font-weight: 800; }
+.login-sub { text-align: center; font-size: 15px; color: var(--muted); margin: -20px 0 28px; }
+
+.user-list { display: flex; flex-direction: column; gap: 14px; max-width: 400px; margin: 0 auto; }
 
 .user-card {
-  background: #fff; border-radius: 14px; padding: 20px 24px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
-  display: flex; align-items: center; justify-content: space-between;
+  background: var(--panel); border-radius: 14px; padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06); cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  display: flex; align-items: center; gap: 14px;
 }
-.user-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+.user-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.10); }
 
 .user-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
+  width: 52px; height: 52px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px; color: #fff; font-weight: 700;
-  flex-shrink: 0;
+  font-size: 24px; color: #fff; font-weight: 700; flex-shrink: 0;
 }
-.user-name { font-size: 20px; font-weight: 600; color: #2c3e50; margin-left: 14px; flex: 1; }
-.user-arrow { font-size: 18px; color: #bdc3c7; }
-
-.pw-dialog {
-  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.4); z-index: 100;
-  align-items: center; justify-content: center;
-}
-.pw-dialog.show { display: flex; }
-.pw-box {
-  background: #fff; border-radius: 16px; padding: 28px 24px;
-  width: 300px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-}
-.pw-box h3 { font-size: 18px; color: #2c3e50; margin-bottom: 6px; }
-.pw-box .pw-hint { font-size: 13px; color: #95a5a6; margin-bottom: 16px; }
-.pw-box input {
-  width: 100%; padding: 12px 14px; border: 2px solid #e8ecf1;
-  border-radius: 10px; font-size: 18px; text-align: center; letter-spacing: 4px;
-  transition: border-color 0.2s;
-}
-.pw-box input:focus { outline: none; border-color: #3498db; }
-.pw-box .pw-error { color: #e74c3c; font-size: 13px; margin-top: 8px; min-height: 20px; }
-.pw-box .pw-btns { margin-top: 14px; display: flex; gap: 10px; justify-content: center; }
-.pw-box .pw-btn {
-  padding: 10px 28px; border-radius: 8px; border: none;
-  font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-}
-.pw-btn.confirm { background: #3498db; color: #fff; }
-.pw-btn.confirm:hover { background: #2980b9; }
-.pw-btn.cancel { background: #ecf0f1; color: #555; }
-.pw-btn.cancel:hover { background: #d5dbdb; }
+.user-name { font-size: 20px; font-weight: 600; color: var(--ink); flex: 1; }
+.user-arrow { font-size: 20px; color: #c0c7cf; }
 
 .add-user-btn {
   display: block; margin: 20px auto; padding: 12px 28px;
-  background: #fff; border: 2px dashed #bdc3c7; border-radius: 10px;
-  font-size: 15px; color: #95a5a6; cursor: pointer; transition: all 0.2s;
+  background: #fff; border: 2px dashed #cdd3db; border-radius: 10px;
+  font-size: 15px; color: var(--muted); cursor: pointer; transition: all 0.2s;
 }
-.add-user-btn:hover { border-color: #3498db; color: #3498db; }
+.add-user-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-/* ---- header ---- */
-.header {
-  background: #fff; border-radius: 16px;
-  padding: 16px 22px; margin-bottom: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.header h1 { font-size: 20px; color: #2c3e50; }
-.header .back-btn {
-  background: #ecf0f1; border: none; border-radius: 8px;
-  padding: 8px 16px; font-size: 14px; cursor: pointer;
-  color: #555; transition: background 0.2s;
-}
-.header .back-btn:hover { background: #d5dbdb; }
-.header .user-tag {
-  background: #eaf2f8; border-radius: 8px;
-  padding: 6px 12px; font-size: 13px; color: #2980b9;
-  cursor: pointer; transition: background 0.2s;
-}
-.header .user-tag:hover { background: #d6eaf8; }
-
-/* ---- live timer ---- */
-.live-timer {
-  font-size: 14px; color: #95a5a6; margin-left: auto; margin-right: 12px;
-  font-variant-numeric: tabular-nums;
-}
-
-/* ---- cards ---- */
-.card {
-  background: #fff; border-radius: 12px;
-  padding: 20px 24px; margin-bottom: 14px;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-  cursor: pointer; transition: transform 0.15s, box-shadow 0.15s;
-}
-.card:hover { transform: translateY(-2px); box-shadow: 0 3px 14px rgba(0,0,0,0.1); }
-
-.week-card .week-title { font-size: 18px; font-weight: 600; color: #2c3e50; }
-.week-card .week-sub { font-size: 13px; color: #95a5a6; margin-top: 4px; }
-.week-card .week-status {
-  display: inline-block; margin-top: 6px; font-size: 12px;
-  padding: 2px 10px; border-radius: 10px;
-}
-.status-done { background: #d5f5e3; color: #27ae60; }
-.status-new { background: #eaf2f8; color: #2980b9; }
-
-.wrong-entry {
-  border-left: 4px solid #e74c3c;
-  display: flex; align-items: center; gap: 12px;
-}
-.wrong-entry .badge {
-  background: #e74c3c; color: #fff; border-radius: 50%;
-  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700;
-}
-.wrong-entry .wrong-info { flex: 1; }
-.wrong-entry .wrong-title { font-size: 16px; font-weight: 600; color: #2c3e50; }
-.wrong-entry .wrong-sub { font-size: 13px; color: #95a5a6; }
-
-.history-section { margin-top: 24px; }
-.history-section h3 { font-size: 16px; color: #7f8c8d; margin-bottom: 10px; }
-.history-item {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 14px; background: #fff; border-radius: 8px;
-  margin-bottom: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  font-size: 14px; color: #555;
-}
-.history-score { font-weight: 600; color: #2c3e50; }
-
-.empty-state { text-align: center; padding: 48px 20px; color: #95a5a6; font-size: 15px; }
-
-/* ---- quiz view ---- */
-.question-card {
-  background: #fff; border-radius: 12px;
-  padding: 20px 24px; margin-bottom: 14px;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-  border-left: 4px solid #3498db;
-  transition: border-color 0.3s;
-}
-.question-card.answered { border-left-color: #2ecc71; }
-.question-card.wrong { border-left-color: #e74c3c; }
-
-.q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.q-num { font-size: 15px; font-weight: 600; color: #2c3e50; }
-.q-score { font-size: 12px; color: #95a5a6; }
-
-.q-text { font-size: 15px; color: #333; line-height: 1.7; margin-bottom: 10px; }
-
-/* choice */
-.options { display: flex; flex-direction: column; gap: 8px; }
-.option {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px; border: 2px solid #e8ecf1; border-radius: 8px;
-  cursor: pointer; transition: all 0.2s; font-size: 15px;
-}
-.option:hover { border-color: #3498db; background: #eef6fd; }
-.option.selected { border-color: #3498db; background: #d6eaf8; font-weight: 600; }
-.option.correct-show { border-color: #27ae60; background: #d5f5e3; }
-.option.wrong-show { border-color: #e74c3c; background: #fadbd8; }
-
-/* fill/solve */
-.fill-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.fill-row input {
-  width: 70px; padding: 8px 10px; border: 2px solid #ddd;
-  border-radius: 6px; font-size: 15px; text-align: center;
-  transition: border-color 0.2s;
-}
-.fill-row input:focus { outline: none; border-color: #3498db; }
-.fill-row input.correct-input { border-color: #27ae60; background: #d5f5e3; }
-.fill-row input.wrong-input { border-color: #e74c3c; background: #fadbd8; }
-.fill-row .fill-hint { font-size: 14px; color: #555; }
-
-/* explanation */
-.explanation {
-  background: #fffbe6; border: 1px solid #ffe58f;
-  border-radius: 8px; padding: 10px 14px; margin-top: 10px;
-  font-size: 14px; color: #8a6d3b; display: none;
-}
-
-/* per-question time in result */
-.q-time {
-  font-size: 12px; color: #95a5a6; margin-left: 8px;
-}
-.q-time.slow { color: #e67e22; font-weight: 600; }
-
-/* actions */
-.actions { text-align: center; margin: 28px 0; }
-.btn {
-  padding: 14px 44px; font-size: 17px; font-weight: 600;
-  border: none; border-radius: 10px; cursor: pointer;
-  transition: all 0.2s; margin: 0 8px;
-}
-.btn-primary { background: #3498db; color: #fff; }
-.btn-primary:hover { background: #2980b9; transform: translateY(-1px); }
-.btn-primary:active { transform: translateY(0); }
-.btn-secondary { background: #2ecc71; color: #fff; }
-.btn-secondary:hover { background: #27ae60; transform: translateY(-1px); }
-.btn-outline { background: #fff; color: #3498db; border: 2px solid #3498db; }
-.btn-outline:hover { background: #eef6fd; }
-.btn-danger { background: #fff; color: #e74c3c; border: 2px solid #e74c3c; }
-.btn-danger:hover { background: #fdedec; }
-.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
-
-/* result */
-.result-card {
-  background: #fff; border-radius: 16px;
-  padding: 28px; margin: 20px 0; text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-.score-big { font-size: 64px; font-weight: 800; color: #2c3e50; }
-.score-label { font-size: 16px; color: #7f8c8d; margin-bottom: 8px; }
-.star { font-size: 40px; margin: 8px 0; }
-.detail { text-align: left; margin-top: 14px; font-size: 14px; color: #555; line-height: 1.8; }
-
-.time-detail { margin-top: 16px; text-align: left; }
-.time-detail h4 { font-size: 14px; color: #7f8c8d; margin-bottom: 8px; }
-.time-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 4px 0; font-size: 13px; color: #666;
-}
-.time-row .time-val { font-variant-numeric: tabular-nums; }
-
-/* responsive */
-@media (max-width: 500px) {
-  body { padding: 10px; }
-  .header { padding: 12px 16px; }
-  .header h1 { font-size: 17px; }
-  .card { padding: 16px 18px; }
-  .question-card { padding: 16px 18px; }
-  .btn { padding: 12px 28px; font-size: 15px; margin: 4px; }
-  .score-big { font-size: 48px; }
-}
-
-/* ---- add user dialog ---- */
-.add-dialog {
+/* ---- dialogs ---- */
+.pw-dialog, .add-dialog {
   display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.4); z-index: 100;
   align-items: center; justify-content: center;
 }
-.add-dialog.show { display: flex; }
-.add-box {
+.pw-dialog.show, .add-dialog.show { display: flex; }
+.pw-box, .add-box {
   background: #fff; border-radius: 16px; padding: 28px 24px;
-  width: 300px; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  width: 300px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,0.18);
 }
-.add-box h3 { font-size: 18px; color: #2c3e50; margin-bottom: 16px; }
-.add-box input {
-  width: 100%; padding: 10px 14px; border: 2px solid #e8ecf1;
-  border-radius: 10px; font-size: 16px; text-align: center;
+.pw-box h3, .add-box h3 { font-size: 18px; color: var(--ink); margin-bottom: 6px; }
+.pw-box .pw-hint, .add-box .pw-hint { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.pw-box input, .add-box input {
+  width: 100%; padding: 12px 14px; border: 2px solid #e8ecf1;
+  border-radius: 10px; font-size: 18px; text-align: center; letter-spacing: 4px;
   margin-bottom: 10px; transition: border-color 0.2s;
 }
-.add-box input:focus { outline: none; border-color: #3498db; }
-.add-box .add-error { color: #e74c3c; font-size: 13px; margin-top: 4px; min-height: 20px; }
-.add-box .add-btns { margin-top: 12px; display: flex; gap: 10px; justify-content: center; }
+.pw-box input:focus, .add-box input:focus { outline: none; border-color: var(--accent); }
+.pw-error, .add-error { color: var(--red); font-size: 13px; margin-top: 4px; min-height: 20px; }
+.pw-btns, .add-btns { margin-top: 12px; display: flex; gap: 10px; justify-content: center; }
+.pw-btn, .add-btn {
+  padding: 10px 28px; border-radius: 8px; border: none;
+  font-size: 15px; font-weight: 600; cursor: pointer;
+}
+.pw-btn.confirm, .add-btn.confirm { background: var(--accent); color: #fff; }
+.pw-btn.confirm:hover, .add-btn.confirm:hover { background: var(--accent-dark); }
+.pw-btn.cancel, .add-btn.cancel { background: #ecf0f1; color: #555; }
+.pw-btn.cancel:hover, .add-btn.cancel:hover { background: #d5dbdb; }
 
-/* ---- exam / image / table support ---- */
-.q-text img, .explanation img, .option img {
-  max-width: 100%; height: auto; vertical-align: middle;
+/* ---- home ---- */
+.header {
+  background: var(--panel); border-radius: 14px;
+  padding: 16px 22px; margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex; align-items: center; justify-content: space-between;
 }
-.q-text table {
-  border-collapse: collapse; margin: 10px 0; width: 100%; font-size: 13px;
+.header h1 { font-size: 20px; color: var(--ink); font-weight: 700; }
+.header .back-btn {
+  background: #ecf0f1; border: none; border-radius: 8px;
+  padding: 8px 16px; font-size: 14px; cursor: pointer; color: #555;
 }
-.q-text th, .q-text td {
-  border: 1px solid #ddd; padding: 4px 8px; text-align: center;
+.header .back-btn:hover { background: #d5dbdb; }
+.header .user-tag {
+  background: var(--blue-soft); border-radius: 8px;
+  padding: 6px 14px; font-size: 13px; color: var(--accent-dark);
+  cursor: pointer; font-weight: 600;
+}
+.header .user-tag:hover { background: #d6eaf8; }
+
+.card {
+  background: var(--panel); border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 12px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.05); cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 4px 18px rgba(0,0,0,0.09); }
+
+.week-card .week-title { font-size: 17px; font-weight: 600; color: var(--ink); }
+.week-card .week-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.week-status {
+  display: inline-block; margin-top: 6px; font-size: 12px; font-weight: 600;
+  padding: 3px 12px; border-radius: 999px;
+}
+.status-done { background: var(--green-soft); color: var(--green); }
+.status-new { background: var(--blue-soft); color: var(--accent-dark); }
+
+.exam-section-title { font-size: 15px; color: var(--gold-dark); margin-top: 28px; margin-bottom: 10px; font-weight: 700; }
+.exam-card { border-left: 4px solid var(--gold); }
+
+.wrong-entry {
+  border-left: 4px solid var(--red);
+  display: flex; align-items: center; gap: 14px;
+}
+.wrong-entry .badge {
+  background: var(--red); color: #fff; border-radius: 50%;
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; flex-shrink: 0;
+}
+.wrong-entry .wrong-info { flex: 1; }
+.wrong-entry .wrong-title { font-size: 17px; font-weight: 600; color: var(--ink); }
+.wrong-entry .wrong-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+.history-section { margin-top: 24px; }
+.history-section h3 { font-size: 15px; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+.history-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 14px; background: var(--panel); border-radius: 8px;
+  margin-bottom: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  font-size: 14px; color: #555;
+}
+.history-score { font-weight: 600; color: var(--ink); }
+.empty-state { text-align: center; padding: 48px 20px; color: var(--muted); font-size: 15px; }
+
+/* ---- quiz layout ---- */
+.quiz-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  min-height: 100vh;
 }
 
-/* open-ended question */
+.quiz-sidebar {
+  border-right: 1px solid var(--line);
+  background: rgba(255,255,255,0.85);
+  padding: 18px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+.quiz-sidebar .brand { margin-bottom: 16px; }
+.quiz-sidebar .brand h2 { font-size: 17px; line-height: 1.35; margin: 0; }
+.quiz-sidebar .brand p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+
+.score-panel {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px;
+}
+.metric {
+  border: 1px solid var(--line); background: #fff;
+  border-radius: 8px; padding: 10px;
+}
+.metric strong {
+  display: block; font-size: 20px; line-height: 1.1; color: var(--accent-dark);
+}
+.metric span { display: block; color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+.progress {
+  height: 8px; background: #e4e8ed; border-radius: 999px; overflow: hidden; margin-bottom: 14px;
+}
+.progress span {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  transition: width 0.18s ease;
+}
+
+.nav-section { margin: 14px 0 8px; color: var(--muted); font-size: 12px; font-weight: 700; }
+
+.question-grid {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px;
+}
+.q-jump {
+  aspect-ratio: 1 / 1; min-height: 0; padding: 0;
+  font-weight: 700; font-size: 14px; border-radius: 6px;
+}
+.q-jump.current { background: var(--accent); color: #fff; border-color: var(--accent); }
+.q-jump.answered:not(.current) { background: var(--blue-soft); border-color: #aac7df; }
+.q-jump.correct:not(.current) { background: var(--green-soft); border-color: #93c6a0; }
+.q-jump.wrong:not(.current) { background: var(--red-soft); border-color: #e2a7a7; }
+
+.sidebar-actions { display: grid; gap: 8px; margin-top: 16px; }
+.btn-primary {
+  background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700;
+}
+.btn-primary:hover:not(:disabled) { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-warning { background: var(--gold-soft); border-color: #dfbe82; font-weight: 600; }
+.btn-success { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+.btn-success:hover:not(:disabled) { background: #219a52; }
+
+.quiz-main {
+  min-width: 0; padding: 22px clamp(16px, 3vw, 40px) 28px;
+}
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.live-timer { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* ---- exam card ---- */
+.exam-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: clamp(16px, 3vw, 28px);
+  box-shadow: 0 12px 32px rgba(26,35,50,0.07);
+  overflow: hidden; min-width: 0;
+}
+
+.q-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+
+.pill {
+  display: inline-flex; align-items: center; min-height: 28px;
+  border-radius: 999px; background: var(--blue-soft); color: var(--accent-dark);
+  padding: 0 12px; font-size: 13px; font-weight: 700;
+}
+.pill.gold { background: var(--gold-soft); color: #8b5e14; }
+
+.question-title { font-size: 19px; line-height: 1.6; margin: 0 0 12px; font-weight: 700; }
+
+.question-body { font-size: 16px; line-height: 1.75; }
+.question-body p { margin: 8px 0; }
+.question-body img, .exam-img {
+  display: block; max-width: min(100%, 560px) !important; height: auto !important;
+  margin: 12px 0; border-radius: 6px;
+}
+.question-body table { max-width: 100%; display: block; overflow-x: auto; }
+.question-body table {
+  width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px;
+}
+.question-body th, .question-body td {
+  border: 1px solid var(--line); padding: 8px; text-align: center;
+}
+
+/* ---- answer areas ---- */
+.options { display: grid; gap: 10px; margin-top: 16px; }
+.option {
+  display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 10px;
+  align-items: start; width: 100%; text-align: left;
+  min-height: 48px; padding: 10px 12px; border-radius: 8px;
+}
+.option .mark {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #eef1f4; font-weight: 700; font-size: 14px;
+}
+.option.selected { border-color: var(--accent); background: var(--blue-soft); }
+.option.correct { border-color: var(--green); background: var(--green-soft); }
+.option.wrong { border-color: var(--red); background: var(--red-soft); }
+
+.answer-list { display: grid; gap: 10px; margin-top: 16px; }
+.answer-row {
+  display: grid; grid-template-columns: minmax(80px, 160px) minmax(0, 1fr);
+  gap: 10px; align-items: center;
+}
+.answer-row label { color: var(--muted); font-size: 14px; font-weight: 700; }
+
+.fill-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.fill-row input {
+  width: 80px; padding: 8px 10px; text-align: center; font-size: 16px;
+}
+.fill-row .fill-suffix { font-size: 14px; color: var(--ink); }
+
+/* inline blanks inside question text */
+.inline-blank {
+  display: inline-block; vertical-align: middle;
+  padding: 4px 6px; border: 1px solid var(--line); border-radius: 5px;
+  font-size: 15px; text-align: center; background: #fff; color: var(--ink);
+  margin: 0 3px; transition: border-color 0.2s;
+  width: 70px; min-width: 50px;
+}
+.inline-blank:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(52,152,219,0.12); outline: none; }
+.inline-blank.correct-input { border-color: var(--green); background: var(--green-soft); }
+.inline-blank.wrong-input { border-color: var(--red); background: var(--red-soft); }
+
+/* compact fill list for exam questions */
+.fill-list {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;
+}
+.fill-item {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 14px; color: var(--muted);
+}
+.fill-item .fill-num {
+  font-size: 11px; color: var(--muted); min-width: 18px;
+}
+.fill-item input {
+  width: 80px; padding: 8px 10px; text-align: center; font-size: 15px;
+}
+
+input.correct-input, textarea.correct-input { border-color: var(--green); background: var(--green-soft); }
+input.wrong-input, textarea.wrong-input { border-color: var(--red); background: var(--red-soft); }
+textarea.neutral-input { border-color: var(--gold); background: var(--gold-soft); }
+
 .open-textarea {
-  width: 100%; padding: 10px 14px; border: 2px solid #e8ecf1;
-  border-radius: 8px; font-size: 15px; font-family: inherit;
-  line-height: 1.6; resize: vertical; transition: border-color 0.2s;
+  width: 100%; padding: 12px 14px; border: 2px solid #e8ecf1; border-radius: 8px;
+  font-size: 15px; line-height: 1.6; resize: vertical; min-height: 120px; margin-top: 12px;
 }
-.open-textarea:focus { outline: none; border-color: #f39c12; }
-.open-textarea.neutral-input { border-color: #f39c12; background: #fef9e7; }
+.open-textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(230,126,34,0.12); }
 
-/* AI review */
 .review-textarea {
-  width: 100%; padding: 10px 14px; border: 2px dashed #d5e0eb; border-radius: 8px;
-  font-size: 14px; font-family: inherit; line-height: 1.6; resize: vertical;
-  background: #fafbfc; margin-top: 10px;
+  width: 100%; padding: 10px 14px; border: 2px dashed #d0d8e2; border-radius: 8px;
+  font-size: 14px; line-height: 1.6; resize: vertical; margin-top: 12px;
+  background: #fafbfc;
 }
-.review-textarea:focus { outline: none; border-color: #3498db; background: #fff; }
+.review-textarea:focus { border-color: var(--accent); background: #fff; }
+
+/* ---- feedback ---- */
+.feedback { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; display: none; }
+.feedback.show { display: block; }
+.feedback h3 { font-size: 15px; margin: 0 0 8px; }
+
+.result-tag {
+  display: inline-flex; align-items: center; min-height: 30px;
+  border-radius: 6px; padding: 0 12px; font-weight: 700; font-size: 14px; margin-bottom: 10px;
+}
+.result-tag.correct { background: var(--green-soft); color: var(--green); }
+.result-tag.wrong { background: var(--red-soft); color: var(--red); }
+.result-tag.manual { background: var(--gold-soft); color: #8b5e14; }
+
 .review-feedback {
-  margin-top: 8px; padding: 10px 14px; background: #f0f7ff; border-left: 3px solid #3498db;
-  border-radius: 6px; font-size: 13px; line-height: 1.7; display: none;
+  margin-top: 10px; padding: 12px 16px; background: #f0f7ff;
+  border-left: 3px solid var(--accent); border-radius: 6px;
+  font-size: 13px; line-height: 1.7; display: none;
 }
-.review-feedback .ai-label { font-size: 11px; color: #3498db; font-weight: 600; margin-bottom: 4px; }
-.review-spinner { display: none; margin-top: 8px; color: #95a5a6; font-size: 13px; }
+.review-feedback .ai-label { font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+.review-spinner { display: none; margin-top: 8px; color: var(--muted); font-size: 13px; }
 
-/* exam card on home page */
-.exam-card { border-left: 4px solid #e67e22; }
-.exam-card .week-title { color: #e67e22; }
+.bottom-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 16px; }
 
-.exam-section-title { font-size: 16px; color: #e67e22; margin-top: 28px; margin-bottom: 10px; }
+/* ---- result card ---- */
+.result-card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 28px; margin-bottom: 18px; text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+.result-card .score-big { font-size: 56px; font-weight: 800; color: var(--ink); }
+.result-card .score-label { font-size: 15px; color: var(--muted); margin-bottom: 4px; }
+.result-card .star { font-size: 32px; margin: 8px 0; }
+.result-card .detail { text-align: left; margin-top: 12px; font-size: 14px; color: #555; line-height: 1.8; }
 
-/* open question card */
-.question-card.open-q { border-left-color: #f39c12; }
+.time-detail { margin-top: 16px; text-align: left; }
+.time-detail h4 { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+.time-row { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; font-size: 13px; color: #666; }
+.time-row .time-val { font-variant-numeric: tabular-nums; }
+.time-row .slow { color: var(--gold-dark); font-weight: 600; }
+
+.hidden { display: none; }
+
+/* ---- responsive ---- */
+@media (max-width: 860px) {
+  .quiz-layout { grid-template-columns: 1fr; }
+  .quiz-sidebar {
+    position: static; height: auto; border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .question-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .topbar { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 560px) {
+  body { padding: 0; }
+  .container { padding: 10px; }
+  .quiz-main { padding: 14px 10px 22px; }
+  .quiz-sidebar { padding: 14px 10px; }
+  .question-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .question-title { font-size: 17px; }
+  .question-body { font-size: 15px; }
+  .answer-row { grid-template-columns: 1fr; }
+  .header { padding: 12px 16px; }
+  .header h1 { font-size: 17px; }
+  .score-big { font-size: 44px; }
+}
 </style>
 </head>
 <body>
 
 <div class="container" id="app"></div>
+
 <div class="pw-dialog" id="pwDialog">
   <div class="pw-box">
     <h3 id="pwTitle"></h3>
@@ -327,6 +449,7 @@ body {
     </div>
   </div>
 </div>
+
 <div class="add-dialog" id="addDialog">
   <div class="add-box">
     <h3>添加新用户</h3>
@@ -334,8 +457,8 @@ body {
     <input type="password" id="addPw" placeholder="设置密码" maxlength="20" autocomplete="off">
     <div class="add-error" id="addError"></div>
     <div class="add-btns">
-      <button class="pw-btn cancel" onclick="closeAdd()">取消</button>
-      <button class="pw-btn confirm" onclick="confirmAdd()">确定</button>
+      <button class="add-btn cancel" onclick="closeAdd()">取消</button>
+      <button class="add-btn confirm" onclick="confirmAdd()">确定</button>
     </div>
   </div>
 </div>
@@ -352,16 +475,10 @@ const DEFAULT_USERS = [
 
 function initUsers() {
   let users = getUsers();
-  if (users.length === 0) {
-    saveUsers(DEFAULT_USERS);
-    users = DEFAULT_USERS;
-  }
+  if (users.length === 0) { saveUsers(DEFAULT_USERS); users = DEFAULT_USERS; }
   let changed = false;
   DEFAULT_USERS.forEach(du => {
-    if (!users.find(u => u.name === du.name)) {
-      users.push({ ...du });
-      changed = true;
-    }
+    if (!users.find(u => u.name === du.name)) { users.push({ ...du }); changed = true; }
   });
   if (changed) saveUsers(users);
   return users;
@@ -372,9 +489,7 @@ function getUsers() {
   catch { return []; }
 }
 
-function saveUsers(users) {
-  localStorage.setItem(USERS_KEY, JSON.stringify(users));
-}
+function saveUsers(users) { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
 
 function validateUser(name, password) {
   const users = getUsers();
@@ -386,36 +501,47 @@ function validateUser(name, password) {
 let currentUser = null;
 
 function storageKey() { return USER_DATA_PREFIX + currentUser; }
+function quizStorageKey() { return USER_DATA_PREFIX + currentUser + '_quiz'; }
 
 function loadState() {
+  try { return JSON.parse(localStorage.getItem(storageKey())) || { history: [], wrongBook: {} }; }
+  catch { return { history: [], wrongBook: {} }; }
+}
+
+function saveState(state) { localStorage.setItem(storageKey(), JSON.stringify(state)); }
+
+function getWrongCount(state) { return Object.keys(state.wrongBook).length; }
+
+// ========== Quiz answers persistence ==========
+let quizAnswers = {};   // { questionNum: answer }
+let quizCurrent = 0;    // current question index (0-based)
+
+function saveQuizProgress() {
+  try { localStorage.setItem(quizStorageKey(), JSON.stringify({ answers: quizAnswers, current: quizCurrent })); }
+  catch {}
+}
+
+function loadQuizProgress() {
   try {
-    return JSON.parse(localStorage.getItem(storageKey())) || { history: [], wrongBook: {} };
-  } catch { return { history: [], wrongBook: {} }; }
+    const saved = JSON.parse(localStorage.getItem(quizStorageKey()));
+    if (saved && typeof saved === 'object') { quizAnswers = saved.answers || {}; quizCurrent = saved.current || 0; }
+  } catch {}
 }
 
-function saveState(state) {
-  localStorage.setItem(storageKey(), JSON.stringify(state));
-}
-
-function getWrongCount(state) {
-  return Object.keys(state.wrongBook).length;
-}
+function clearQuizProgress() { localStorage.removeItem(quizStorageKey()); }
 
 // ========== Load problems JSON ==========
 let problemsData = null;
 let currentView = 'login';
 let currentWeekId = null;
 let currentProblems = null;
-let AI_REVIEW_URL = null; // set at load time based on host
+let AI_REVIEW_URL = null;
 
 async function loadProblems() {
   try {
     const res = await fetch('problems.json');
     problemsData = await res.json();
-  } catch(e) {
-    problemsData = null;
-  }
-  // AI review: Cloudflare Pages Function endpoint
+  } catch(e) { problemsData = null; }
   if (location.hostname.endsWith('.pages.dev')) {
     AI_REVIEW_URL = '/api/review';
   } else {
@@ -430,7 +556,6 @@ function startTimers(numQuestions) {
   for (let i = 1; i <= numQuestions; i++) window._questionTimes[i] = 0;
   window._focusQIdx = null;
   window._focusStart = null;
-  // live timer
   window._timerInterval = setInterval(updateLiveTimer, 1000);
 }
 
@@ -480,35 +605,22 @@ async function render() {
     return;
   }
 
-  if (!currentUser) {
-    currentView = 'login';
-    renderLogin(app);
-    return;
-  }
+  if (!currentUser) { currentView = 'login'; renderLogin(app); return; }
 
   if (currentView === 'login') currentView = 'home';
   if (currentView === 'home') {
-    try {
-      renderHome(app);
-    } catch(e) {
-      app.innerHTML = '<div class="empty-state">渲染首页时出错: ' + e.message + '</div>';
-      console.error(e);
-    }
+    try { renderHome(app); } catch(e) { app.innerHTML = '<div class="empty-state">渲染首页时出错: ' + e.message + '</div>'; console.error(e); }
   } else if (currentView === 'quiz') {
-    try {
-      renderQuiz(app);
-    } catch(e) {
-      app.innerHTML = '<div class="empty-state">渲染试卷时出错: ' + e.message + '<br><button class="btn btn-outline" onclick="goHome()" style="margin-top:16px">← 返回首页</button></div>';
-      console.error(e);
-    }
+    try { renderQuizView(app); } catch(e) { app.innerHTML = '<div class="empty-state">渲染试卷时出错: ' + e.message + '<br><button class="btn-primary" onclick="goHome()" style="margin-top:16px">← 返回首页</button></div>'; console.error(e); }
   }
 }
 
+// ========== Login ==========
 function renderLogin(app) {
   const users = initUsers();
+  const colors = ['#3498db', '#e74c3c', '#27ae60', '#e67e22', '#9b59b6', '#1abc9c'];
 
   let listHtml = users.map((u, i) => {
-    const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c'];
     const color = colors[i % colors.length];
     return `
       <div class="user-card" onclick="showPwDialog('${escHtml(u.name)}')">
@@ -544,23 +656,15 @@ function showPwDialog(name) {
   setTimeout(() => document.getElementById('pwInput').focus(), 100);
 }
 
-function closePw() {
-  pendingUser = null;
-  document.getElementById('pwDialog').classList.remove('show');
-}
+function closePw() { pendingUser = null; document.getElementById('pwDialog').classList.remove('show'); }
 
 function confirmPw() {
   const pw = document.getElementById('pwInput').value.trim();
   if (!pw) { document.getElementById('pwError').textContent = '请输入密码'; return; }
-  if (!validateUser(pendingUser, pw)) {
-    document.getElementById('pwError').textContent = '密码错误，请重试';
-    return;
-  }
+  if (!validateUser(pendingUser, pw)) { document.getElementById('pwError').textContent = '密码错误，请重试'; return; }
   document.getElementById('pwDialog').classList.remove('show');
-  currentUser = pendingUser;
-  pendingUser = null;
-  currentView = 'home';
-  render();
+  currentUser = pendingUser; pendingUser = null;
+  currentView = 'home'; render();
 }
 
 document.addEventListener('keydown', function(e) {
@@ -579,9 +683,7 @@ function showAddDialog() {
   setTimeout(() => document.getElementById('addName').focus(), 100);
 }
 
-function closeAdd() {
-  document.getElementById('addDialog').classList.remove('show');
-}
+function closeAdd() { document.getElementById('addDialog').classList.remove('show'); }
 
 function confirmAdd() {
   const name = document.getElementById('addName').value.trim();
@@ -589,9 +691,7 @@ function confirmAdd() {
   if (!name) { document.getElementById('addError').textContent = '请输入名字'; return; }
   if (!pw) { document.getElementById('addError').textContent = '请设置密码'; return; }
   const users = getUsers();
-  if (users.find(u => u.name === name)) {
-    document.getElementById('addError').textContent = '该名字已存在'; return;
-  }
+  if (users.find(u => u.name === name)) { document.getElementById('addError').textContent = '该名字已存在'; return; }
   users.push({ name, password: pw });
   saveUsers(users);
   document.getElementById('addDialog').classList.remove('show');
@@ -613,17 +713,16 @@ function renderHome(app) {
     state.history.filter(h => h.weekId === w.id).forEach(h => {
       if (bestScore === null || h.score > bestScore) bestScore = h.score;
     });
-    const bestStr = bestScore !== null ? ` 最好成绩：${bestScore}分` : '';
+    const bestStr = bestScore !== null ? ' · 最好：' + bestScore + '分' : '';
 
     weeksHtml += `
       <div class="card week-card" onclick="startWeek('${w.id}')">
-        <div class="week-title">${w.title}</div>
-        <div class="week-sub">${w.subtitle}${bestStr}</div>
+        <div class="week-title">${escHtml(w.title)}</div>
+        <div class="week-sub">${escHtml(w.subtitle)}${bestStr}</div>
         <span class="week-status ${statusClass}">${statusText}</span>
       </div>`;
   });
 
-  // Exams section
   let examsHtml = '';
   const exams = problemsData.exams || [];
   if (exams.length > 0) {
@@ -636,11 +735,11 @@ function renderHome(app) {
       state.history.filter(h => h.weekId === exam.id).forEach(h => {
         if (bestScore === null || h.score > bestScore) bestScore = h.score;
       });
-      const bestStr = bestScore !== null ? ` 最好成绩：${bestScore}分` : '';
+      const bestStr = bestScore !== null ? ' · 最好：' + bestScore + '分' : '';
       examsHtml += `
         <div class="card week-card exam-card" onclick="startExam('${exam.id}')">
-          <div class="week-title">${exam.title}</div>
-          <div class="week-sub">${exam.subtitle}${bestStr}</div>
+          <div class="week-title">${escHtml(exam.title)}</div>
+          <div class="week-sub">${escHtml(exam.subtitle)}${bestStr}</div>
           <span class="week-status ${statusClass}">${statusText}</span>
         </div>`;
     });
@@ -663,13 +762,13 @@ function renderHome(app) {
     const recent = [...state.history].reverse().slice(0, 10);
     historyHtml = '<div class="history-section"><h3>最近记录</h3>';
     recent.forEach(h => {
-      const week = problemsData.weeks.find(w => w.id === h.weekId)
-                || (problemsData.exams || []).find(e => e.id === h.weekId);
-      const title = week ? week.title : h.weekId;
+      const source = [...problemsData.weeks, ...(problemsData.exams || [])];
+      const item = source.find(w => w.id === h.weekId);
+      const title = item ? item.title : h.weekId;
       const durStr = h.duration ? ' · ' + formatTime(h.duration) : '';
       historyHtml += `
         <div class="history-item">
-          <span>${title}${durStr}</span>
+          <span>${escHtml(title)}${durStr}</span>
           <span class="history-score">${h.score}/${h.total} 分</span>
           <span style="color:#95a5a6;font-size:12px">${h.date}</span>
         </div>`;
@@ -687,8 +786,8 @@ function renderHome(app) {
     ${wrongHtml}
     ${historyHtml || '<div class="empty-state">还没有答题记录，点击上方题目开始练习吧</div>'}
     <div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-outline" style="padding:8px 20px;font-size:13px" onclick="exportData()">📥 导出数据</button>
-      <button class="btn btn-outline" style="padding:8px 20px;font-size:13px" onclick="document.getElementById('importFile').click()">📤 导入数据</button>
+      <button style="padding:8px 18px;font-size:13px" onclick="exportData()">导出数据</button>
+      <button style="padding:8px 18px;font-size:13px" onclick="document.getElementById('importFile').click()">导入数据</button>
       <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
     </div>
     <div style="text-align:center;margin-top:8px;font-size:12px;color:#bdc3c7">导出后可将文件发给家长分析薄弱点</div>
@@ -698,18 +797,15 @@ function renderHome(app) {
 // ========== Export / Import ==========
 function buildExportData() {
   const state = loadState();
-  // Enrich wrong book with full problem details
   const wrongBookDetailed = [];
   for (const [key, info] of Object.entries(state.wrongBook)) {
     const [weekId, probId] = key.split('-');
-    const week = problemsData.weeks.find(w => w.id === weekId)
-              || (problemsData.exams || []).find(e => e.id === weekId);
+    const source = [...problemsData.weeks, ...(problemsData.exams || [])];
+    const week = source.find(w => w.id === weekId);
     const prob = week ? week.problems.find(p => p.id === probId) : null;
     wrongBookDetailed.push({
-      key: key,
-      weekTitle: week ? week.title : weekId,
-      wrongCount: info.wrongCount,
-      lastAttempt: info.lastAttempt,
+      key, weekTitle: week ? week.title : weekId,
+      wrongCount: info.wrongCount, lastAttempt: info.lastAttempt,
       type: prob ? prob.type : '?',
       question: prob ? prob.question : '(题目已删除)',
       options: prob ? prob.options || null : null,
@@ -718,25 +814,16 @@ function buildExportData() {
       explanation: prob ? prob.explanation || '' : ''
     });
   }
-
-  // Calculate stats
   const totalAttempts = state.history.length;
   let avgScore = 0;
   if (totalAttempts > 0) {
     const total = state.history.reduce((s, h) => s + (h.score / h.total * 100), 0);
     avgScore = Math.round(total / totalAttempts);
   }
-
   return {
-    user: currentUser,
-    exportedAt: new Date().toISOString(),
-    stats: {
-      totalAttempts: totalAttempts,
-      avgScore: avgScore,
-      totalWrong: wrongBookDetailed.length
-    },
-    wrongBook: wrongBookDetailed,
-    history: state.history
+    user: currentUser, exportedAt: new Date().toISOString(),
+    stats: { totalAttempts, avgScore, totalWrong: wrongBookDetailed.length },
+    wrongBook: wrongBookDetailed, history: state.history
   };
 }
 
@@ -745,10 +832,8 @@ function exportData() {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url;
-  a.download = `${currentUser}-错题数据-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
+  a.href = url; a.download = currentUser + '-错题数据-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(url);
 }
 
 function importData(event) {
@@ -758,46 +843,31 @@ function importData(event) {
   reader.onload = function(e) {
     try {
       const data = JSON.parse(e.target.result);
-      if (!data.user || !data.history || !data.wrongBook) {
-        alert('文件格式不正确，请选择导出的数据文件');
-        return;
-      }
+      if (!data.user || !data.history || !data.wrongBook) { alert('文件格式不正确，请选择导出的数据文件'); return; }
       if (data.user !== currentUser) {
-        if (!confirm(`这个文件是「${data.user}」的数据，当前用户是「${currentUser}」，确定导入吗？`)) return;
+        if (!confirm('这个文件是「' + data.user + '」的数据，当前用户是「' + currentUser + '」，确定导入吗？')) return;
       }
-      // Convert wrong book back to storage format
       const wrongBook = {};
-      data.wrongBook.forEach(w => {
-        wrongBook[w.key] = { wrongCount: w.wrongCount, lastAttempt: w.lastAttempt };
-      });
+      data.wrongBook.forEach(w => { wrongBook[w.key] = { wrongCount: w.wrongCount, lastAttempt: w.lastAttempt }; });
       saveState({ history: data.history, wrongBook: wrongBook });
-      alert('数据导入成功！');
-      render();
-    } catch (err) {
-      alert('文件解析失败：' + err.message);
-    }
+      alert('数据导入成功！'); render();
+    } catch (err) { alert('文件解析失败：' + err.message); }
   };
-  reader.readAsText(file);
-  event.target.value = '';
+  reader.readAsText(file); event.target.value = '';
 }
 
 function switchUser() {
-  stopTimers();
-  currentUser = null;
-  currentView = 'login';
-  currentWeekId = null;
-  currentProblems = null;
-  window._quizSubmitted = false;
-  render();
+  stopTimers(); clearQuizProgress(); quizAnswers = {}; quizCurrent = 0;
+  currentUser = null; currentView = 'login'; currentWeekId = null; currentProblems = null;
+  window._quizSubmitted = false; render();
 }
 
-// ========== Quiz ==========
+// ========== Quiz start ==========
 function startWeek(weekId) {
   const week = problemsData.weeks.find(w => w.id === weekId);
   if (!week) return;
-  currentView = 'quiz';
-  currentWeekId = weekId;
-  currentProblems = week.problems;
+  currentView = 'quiz'; currentWeekId = weekId; currentProblems = week.problems;
+  quizAnswers = {}; quizCurrent = 0; clearQuizProgress();
   render();
 }
 
@@ -805,7 +875,6 @@ function startWrongBook() {
   const state = loadState();
   const wrongIds = Object.keys(state.wrongBook);
   if (wrongIds.length === 0) return;
-
   const wrongProbs = [];
   const sources = [...problemsData.weeks, ...(problemsData.exams || [])];
   sources.forEach(w => {
@@ -816,10 +885,8 @@ function startWrongBook() {
       }
     });
   });
-
-  currentView = 'quiz';
-  currentWeekId = '__wrongbook__';
-  currentProblems = wrongProbs;
+  currentView = 'quiz'; currentWeekId = '__wrongbook__'; currentProblems = wrongProbs;
+  quizAnswers = {}; quizCurrent = 0; clearQuizProgress();
   render();
 }
 
@@ -827,123 +894,328 @@ function startExam(examId) {
   try {
     const exam = (problemsData.exams || []).find(e => e.id === examId);
     if (!exam) { alert('试卷数据未找到，请刷新页面重试'); return; }
-    currentView = 'quiz';
-    currentWeekId = examId;
-    currentProblems = exam.problems;
+    currentView = 'quiz'; currentWeekId = examId; currentProblems = exam.problems;
+    quizAnswers = {}; quizCurrent = 0; clearQuizProgress();
     render();
-  } catch(e) {
-    alert('加载试卷失败: ' + e.message);
-    console.error(e);
-  }
+  } catch(e) { alert('加载试卷失败: ' + e.message); console.error(e); }
 }
 
-function renderQuiz(app) {
-  let isWrongBook = currentWeekId === '__wrongbook__';
-  let title = isWrongBook ? '错题重练' : (
-    problemsData.weeks.find(w => w.id === currentWeekId)?.title ||
-    (problemsData.exams || []).find(e => e.id === currentWeekId)?.title || ''
-  );
+// ========== Quiz render ==========
+function renderQuizView(app) {
+  const isWrongBook = currentWeekId === '__wrongbook__';
+  const sources = [...problemsData.weeks, ...(problemsData.exams || [])];
+  const source = sources.find(w => w.id === currentWeekId);
+  const title = isWrongBook ? '错题重练' : (source ? source.title : '');
+  const subtitle = source ? source.subtitle || '' : '';
 
+  loadQuizProgress();
   startTimers(currentProblems.length);
-
-  let cardsHtml = '';
-  currentProblems.forEach((p, idx) => {
-    const num = idx + 1;
-    const isOpen = p.type === 'open';
-    cardsHtml += '<div class="question-card' + (isOpen ? ' open-q' : '') + '" id="card-' + num + '" onclick="switchFocus(' + num + ')">';
-    cardsHtml += '<div class="q-header"><span class="q-num">' + num + '. (' + p.score + '分' + (isOpen ? '，自行对照' : '') + ')</span></div>';
-    cardsHtml += '<div class="q-text">' + renderQuestionText(p) + '</div>';
-
-    if (p.type === 'choice') {
-      cardsHtml += '<div class="options">';
-      p.options.forEach(opt => {
-        const optText = p.html ? opt.text : escHtml(opt.text);
-        cardsHtml += `<label class="option" data-q="${num}" data-val="${escHtml(opt.label)}">
-          <span style="font-weight:600;color:#7f8c8d;min-width:20px">${escHtml(opt.label)}</span>
-          <span>${optText}</span>
-        </label>`;
-      });
-      cardsHtml += '</div>';
-    } else if (p.type === 'open') {
-      cardsHtml += `<textarea class="open-textarea" data-q="${num}"
-        rows="6" placeholder="请在此作答（此题不自动评分，提交后可对照答案自我评价）"
-        onfocus="switchFocus(${num})"></textarea>`;
-    } else {
-      cardsHtml += '<div class="fill-row">';
-      p.blanks.forEach((b, bi) => {
-        const size = b.size || 4;
-        const w = Math.max(60, size * 12);
-        const suffix = b.suffix || '';
-        cardsHtml += `<input type="text" class="quiz-input" data-q="${num}" data-bi="${bi}"
-          style="width:${w}px" maxlength="${size + 2}" autocomplete="off"
-          onfocus="switchFocus(${num})">`;
-        if (suffix) cardsHtml += `<span class="fill-hint">${escHtml(suffix)}</span>`;
-      });
-      cardsHtml += '</div>';
-      if (p.reviewable) {
-        cardsHtml += `<textarea class="review-textarea" data-q="${num}" rows="4"
-          placeholder="✏️ 解题过程（选填，写完后AI老师会帮你批改）"
-          onfocus="switchFocus(${num})"></textarea>
-        <div class="review-spinner" id="spinner-${num}">🤖 AI老师正在批改你的解题过程...</div>
-        <div class="review-feedback" id="feedback-${num}">
-          <div class="ai-label">🤖 AI老师点评</div>
-          <div class="ai-content" id="fb-content-${num}"></div>
-        </div>`;
-      }
-    }
-
-    const expHtml = p.html ? (p.explanation || '') : escHtml(p.explanation || '');
-    cardsHtml += `<div class="explanation" id="exp-${num}" style="display:none">
-      <strong>答案：</strong>${escHtml(formatAnswer(p))}<br>${expHtml}</div>`;
-    cardsHtml += '</div>';
-  });
-
-  let autoTotal = currentProblems.filter(p => p.type !== 'open').reduce((s, p) => s + p.score, 0);
-  let totalScore = currentProblems.reduce((s, p) => s + p.score, 0);
+  window._quizSubmitted = false;
+  switchFocus(quizCurrent + 1);
 
   app.innerHTML = `
-    <div class="header">
-      <button class="back-btn" onclick="goHome()">← 返回</button>
-      <h1>${escHtml(title)}</h1>
-      <span class="live-timer" id="liveTimer">⏱ 0秒</span>
-      <span style="color:#95a5a6;font-size:13px">共${currentProblems.length}题 · ${autoTotal}分</span>
-    </div>
-    <form id="quizForm" onsubmit="return false">${cardsHtml}</form>
-    <div class="actions">
-      <button class="btn btn-primary" id="submitBtn" onclick="submitQuiz()">提交答卷</button>
-      <button class="btn btn-secondary" id="revealBtn" onclick="revealAnswers()" disabled>查看答案和解析</button>
-      <button class="btn btn-outline" id="resetBtn" onclick="resetQuiz()">重新开始</button>
-    </div>
-    <div class="result-card" id="resultCard" style="display:none">
-      <div class="score-label">你的得分</div>
-      <div class="score-big" id="scoreDisplay">0</div>
-      <div class="star" id="starDisplay"></div>
-      <div class="detail" id="detailDisplay"></div>
-      <div class="time-detail" id="timeDetail"></div>
+    <div class="quiz-layout">
+      <aside class="quiz-sidebar" id="quizSidebar">
+        <div class="brand">
+          <h2>${escHtml(title)}</h2>
+          ${subtitle ? '<p>' + escHtml(subtitle) + '</p>' : ''}
+        </div>
+        <div class="score-panel">
+          <div class="metric"><strong id="answeredCount">0</strong><span>已作答</span></div>
+          <div class="metric"><strong id="scoreText">-</strong><span>客观题得分</span></div>
+        </div>
+        <div class="progress" aria-label="作答进度"><span id="progressBar"></span></div>
+        <div class="nav-section">题目</div>
+        <div class="question-grid" id="questionGrid"></div>
+        <div class="sidebar-actions">
+          <button class="btn-primary" id="submitBtn" onclick="submitQuiz()">提交判分</button>
+          <button class="btn-success" id="revealBtn" onclick="revealAnswers()" disabled>查看答案和解析</button>
+          <button class="btn-warning" id="resetBtn" onclick="resetQuiz()">重新开始</button>
+        </div>
+      </aside>
+      <main class="quiz-main">
+        <div class="topbar">
+          <button class="back-btn" onclick="goHome()">← 返回</button>
+          <span class="live-timer" id="liveTimer">⏱ 0秒</span>
+        </div>
+        <div class="result-card hidden" id="resultCard">
+          <div class="score-label">你的得分</div>
+          <div class="score-big" id="scoreDisplay">0</div>
+          <div class="star" id="starDisplay"></div>
+          <div class="detail" id="detailDisplay"></div>
+          <div class="time-detail" id="timeDetail"></div>
+        </div>
+        <section class="exam-card" id="examCard"></section>
+      </main>
     </div>
   `;
 
-  document.querySelectorAll('.option').forEach(opt => {
-    opt.addEventListener('click', function() {
+  renderSidebar();
+  renderQuestionCard();
+
+  // Attach sidebar button listeners
+  document.getElementById('questionGrid').addEventListener('click', function(e) {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    const idx = Number(btn.dataset.index);
+    if (!isNaN(idx)) navigateTo(idx);
+  });
+}
+
+function renderSidebar() {
+  updateStats();
+  const grid = document.getElementById('questionGrid');
+  if (!grid) return;
+  grid.innerHTML = currentProblems.map((q, i) => {
+    const num = i + 1;
+    const cls = ['q-jump'];
+    if (i === quizCurrent) cls.push('current');
+    if (isQAnswered(num)) cls.push('answered');
+    if (window._quizSubmitted) {
+      const result = gradeQuestion(q, num);
+      if (result === true) cls.push('correct');
+      if (result === false) cls.push('wrong');
+    }
+    return '<button class="' + cls.join(' ') + '" data-index="' + i + '" aria-label="第' + num + '题">' + num + '</button>';
+  }).join('');
+}
+
+function renderQuestionCard() {
+  const q = currentProblems[quizCurrent];
+  const num = quizCurrent + 1;
+  const card = document.getElementById('examCard');
+  if (!card) return;
+
+  const typeLabel = q.type === 'choice' ? '选择题' : q.type === 'fill' ? '填空题' : q.type === 'solve' ? '解决问题' : '开放题';
+
+  card.innerHTML = `
+    <div class="q-meta">
+      <span class="pill">${typeLabel}</span>
+      <span class="pill gold">第 ${num} / ${currentProblems.length} 题</span>
+      <span style="font-size:13px;color:var(--muted)">${q.score}分${q.type === 'open' ? '，自行对照' : ''}</span>
+    </div>
+    <h2 class="question-title">${num}. ${truncateTitle(q)}</h2>
+    <div class="question-body">${renderQuestionText(q)}</div>
+    ${renderAnswerArea(q, num)}
+    ${renderFeedback(q, num)}
+    <div class="bottom-nav">
+      <button id="prevBtn" ${quizCurrent === 0 ? 'disabled' : ''}>上一题</button>
+      <button id="nextBtn" ${quizCurrent === currentProblems.length - 1 ? 'disabled' : ''}>下一题</button>
+    </div>
+  `;
+
+  attachCardListeners(q, num);
+  document.getElementById('prevBtn').addEventListener('click', () => { if (quizCurrent > 0) navigateTo(quizCurrent - 1); });
+  document.getElementById('nextBtn').addEventListener('click', () => { if (quizCurrent < currentProblems.length - 1) navigateTo(quizCurrent + 1); });
+}
+
+function truncateTitle(q) {
+  const text = stripHtml(q.question);
+  return text.length > 60 ? text.slice(0, 60) + '...' : text;
+}
+
+function renderAnswerArea(q, num) {
+  if (q.type === 'choice') return renderChoiceArea(q, num);
+  if ((q.type === 'fill' || q.type === 'solve') && q.html) return renderFillArea(q, num);
+  // Non-HTML fill: if question text has {blank} markers, inputs are inline in the text
+  if (q.type === 'fill' && q.question.indexOf('{blank}') !== -1) return renderReviewExtras(q, num);
+  // Solve questions or fill without {blank}: render answer inputs below the question
+  if (q.type === 'fill' || q.type === 'solve') return renderFillArea(q, num);
+  if (q.type === 'open') return renderOpenArea(q, num);
+  return '';
+}
+
+function renderChoiceArea(q, num) {
+  const selected = quizAnswers[num] || '';
+  return '<div class="options">' + q.options.map((opt, i) => {
+    const letter = String.fromCharCode(65 + i);
+    const cls = ['option'];
+    if (selected === letter) cls.push('selected');
+    if (window._quizSubmitted || window._revealAnswers) {
+      if (q.answer === letter) cls.push('correct');
+      else if (selected === letter) cls.push('wrong');
+    }
+    const optHtml = q.html ? opt.text : escHtml(opt.text);
+    return '<button class="' + cls.join(' ') + '" data-choice="' + letter + '" ' + (window._quizSubmitted ? 'disabled' : '') + '><span class="mark">' + letter + '</span><span>' + optHtml + '</span></button>';
+  }).join('') + '</div>';
+}
+
+function renderFillArea(q, num) {
+  const values = Array.isArray(quizAnswers[num]) ? quizAnswers[num] : [];
+  let html = '<div class="fill-list">';
+  q.blanks.forEach((b, bi) => {
+    const val = values[bi] || '';
+    const suffix = b.suffix || '';
+    let inputCls = '';
+    if (window._quizSubmitted || window._revealAnswers) {
+      const answers = (b.answer || '').split('|');
+      if (answers.some(a => val === a)) inputCls = 'correct-input';
+      else inputCls = 'wrong-input';
+    }
+    const w = Math.max(70, (b.size || 4) * 14);
+    html += '<div class="fill-item">';
+    if (q.blanks.length > 1) html += '<span class="fill-num">' + (bi + 1) + '</span>';
+    html += '<input type="text" class="' + inputCls + '" data-blank="' + bi + '" value="' + escAttr(val) + '" ' + (window._quizSubmitted ? 'disabled' : '') + ' style="width:' + w + 'px">';
+    if (suffix) html += '<span class="fill-suffix">' + escHtml(suffix) + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += renderReviewExtras(q, num);
+  return html;
+}
+
+function renderReviewExtras(q, num) {
+  if (!q.reviewable) return '';
+  const processVal = quizAnswers[num + '_process'] || '';
+  return '<textarea class="review-textarea" data-process="' + num + '" rows="4" placeholder="解题过程（选填，写完后AI老师会帮你批改）" ' + (window._quizSubmitted ? 'disabled' : '') + '>' + escText(processVal) + '</textarea>'
+    + '<div class="review-spinner" id="spinner-' + num + '">AI老师正在批改你的解题过程...</div>'
+    + '<div class="review-feedback" id="feedback-' + num + '"><div class="ai-label">AI老师点评</div><div class="ai-content" id="fb-content-' + num + '"></div></div>';
+}
+
+function renderOpenArea(q, num) {
+  const val = quizAnswers[num] || '';
+  let cls = 'open-textarea';
+  if (window._revealAnswers) cls += ' neutral-input';
+  return '<textarea class="' + cls + '" data-open="' + num + '" rows="6" placeholder="请在此作答（此题不自动评分，提交后可对照答案自我评价）" ' + (window._quizSubmitted ? 'disabled' : '') + '>' + escText(val) + '</textarea>';
+}
+
+function renderFeedback(q, num) {
+  const show = window._quizSubmitted || window._revealAnswers;
+  if (!show) return '<div class="feedback"></div>';
+
+  const result = gradeQuestion(q, num);
+  let tag = '';
+  if (q.type === 'open') {
+    tag = '<span class="result-tag manual">自查题</span>';
+  } else if (result === true) {
+    tag = '<span class="result-tag correct">回答正确</span>';
+  } else if (result === false) {
+    tag = '<span class="result-tag wrong">需要订正</span>';
+  } else {
+    tag = '<span class="result-tag manual">自查题</span>';
+  }
+
+  const expHtml = q.html ? (q.explanation || '') : escHtml(q.explanation || '');
+  return '<div class="feedback show">' + tag + '<h3>参考答案</h3><div class="question-body">' + escHtml(formatAnswer(q)) + '<br>' + expHtml + '</div></div>';
+}
+
+function attachCardListeners(q, num) {
+  const card = document.getElementById('examCard');
+  if (!card) return;
+
+  // Choice buttons
+  card.querySelectorAll('[data-choice]').forEach(btn => {
+    btn.addEventListener('click', function() {
       if (window._quizSubmitted) return;
-      const q = parseInt(this.dataset.q);
-      switchFocus(q);
-      this.parentElement.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-      this.classList.add('selected');
+      quizAnswers[num] = this.dataset.choice;
+      saveQuizProgress();
+      renderQuestionCard();
+      renderSidebar();
     });
   });
 
-  // Auto-focus first question
-  switchFocus(1);
+  // Fill blanks — both inline (from {blank}) and answer-area inputs
+  const blankValues = Array.isArray(quizAnswers[num]) ? quizAnswers[num] : [];
+  card.querySelectorAll('[data-blank]').forEach(input => {
+    const bi = Number(input.dataset.blank);
+    // Pre-populate inline inputs that weren't set during render
+    if (!input.value && blankValues[bi]) input.value = blankValues[bi];
+    // Apply correct/wrong classes for submitted/revealed state
+    if (window._quizSubmitted || window._revealAnswers) {
+      const b = q.blanks && q.blanks[bi];
+      if (b) {
+        const answers = (b.answer || '').split('|');
+        if (answers.some(a => input.value.trim() === a)) input.classList.add('correct-input');
+        else input.classList.add('wrong-input');
+      }
+    }
+    input.addEventListener('input', function() {
+      if (!Array.isArray(quizAnswers[num])) quizAnswers[num] = [];
+      quizAnswers[num][bi] = this.value;
+      saveQuizProgress();
+      renderSidebar();
+    });
+  });
+
+  // Open textarea
+  const openTa = card.querySelector('[data-open]');
+  if (openTa) {
+    openTa.addEventListener('input', function() {
+      quizAnswers[num] = this.value;
+      saveQuizProgress();
+      renderSidebar();
+    });
+  }
+
+  // Process textarea (AI review)
+  const processTa = card.querySelector('[data-process]');
+  if (processTa) {
+    processTa.addEventListener('input', function() {
+      quizAnswers[Number(this.dataset.process) + '_process'] = this.value;
+      saveQuizProgress();
+    });
+  }
+}
+
+function navigateTo(idx) {
+  if (idx === quizCurrent) return;
+  switchFocus(idx + 1);
+  quizCurrent = idx;
+  saveQuizProgress();
+  renderSidebar();
+  renderQuestionCard();
+  document.getElementById('examCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ========== Helpers ==========
+function isQAnswered(num) {
+  const value = quizAnswers[num];
+  if (value === undefined || value === null || value === '') return false;
+  if (Array.isArray(value)) return value.some(v => String(v ?? '').trim());
+  return String(value).trim() !== '';
+}
+
+function gradeQuestion(q, num) {
+  if (q.type === 'open') return null;
+  const value = quizAnswers[num];
+  if (q.type === 'choice') return value === q.answer;
+  if (!Array.isArray(value)) return false;
+  return q.blanks.every((b, bi) => {
+    const userVal = (value[bi] || '').trim();
+    const answers = (b.answer || '').split('|');
+    return answers.some(a => userVal === a);
+  });
+}
+
+function updateStats() {
+  const answeredCount = currentProblems.filter((_, i) => isQAnswered(i + 1)).length;
+  const answeredEl = document.getElementById('answeredCount');
+  const progressEl = document.getElementById('progressBar');
+  const scoreEl = document.getElementById('scoreText');
+  if (answeredEl) answeredEl.textContent = answeredCount;
+  if (progressEl) progressEl.style.width = (answeredCount / currentProblems.length * 100) + '%';
+  if (scoreEl) {
+    if (window._quizSubmitted) {
+      const objs = currentProblems.filter(q => q.type !== 'open');
+      const correct = objs.filter((q, i) => gradeQuestion(q, i + 1)).length;
+      scoreEl.textContent = correct + '/' + objs.length;
+    } else {
+      scoreEl.textContent = '-';
+    }
+  }
 }
 
 function renderQuestionText(p) {
-  if (p.type === 'choice') return p.question;
-  let text = p.question;
-  text = text.replace(/\{blank\}/g, () => {
-    return '<span style="display:inline-block;border-bottom:3px solid #3498db;min-width:50px;margin:0 4px"></span>';
+  if (p.html || p.type === 'choice') return p.question;
+  // Replace {blank} markers with inline input elements
+  let blankIdx = 0;
+  return p.question.replace(/\{blank\}/g, () => {
+    const b = (p.blanks && p.blanks[blankIdx]) ? p.blanks[blankIdx] : {};
+    const w = Math.max(60, (b.size || 4) * 14);
+    const html = '<input type="text" class="inline-blank" data-blank="' + blankIdx + '" style="width:' + w + 'px" maxlength="' + ((b.size || 4) + 3) + '" autocomplete="off">';
+    blankIdx++;
+    return html;
   });
-  return text;
 }
 
 function formatAnswer(p) {
@@ -952,7 +1224,22 @@ function formatAnswer(p) {
   return (p.blanks || []).map(b => (b.answer || '').replace(/\|/g, ' 或 ')).join('，');
 }
 
-// ========== Quiz logic ==========
+function stripHtml(html) {
+  if (!html) return '';
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  return div.textContent.trim();
+}
+
+function escAttr(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+}
+
+function escText(value) {
+  return String(value).replace(/[&<>]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]));
+}
+
+// ========== Submit / Reveal / Reset ==========
 function submitQuiz() {
   stopTimers();
   const totalSeconds = getTotalSeconds();
@@ -968,35 +1255,10 @@ function submitQuiz() {
 
   currentProblems.forEach((p, idx) => {
     const num = idx + 1;
-    const card = document.getElementById('card-' + num);
-    let isCorrect = false;
+    if (p.type === 'open') { openCount++; return; }
 
-    if (p.type === 'open') {
-      openCount++;
-      card.classList.add('answered');
-      return;
-    }
-
-    if (p.type === 'choice') {
-      const selected = document.querySelector(`.option.selected[data-q="${num}"]`);
-      isCorrect = selected && selected.dataset.val === p.answer;
-    } else {
-      isCorrect = true;
-      p.blanks.forEach((b, bi) => {
-        const input = document.querySelector(`input[data-q="${num}"][data-bi="${bi}"]`);
-        const userVal = (input?.value || '').trim();
-        const answers = b.answer.split('|');
-        if (!answers.some(a => userVal === a)) isCorrect = false;
-      });
-    }
-
-    if (isCorrect) {
-      score += p.score;
-      correctCount++;
-      card.classList.add('answered');
-    } else {
-      card.classList.add('wrong');
-    }
+    const isCorrect = gradeQuestion(p, num);
+    if (isCorrect) { score += p.score; correctCount++; }
 
     const key = (p._weekId || currentWeekId) + '-' + p.id;
     if (!isCorrect) {
@@ -1012,64 +1274,56 @@ function submitQuiz() {
   if (currentWeekId === '__wrongbook__') {
     currentProblems.forEach(p => {
       const key = (p._weekId) + '-' + p.id;
-      if (!wrongSet[key] && state.wrongBook[key]) {
-        delete state.wrongBook[key];
-      }
+      if (!wrongSet[key] && state.wrongBook[key]) delete state.wrongBook[key];
     });
   }
 
   state.history.push({
-    weekId: currentWeekId,
-    score: score,
-    total: totalScore,
-    duration: totalSeconds,
+    weekId: currentWeekId, score, total: totalScore, duration: totalSeconds,
     date: new Date().toISOString().slice(0, 10)
   });
   if (state.history.length > 50) state.history = state.history.slice(-50);
-
   saveState(state);
 
   window._quizSubmitted = true;
+  clearQuizProgress();
+
   document.getElementById('submitBtn').disabled = true;
   document.getElementById('revealBtn').disabled = false;
-  disableAllInputs();
 
-  // --- score display ---
-  const starDisplay = document.getElementById('starDisplay');
+  // Score display
   const ratio = autoTotal > 0 ? score / autoTotal : 0;
-  if (ratio >= 0.9) starDisplay.textContent = '⭐⭐⭐⭐⭐ 太棒了！';
-  else if (ratio >= 0.8) starDisplay.textContent = '⭐⭐⭐⭐ 很好！';
-  else if (ratio >= 0.7) starDisplay.textContent = '⭐⭐⭐ 不错！';
-  else if (ratio >= 0.6) starDisplay.textContent = '⭐⭐ 加油！';
-  else starDisplay.textContent = '⭐ 继续努力！';
+  const starEl = document.getElementById('starDisplay');
+  if (ratio >= 0.9) starEl.textContent = '太棒了！';
+  else if (ratio >= 0.8) starEl.textContent = '很好！';
+  else if (ratio >= 0.7) starEl.textContent = '不错！';
+  else if (ratio >= 0.6) starEl.textContent = '加油！';
+  else starEl.textContent = '继续努力！';
 
   document.getElementById('scoreDisplay').textContent = score;
 
-  const totalCount = currentProblems.length;
-  const gradedCount = totalCount - openCount;
-  let detailHtml = `自动评分：${autoTotal}分 | 答对：${correctCount}题/共${gradedCount}题`;
-  if (openCount > 0) detailHtml += `<br>另有 ${openCount} 道开放题需自行对照答案`;
-  detailHtml += `<br>总用时：${formatTime(totalSeconds)}`;
-
-  // --- per-question time ---
-  let timeDetailHtml = '<h4>每题用时</h4>';
-  const avgTime = currentProblems.length > 0 ? totalSeconds / currentProblems.length : 0;
-  currentProblems.forEach((p, idx) => {
-    const num = idx + 1;
-    const t = qTimes[num] ? Math.round(qTimes[num] / 1000) : 0;
-    const slowClass = (t > avgTime * 2) ? ' slow' : '';
-    timeDetailHtml +=
-      `<div class="time-row"><span>第${num}题${slowClass ? ' 🐢' : ''}</span><span class="time-val${slowClass}">${formatTime(t)}</span></div>`;
-  });
-
+  const gradedCount = currentProblems.length - openCount;
+  let detailHtml = '自动评分：' + autoTotal + '分 | 答对：' + correctCount + '题/共' + gradedCount + '题';
+  if (openCount > 0) detailHtml += '<br>另有 ' + openCount + ' 道开放题需自行对照答案';
+  detailHtml += '<br>总用时：' + formatTime(totalSeconds);
   document.getElementById('detailDisplay').innerHTML = detailHtml;
-  document.getElementById('timeDetail').innerHTML = timeDetailHtml;
 
-  const rc = document.getElementById('resultCard');
-  rc.style.display = 'block';
-  rc.scrollIntoView({ behavior: 'smooth' });
+  // Per-question time
+  const avgTime = currentProblems.length > 0 ? totalSeconds / currentProblems.length : 0;
+  let timeHtml = '<h4>每题用时</h4>';
+  currentProblems.forEach((p, idx) => {
+    const n = idx + 1;
+    const t = qTimes[n] ? Math.round(qTimes[n] / 1000) : 0;
+    const slowClass = t > avgTime * 2 ? ' slow' : '';
+    timeHtml += '<div class="time-row"><span>第' + n + '题' + (slowClass ? ' slow' : '') + '</span><span class="time-val' + slowClass + '">' + formatTime(t) + '</span></div>';
+  });
+  document.getElementById('timeDetail').innerHTML = timeHtml;
 
-  // Trigger AI reviews for reviewable problems
+  document.getElementById('resultCard').classList.remove('hidden');
+  document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth' });
+
+  renderSidebar();
+  renderQuestionCard();
   triggerAIReviews();
 }
 
@@ -1078,27 +1332,22 @@ async function triggerAIReviews() {
   if (!AI_REVIEW_URL) return;
   const reviewable = currentProblems.filter(p => p.reviewable);
   if (reviewable.length === 0) return;
-  const title = (problemsData.exams || []).find(e => e.id === currentWeekId)?.title || '';
 
-  const jobs = reviewable.map(async (p) => {
+  const tasks = [];
+  reviewable.forEach(p => {
     const idx = currentProblems.indexOf(p);
     const num = idx + 1;
-    const textarea = document.querySelector(`textarea.review-textarea[data-q="${num}"]`);
-    if (!textarea) return null;
-    const studentProcess = textarea.value.trim();
-    if (!studentProcess) return null;
-    return { num, p, studentProcess };
+    const studentProcess = (quizAnswers[num + '_process'] || '').trim();
+    if (!studentProcess) return;
+    tasks.push({ num, p, studentProcess });
   });
-
-  const tasks = (await Promise.all(jobs)).filter(Boolean);
   if (tasks.length === 0) return;
 
-  for (const task of tasks) {
-    const spinner = document.getElementById('spinner-' + task.num);
+  tasks.forEach(t => {
+    const spinner = document.getElementById('spinner-' + t.num);
     if (spinner) spinner.style.display = 'block';
-  }
+  });
 
-  // Fire all requests in parallel
   const results = await Promise.allSettled(tasks.map(async (task) => {
     try {
       const payload = {
@@ -1109,9 +1358,7 @@ async function triggerAIReviews() {
         questionNumber: task.num
       };
       const res = await fetch(AI_REVIEW_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
       });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
@@ -1127,122 +1374,54 @@ async function triggerAIReviews() {
     const spinner = document.getElementById('spinner-' + num);
     if (spinner) spinner.style.display = 'none';
     const fbContent = document.getElementById('fb-content-' + num);
-    if (fbContent) {
-      fbContent.textContent = r.status === 'fulfilled' ? r.value.review : 'AI批改暂时不可用';
-    }
+    if (fbContent) fbContent.textContent = r.status === 'fulfilled' ? r.value.review : 'AI批改暂时不可用';
   });
 }
 
-function stripHtml(html) {
-  if (!html) return '';
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  return div.textContent.trim();
-}
-
 function revealAnswers() {
+  window._revealAnswers = true;
   document.getElementById('revealBtn').disabled = true;
-
+  renderSidebar();
+  renderQuestionCard();
+  // Show AI feedback for reviewable problems
   currentProblems.forEach((p, idx) => {
     const num = idx + 1;
-    const exp = document.getElementById('exp-' + num);
-    if (exp) exp.style.display = 'block';
-
-    if (p.type === 'open') {
-      const textarea = document.querySelector(`textarea[data-q="${num}"]`);
-      if (textarea) textarea.classList.add('neutral-input');
-    } else if (p.type === 'choice') {
-      document.querySelectorAll(`.option[data-q="${num}"]`).forEach(opt => {
-        if (opt.dataset.val === p.answer) opt.classList.add('correct-show');
-        else if (opt.classList.contains('selected')) opt.classList.add('wrong-show');
-      });
-    } else {
-      p.blanks.forEach((b, bi) => {
-        const input = document.querySelector(`input[data-q="${num}"][data-bi="${bi}"]`);
-        if (!input) return;
-        const userVal = input.value.trim();
-        const answers = b.answer.split('|');
-        if (answers.some(a => userVal === a)) {
-          input.classList.add('correct-input');
-        } else {
-          input.classList.add('wrong-input');
-        }
-      });
-    }
-    // Show AI feedback for reviewable problems
     if (p.reviewable) {
       const fb = document.getElementById('feedback-' + num);
       if (fb) fb.style.display = 'block';
     }
   });
-
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function disableAllInputs() {
-  document.querySelectorAll('.option').forEach(o => {
-    o.style.cursor = 'default';
-    o.style.pointerEvents = 'none';
-  });
-  document.querySelectorAll('.quiz-input').forEach(inp => inp.disabled = true);
-  document.querySelectorAll('.open-textarea').forEach(ta => ta.disabled = true);
-  document.querySelectorAll('.review-textarea').forEach(ta => ta.disabled = true);
-}
-
 function resetQuiz() {
-  stopTimers();
+  stopTimers(); clearQuizProgress();
+  quizAnswers = {}; quizCurrent = 0;
   window._quizSubmitted = false;
-  startTimers(currentProblems.length);
+  window._revealAnswers = false;
 
   document.getElementById('submitBtn').disabled = false;
   document.getElementById('revealBtn').disabled = true;
+  document.getElementById('resultCard').classList.add('hidden');
 
-  document.querySelectorAll('.option').forEach(o => {
-    o.classList.remove('selected', 'correct-show', 'wrong-show');
-    o.style.cursor = '';
-    o.style.pointerEvents = '';
-  });
-  document.querySelectorAll('.quiz-input').forEach(inp => {
-    inp.value = '';
-    inp.disabled = false;
-    inp.classList.remove('correct-input', 'wrong-input');
-  });
-  document.querySelectorAll('.open-textarea').forEach(ta => {
-    ta.value = '';
-    ta.disabled = false;
-    ta.classList.remove('neutral-input');
-  });
-  document.querySelectorAll('.review-textarea').forEach(ta => {
-    ta.value = '';
-    ta.disabled = false;
-  });
-  document.querySelectorAll('.review-feedback').forEach(fb => { fb.style.display = 'none'; });
-  document.querySelectorAll('.review-spinner').forEach(sp => { sp.style.display = 'none'; });
-  document.querySelectorAll('.ai-content').forEach(el => { el.textContent = ''; });
-
-  document.querySelectorAll('.question-card').forEach(c => {
-    c.classList.remove('answered', 'wrong');
-  });
-
-  document.querySelectorAll('.explanation').forEach(e => e.style.display = 'none');
-  document.getElementById('resultCard').style.display = 'none';
-
+  startTimers(currentProblems.length);
   switchFocus(1);
+  renderSidebar();
+  renderQuestionCard();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function goHome() {
-  stopTimers();
-  currentView = 'home';
-  currentWeekId = null;
-  currentProblems = null;
-  window._quizSubmitted = false;
+  stopTimers(); clearQuizProgress();
+  quizAnswers = {}; quizCurrent = 0;
+  currentView = 'home'; currentWeekId = null; currentProblems = null;
+  window._quizSubmitted = false; window._revealAnswers = false;
   render();
 }
 
 // ========== Init ==========
 window._quizSubmitted = false;
-
+window._revealAnswers = false;
 render();
 </script>
 
