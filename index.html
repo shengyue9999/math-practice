@@ -608,6 +608,12 @@ async function render() {
   if (!currentUser) { currentView = 'login'; renderLogin(app); return; }
 
   if (currentView === 'login') currentView = 'home';
+  if (currentView === 'home' && window._pendingExam) {
+    const examId = window._pendingExam;
+    window._pendingExam = null;
+    startExam(examId);
+    return;
+  }
   if (currentView === 'home') {
     try { renderHome(app); } catch(e) { app.innerHTML = '<div class="empty-state">渲染首页时出错: ' + e.message + '</div>'; console.error(e); }
   } else if (currentView === 'quiz') {
@@ -1422,6 +1428,11 @@ function goHome() {
 // ========== Init ==========
 window._quizSubmitted = false;
 window._revealAnswers = false;
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const examId = params.get('exam');
+  if (examId) window._pendingExam = examId;
+})();
 render();
 </script>
 
