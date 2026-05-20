@@ -469,9 +469,27 @@ const USERS_KEY = 'math_practice_users';
 const USER_DATA_PREFIX = 'math_practice_';
 
 const DEFAULT_USERS = [
-  { name: '纳豆', password: '104301' },
-  { name: '笑笑', password: '123456' }
+  { name: 'ND', password: '104301' },
+  { name: 'XX', password: '123456' }
 ];
+
+function migrateOldUsers() {
+  const map = { '纳豆': 'ND', '笑笑': 'XX' };
+  const users = getUsers();
+  let changed = false;
+  for (const [old, next] of Object.entries(map)) {
+    const oldKey = USER_DATA_PREFIX + old;
+    const nextKey = USER_DATA_PREFIX + next;
+    if (localStorage.getItem(oldKey) && !localStorage.getItem(nextKey)) {
+      localStorage.setItem(nextKey, localStorage.getItem(oldKey));
+      changed = true;
+    }
+    const ui = users.findIndex(u => u.name === old);
+    if (ui !== -1) { users[ui].name = next; changed = true; }
+  }
+  if (changed) saveUsers(users);
+}
+migrateOldUsers();
 
 function initUsers() {
   let users = getUsers();
